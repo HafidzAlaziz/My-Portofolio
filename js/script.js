@@ -285,4 +285,70 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeCertificate() {
       document.getElementById('certificateModal').classList.add('hidden');
     }
- 
+  
+    //<!-- Validasi + Kirim ke Formspree -->//
+
+      document.getElementById("contact-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+    
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const subject = document.getElementById("subject");
+        const message = document.getElementById("message");
+    
+        const errorName = document.getElementById("error-name");
+        const errorEmail = document.getElementById("error-email");
+        const errorSubject = document.getElementById("error-subject");
+        const errorMessage = document.getElementById("error-message");
+    
+        let valid = true;
+    
+        [name, email, subject, message].forEach(el => el.classList.remove("border-red-500"));
+        [errorName, errorEmail, errorSubject, errorMessage].forEach(el => el.classList.add("hidden"));
+    
+        if (name.value.trim() === "") {
+          name.classList.add("border-red-500");
+          errorName.classList.remove("hidden");
+          valid = false;
+        }
+    
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value)) {
+          email.classList.add("border-red-500");
+          errorEmail.classList.remove("hidden");
+          valid = false;
+        }
+    
+        if (subject.value.trim() === "") {
+          subject.classList.add("border-red-500");
+          errorSubject.classList.remove("hidden");
+          valid = false;
+        }
+    
+        if (message.value.trim() === "") {
+          message.classList.add("border-red-500");
+          errorMessage.classList.remove("hidden");
+          valid = false;
+        }
+    
+        if (valid) {
+          const formData = new FormData(this);
+          fetch("https://formspree.io/f/mgvkjngd", {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" }
+          })
+          .then(response => {
+            if (response.ok) {
+              alert("✅ Pesan berhasil dikirim!");
+              this.reset();
+            } else {
+              alert("❌ Gagal mengirim pesan. Silakan coba lagi.");
+            }
+          })
+          .catch(() => {
+            alert("⚠️ Terjadi kesalahan saat mengirim.");
+          });
+        }
+      });
+    

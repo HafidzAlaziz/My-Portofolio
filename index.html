@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.9.1/dist/gsap.min.js"></script>
-</head>
 <body class="relative">
     <!-- Preloader -->
     <div class="preloader">
@@ -27,12 +23,12 @@
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold gradient-text">Portofolio</a>
             <div class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link text-slate-300 hover:text-white transition-colors">Home</a>
-                <a href="#about" class="nav-link text-slate-300 hover:text-white transition-colors">About</a>
-                <a href="#skills" class="nav-link text-slate-300 hover:text-white transition-colors">Skills</a>
-                <a href="#projects" class="nav-link text-slate-300 hover:text-white transition-colors">Projects</a>
-                <a href="#certificate" class="nav-link text-slate-300 hover:text-white transition-colors">Certificate</a>
-                <a href="#contact" class="nav-link text-slate-300 hover:text-white transition-colors">Contact</a>
+                <a href="#home" class="nav-link text-slate-300 hover:text-white transition-colors">Beranda</a>
+                <a href="#about" class="nav-link text-slate-300 hover:text-white transition-colors">Tentang Saya</a>
+                <a href="#skills" class="nav-link text-slate-300 hover:text-white transition-colors">Skill</a>
+                <a href="#projects" class="nav-link text-slate-300 hover:text-white transition-colors">Projek</a>
+                <a href="#certificate" class="nav-link text-slate-300 hover:text-white transition-colors">Sertifikat</a>
+                <a href="#contact" class="nav-link text-slate-300 hover:text-white transition-colors">Kontak</a>
             </div>
             <button class="md:hidden text-white focus:outline-none" id="menu-toggle">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -43,12 +39,12 @@
         <!-- Mobile Menu -->
         <div class="md:hidden hidden bg-slate-800 py-4" id="mobile-menu">
             <div class="flex flex-col items-center space-y-4">
-                <a href="#home" class="text-slate-300 hover:text-white transition-colors">Home</a>
-                <a href="#about" class="text-slate-300 hover:text-white transition-colors">About</a>
-                <a href="#skills" class="text-slate-300 hover:text-white transition-colors">Skills</a>
-                <a href="#projects" class="text-slate-300 hover:text-white transition-colors">Projects</a>
-                <a href="#certificate" class="text-slate-300 hover:text-white transition-colors">Certificate</a>
-                <a href="#contact" class="text-slate-300 hover:text-white transition-colors">Contact</a>
+                <a href="#home" class="text-slate-300 hover:text-white transition-colors">Beranda</a>
+                <a href="#about" class="text-slate-300 hover:text-white transition-colors">Tentang Saya</a>
+                <a href="#skills" class="text-slate-300 hover:text-white transition-colors">Skill</a>
+                <a href="#projects" class="text-slate-300 hover:text-white transition-colors">Projek</a>
+                <a href="#certificate" class="text-slate-300 hover:text-white transition-colors">Sertifikat</a>
+                <a href="#contact" class="text-slate-300 hover:text-white transition-colors">Kontak</a>
             </div>
         </div>
     </nav>
@@ -58,19 +54,16 @@
         <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
             <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4">
-                    <span class="block">Hello, I'm</span>
+                    <span class="block">Hello, Saya</span>
                     <span class="gradient-text">Muhammad Hafidz Alaziz</span>
                 </h1>
                 <h2 class="text-xl md:text-2xl text-slate-400 mb-6">Web Developer & UI-UX Designer</h2>
-                <p class="text-slate-300 mb-8 max-w-lg mx-auto md:mx-0">
-                    I create beautiful, functional, and interactive web experiences with a focus on animation and 3D elements.
-                </p>
                 <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
                     <a href="#contact" class="btn-primary px-8 py-3 rounded-full text-white font-medium">
-                        Contact Me
+                        Kontak Saya
                     </a>
                     <a href="#projects" class="px-8 py-3 rounded-full border border-slate-600 text-white hover:bg-slate-800 transition-colors">
-                        View Projects
+                        Lihat Projek
                     </a>
                 </div>
             </div>
@@ -99,20 +92,20 @@
     <section id="about" class="py-20 px-4 section">
         <div class="container mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
-                <span class="gradient-text">About Me</span>
+                <span class="gradient-text">Tentang Saya</span>
             </h2>
             <div class="flex flex-col md:flex-row items-center gap-10">
                 <div class="md:w-1/2">
                     <div class="card p-6 rounded-2xl">
-                        <h3 class="text-2xl font-semibold mb-4">Who I Am</h3>
+                        <h3 class="text-2xl font-semibold mb-4">Siapa Saya?</h3>
                         <p class="text-slate-300 mb-4">
-                            I'm a passionate web developer and designer with a focus on creating interactive and visually stunning web experiences. With expertise in frontend technologies and a keen eye for design, I bring ideas to life through code.
+                            Saya seorang pengembang dan desainer web yang bersemangat dengan fokus menciptakan pengalaman web yang interaktif dan memukau secara visual. Dengan keahlian dalam teknologi front-end dan kejelian dalam desain, saya mewujudkan ide melalui kode.
                         </p>
                         <p class="text-slate-300 mb-4">
-                            My journey in web development started 5 years ago, and since then, I've worked on numerous projects ranging from simple landing pages to complex web applications with 3D interactions and animations.
+                            Perjalanan saya dalam pengembangan web dimulai 3 tahun yang lalu, dan sejak itu, saya telah mengerjakan banyak proyek mulai dari halaman arahan sederhana hingga aplikasi web kompleks dengan interaksi dan animasi 3D.
                         </p>
                         <p class="text-slate-300">
-                            I believe in continuous learning and staying updated with the latest technologies and design trends to deliver cutting-edge solutions.
+                            Saya percaya pada pembelajaran berkelanjutan dan selalu mengikuti perkembangan teknologi dan tren desain terkini untuk memberikan solusi mutakhir.
                         </p>
                     </div>
                 </div>
@@ -125,7 +118,7 @@
                                 </svg>
                             </div>
                             <h4 class="text-xl font-semibold mb-2">Web Development</h4>
-                            <p class="text-slate-300">Creating responsive and interactive websites with modern technologies.</p>
+                            <p class="text-slate-300">Membuat situs web responsif dan interaktif dengan teknologi modern.</p>
                         </div>
                         <div class="card p-6 rounded-2xl">
                             <div class="text-4xl mb-4 text-indigo-400">
@@ -134,7 +127,7 @@
                                 </svg>
                             </div>
                             <h4 class="text-xl font-semibold mb-2">UI/UX Design</h4>
-                            <p class="text-slate-300">Designing intuitive and beautiful user interfaces and experiences.</p>
+                            <p class="text-slate-300">Merancang antarmuka dan pengalaman pengguna yang intuitif dan indah.</p>
                         </div>
                         <div class="card p-6 rounded-2xl">
                             <div class="text-4xl mb-4 text-purple-400">
@@ -143,7 +136,7 @@
                                 </svg>
                             </div>
                             <h4 class="text-xl font-semibold mb-2">3D Interactions</h4>
-                            <p class="text-slate-300">Creating immersive 3D experiences for the web using Three.js and WebGL.</p>
+                            <p class="text-slate-300">Menciptakan pengalaman 3D yang mendalam untuk web menggunakan Three.js.</p>
                         </div>
                         <div class="card p-6 rounded-2xl">
                             <div class="text-4xl mb-4 text-pink-400">
@@ -152,7 +145,7 @@
                                 </svg>
                             </div>
                             <h4 class="text-xl font-semibold mb-2">Animations</h4>
-                            <p class="text-slate-300">Bringing websites to life with smooth and engaging animations.</p>
+                            <p class="text-slate-300">Menghidupkan situs web dengan animasi yang halus dan menarik.</p>
                         </div>
                     </div>
                 </div>
@@ -164,11 +157,11 @@
     <section id="skills" class="py-20 px-4 bg-slate-900/50 section">
         <div class="container mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
-                <span class="gradient-text">My Skills</span>
+                <span class="gradient-text">Skill Saya</span>
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div class="card p-8 rounded-2xl">
-                    <h3 class="text-2xl font-semibold mb-8 text-center">Technical Skills</h3>
+                    <h3 class="text-2xl font-semibold mb-8 text-center">Skill</h3>
                     <div class="space-y-6">
                         <div>
                             <div class="flex justify-between mb-2">
@@ -208,15 +201,6 @@
                         </div>
                         <div>
                             <div class="flex justify-between mb-2">
-                                <span class="font-medium">GSAP Animation</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
                                 <span class="font-medium">Tailwind CSS</span>
                                 <span>90%</span>
                             </div>
@@ -227,7 +211,7 @@
                     </div>
                 </div>
                 <div class="card p-8 rounded-2xl">
-                    <h3 class="text-2xl font-semibold mb-8 text-center">Design Skills</h3>
+                    <h3 class="text-2xl font-semibold mb-8 text-center">Design Skill</h3>
                     <div class="space-y-6">
                         <div>
                             <div class="flex justify-between mb-2">
@@ -249,38 +233,11 @@
                         </div>
                         <div>
                             <div class="flex justify-between mb-2">
-                                <span class="font-medium">Adobe XD</span>
-                                <span>80%</span>
+                                <span class="font-medium">Canva</span>
+                                <span>90%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-width="80%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Photoshop</span>
-                                <span>75%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="75%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Blender</span>
-                                <span>70%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="70%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Motion Design</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="80%"></div>
+                                <div class="skill-progress" data-width="90%"></div>
                             </div>
                         </div>
                     </div>
@@ -293,7 +250,7 @@
     <section id="projects" class="py-20 px-4 section">
         <div class="container mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
-                <span class="gradient-text">My Projects</span>
+                <span class="gradient-text">Projek Saya</span>
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project 1 -->
@@ -307,9 +264,8 @@
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
                             <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">PHP</span>
                             <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">Boostrap5</span>
-                        </div>
-                        <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm">View Project</a>
-                    </div>
+                       </div>
+                    </div> 
                 </div>
                 
                 <!-- Project 2 -->
@@ -325,7 +281,7 @@
                             <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">Laravel</span>
                             <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">Tailwind</span>
                         </div>
-                        <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm">View Project</a>
+                        <a href="https://si-tenb.my.id/" class="btn-primary px-6 py-2 rounded-full text-sm">Lihat Projek</a>
                     </div>
                 </div>
                 
@@ -342,7 +298,6 @@
                             <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">Boostrap</span>
                             <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">Laravel</span>
                         </div>
-                        <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm">View Project</a>
                     </div>
                 </div>
                 
@@ -410,7 +365,7 @@
 <section id="certificate" class="py-20 px-4 section">
   <div class="container mx-auto">
     <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
-      <span class="gradient-text">Certificate</span>
+      <span class="gradient-text">Sertifikat</span>
     </h2>
 
     <!-- Grid Projects -->
@@ -422,7 +377,7 @@
           <h3 class="text-xl font-semibold mb-2">Sertifikat Kompetensi Kelulusan</h3>
           <p class="text-slate-300 mb-4">Memulai Dasar Pemrograman untuk Menjadi Pengembang Software</p>
           <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm"
-             onclick="openCertificate('assets/sertifikat1.png')">View Certificate</a>
+             onclick="openCertificate('assets/sertifikat1.png')">Lihat Sertifikat</a>
         </div>
       </div>
 
@@ -433,7 +388,7 @@
           <h3 class="text-xl font-semibold mb-2">Sertifikat Kompetensi Kelulusan</h3>
           <p class="text-slate-300 mb-4">Belajar Dasar Visualisasi Data</p>
           <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm"
-             onclick="openCertificate('assets/sertifikat2.png')">View Certificate</a>
+             onclick="openCertificate('assets/sertifikat2.png')">Lihat Sertifikat</a>
         </div>
       </div>
 
@@ -444,7 +399,7 @@
           <h3 class="text-xl font-semibold mb-2">Certificate Of Participation</h3>
           <p class="text-slate-300 mb-4">Kickstart UI UX Design Journey</p>
           <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm"
-             onclick="openCertificate('assets/sertifikat3.png')">View Certificate</a>
+             onclick="openCertificate('assets/sertifikat3.png')">Lihat Sertifikat</a>
         </div>
       </div>
 
@@ -455,7 +410,7 @@
           <h3 class="text-xl font-semibold mb-2">Certificate Of Achievement</h3>
           <p class="text-slate-300 mb-4">Kickstart UI UX Design Journey</p>
           <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm"
-             onclick="openCertificate('assets/sertifikat4.png')">View Certificate</a>
+             onclick="openCertificate('assets/sertifikat4.png')">Lihat Sertifikat</a>
         </div>
       </div>
 
@@ -466,7 +421,7 @@
           <h3 class="text-xl font-semibold mb-2">Sertifikat</h3>
           <p class="text-slate-300 mb-4">Sebagai Peserta dalam Pengimbasan Master Trainer 2024</p>
           <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm"
-             onclick="openCertificate('assets/sertifikat5.png')">View Certificate</a>
+             onclick="openCertificate('assets/sertifikat5.png')">Lihat Sertifikat</a>
         </div>
       </div>
 
@@ -477,7 +432,7 @@
           <h3 class="text-xl font-semibold mb-2">Certificate Of Completion</h3>
           <p class="text-slate-300 mb-4">Online Course UI UX For Beginners</p>
           <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm"
-             onclick="openCertificate('assets/sertifikat6.png')">View Certificate</a>
+             onclick="openCertificate('assets/sertifikat6.png')">Lihat Sertifikat</a>
         </div>
       </div>
 
@@ -488,7 +443,7 @@
           <h3 class="text-xl font-semibold mb-2">Sertifikat Kompetensi Kelulusan</h3>
           <p class="text-slate-300 mb-4">Pengenalan ke Logika Pemrograman (Programming Logic 101)</p>
           <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm"
-             onclick="openCertificate('assets/sertifikat7.png')">View Certificate</a>
+             onclick="openCertificate('assets/sertifikat7.png')">Lihat Sertifikat</a>
         </div>
       </div>
 
@@ -499,7 +454,7 @@
           <h3 class="text-xl font-semibold mb-2">Sertifikat Partisipasi</h3>
           <p class="text-slate-300 mb-4">Seminar Literasi Digital Sektor Pendidikan</p>
           <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm"
-             onclick="openCertificate('assets/sertifikat8.png')">View Certificate</a>
+             onclick="openCertificate('assets/sertifikat8.png')">Lihat Sertifikat</a>
         </div>
       </div>
     </div><!-- /#certificateGrid -->
@@ -508,7 +463,7 @@
     <div class="mt-10 flex justify-center">
       <button id="toggleCertificates" onclick="toggleCertificates()"
               class="btn-primary px-8 py-3 rounded-full text-white font-medium">
-        Show All Certificates
+        Lihat Semua Sertifikat
       </button>
     </div>
   </div>
@@ -530,12 +485,12 @@
     <section id="contact" class="py-20 px-4 bg-slate-900/50 section">
         <div class="container mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
-                <span class="gradient-text">Get In Touch</span>
+                <span class="gradient-text">Hubungi Kami</span>
             </h2>
             <div class="flex flex-col md:flex-row gap-10">
                 <div class="md:w-1/2">
                     <div class="card p-8 rounded-2xl">
-                        <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+                        <h3 class="text-2xl font-semibold mb-6">Informasi Kontak</h3>
                         <div class="space-y-6">
                             <div class="flex items-center">
                                 <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center mr-4">
@@ -555,7 +510,7 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="text-sm text-slate-400">Phone</p>
+                                    <p class="text-sm text-slate-400">No Hp</p>
                                     <p class="text-white">+62895613114028</p>
                                 </div>
                             </div>
@@ -567,13 +522,13 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="text-sm text-slate-400">Location</p>
+                                    <p class="text-sm text-slate-400">Lokasi</p>
                                     <p class="text-white">Ciomas, Bogor, Jawa Barat, Indonesia</p>
                                 </div>
                             </div>
                         </div>
                         <div class="mt-8">
-                            <h4 class="text-lg font-medium mb-4">Follow Me</h4>
+                            <h4 class="text-lg font-medium mb-4">Ikuti Saya</h4>
                             <div class="flex space-x-4">
                                 <a href="https://youtube.com/@fidz47?si=oaZfOPTKeXoO0yel" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-slate-700 transition-colors">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 576 512" fill="currentColor">
@@ -600,30 +555,40 @@
                         </div>
                     </div>
                 </div>
-                <div class="md:w-1/2">
-                    <div class="card p-8 rounded-2xl">
-                        <h3 class="text-2xl font-semibold mb-6">Send Me a Message</h3>
-                        <form id="contact-form" class="space-y-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Your Name</label>
-                                <input type="text" id="name" name="name" class="contact-input w-full px-4 py-3 rounded-lg" placeholder="Enter your name">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Your Email</label>
-                                <input type="email" id="email" name="email" class="contact-input w-full px-4 py-3 rounded-lg" placeholder="Enter your email">
-                            </div>
-                            <div>
-                                <label for="subject" class="block text-sm font-medium text-slate-300 mb-2">Subject</label>
-                                <input type="text" id="subject" name="subject" class="contact-input w-full px-4 py-3 rounded-lg" placeholder="Enter subject">
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-slate-300 mb-2">Message</label>
-                                <textarea id="message" name="message" rows="5" class="contact-input w-full px-4 py-3 rounded-lg resize-none" placeholder="Enter your message"></textarea>
-                            </div>
-                            <button type="submit" class="btn-primary w-full py-3 rounded-lg font-medium">Send Message</button>
-                        </form>
+    
+   <!-- Form Kirim Pesan -->
+   <div class="md:w-1/2 mx-auto">
+    <div class="card p-8 rounded-2xl bg-gray-800 shadow-lg">
+      <h3 class="text-2xl font-semibold mb-6 text-white text-center">Kirim Pesan</h3>
+      <form id="contact-form" class="space-y-6" novalidate>
+        <div>
+          <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Nama Kamu</label>
+          <input type="text" id="name" name="from_name" class="contact-input w-full px-4 py-3 rounded-lg bg-slate-700 text-white" placeholder="Masukan Nama Kamu" required>
+          <p class="text-red-500 text-sm mt-1 hidden" id="error-name">Nama harus diisi.</p>
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email Kamu</label>
+          <input type="email" id="email" name="from_email" class="contact-input w-full px-4 py-3 rounded-lg bg-slate-700 text-white" placeholder="Masukan Email Kamu" required>
+          <p class="text-red-500 text-sm mt-1 hidden" id="error-email">Masukkan email yang valid.</p>
+        </div>
+        <div>
+          <label for="subject" class="block text-sm font-medium text-slate-300 mb-2">Subjek</label>
+          <input type="text" id="subject" name="title" class="contact-input w-full px-4 py-3 rounded-lg bg-slate-700 text-white" placeholder="Masukan Subjek" required>
+          <p class="text-red-500 text-sm mt-1 hidden" id="error-subject">Subjek harus diisi.</p>
+        </div>
+        <div>
+          <label for="message" class="block text-sm font-medium text-slate-300 mb-2">Pesan</label>
+          <textarea id="message" name="message" rows="5" class="contact-input w-full px-4 py-3 rounded-lg bg-slate-700 text-white resize-none" placeholder="Masukan Pesan" required></textarea>
+          <p class="text-red-500 text-sm mt-1 hidden" id="error-message">Pesan tidak boleh kosong.</p>
+        </div>
+        <button type="submit" class="btn-primary w-full py-3 rounded-lg font-medium bg-blue-600 hover:bg-blue-700 text-white transition">Kirim Pesan</button>
+      </form>
+    </div>
+  </div>
+
                     </div>
-                </div>
+                  </div>
+                  
             </div>
         </div>
     </section>
@@ -646,6 +611,14 @@
             </div>
         </div>
     </footer>
-    <script src="js/script.js"></script>
+<!-- Libs -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+<!-- Custom Script HARUS DIBAWAH email.min.js -->
+<script src="js/script.js"></script>
+
 </body>
 </html>
