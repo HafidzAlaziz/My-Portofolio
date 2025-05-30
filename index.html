@@ -5,30 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio</title>
     <link rel="icon" href="assets/logo.png" alt="Logo" style="background: transparent;">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 <body class="relative">
     <!-- Preloader -->
+    <!-- PRELOADER: Animasi saat halaman loading -->
     <div class="preloader">
         <div class="loader"></div>
     </div>
 
     <!-- Custom Cursor -->
+    <!-- KURSOR KHUSUS: Elemen kursor utama -->
     <div class="cursor"></div>
+    <!-- KURSOR KHUSUS: Elemen bayangan kursor -->
     <div class="cursor-follower"></div>
 
     <!-- 3D Background -->
+    <!-- Latar belakang interaktif/3D -->
     <div id="canvas-container"></div>
 
     <!-- Navigation -->
+    <!-- NAVIGASI UTAMA -->
     <nav class="fixed top-0 left-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold gradient-text">Portofolio</a>
+            <a href="#" class="text-2xl font-bold gradient-text">Hafidz</a>
             <div class="hidden md:flex space-x-8">
                 <a href="#home" class="nav-link text-slate-300 hover:text-white transition-colors">Beranda</a>
                 <a href="#about" class="nav-link text-slate-300 hover:text-white transition-colors">Tentang Saya</a>
                 <a href="#skills" class="nav-link text-slate-300 hover:text-white transition-colors">Skill</a>
-                <a href="#projects" class="nav-link text-slate-300 hover:text-white transition-colors">Projek</a>
-                <a href="#certificate" class="nav-link text-slate-300 hover:text-white transition-colors">Sertifikat</a>
+                <a href="#portofolio" class="nav-link text-slate-300 hover:text-white transition-colors">Portofolio</a>
                 <a href="#contact" class="nav-link text-slate-300 hover:text-white transition-colors">Kontak</a>
             </div>
             <button class="md:hidden text-white focus:outline-none" id="menu-toggle">
@@ -43,14 +48,14 @@
                 <a href="#home" class="text-slate-300 hover:text-white transition-colors">Beranda</a>
                 <a href="#about" class="text-slate-300 hover:text-white transition-colors">Tentang Saya</a>
                 <a href="#skills" class="text-slate-300 hover:text-white transition-colors">Skill</a>
-                <a href="#projects" class="text-slate-300 hover:text-white transition-colors">Projek</a>
-                <a href="#certificate" class="text-slate-300 hover:text-white transition-colors">Sertifikat</a>
+                <a href="#portofolio" class="text-slate-300 hover:text-white transition-colors">Portofolio</a>
                 <a href="#contact" class="text-slate-300 hover:text-white transition-colors">Kontak</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
+    <!-- BAGIAN BERANDA / HERO SECTION -->
     <section id="home" class="min-h-screen flex items-center justify-center pt-20 pb-10 px-4">
         <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
             <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
@@ -63,8 +68,8 @@
                     <a href="#contact" class="btn-primary px-8 py-3 rounded-full text-white font-medium">
                         Kontak Saya
                     </a>
-                    <a href="#projects" class="px-8 py-3 rounded-full border border-slate-600 text-white hover:bg-slate-800 transition-colors">
-                        Lihat Projek
+                    <a href="#portofolio" class="px-8 py-3 rounded-full border border-slate-600 text-white hover:bg-slate-800 transition-colors">
+                        Lihat Portofolio
                     </a>
                 </div>
             </div>
@@ -88,8 +93,10 @@
             </div>
         </div>
     </section>
+    
 
     <!-- About Section -->
+    <!-- BAGIAN TENTANG SAYA -->
     <section id="about" class="py-20 px-4 section">
         <div class="container mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
@@ -103,7 +110,7 @@
                             Saya seorang pengembang dan desainer web yang bersemangat dengan fokus menciptakan pengalaman web yang interaktif dan memukau secara visual. Dengan keahlian dalam teknologi front-end dan kejelian dalam desain, saya mewujudkan ide melalui kode.
                         </p>
                         <p class="text-slate-300 mb-4">
-                            Perjalanan saya dalam pengembangan web dimulai 3 tahun yang lalu, dan sejak itu, saya telah mengerjakan banyak proyek mulai dari halaman arahan sederhana hingga aplikasi web kompleks dengan interaksi dan animasi 3D.
+                            Perjalanan saya dalam pengembangan web dimulai 3 tahun yang lalu, dan sejak itu, saya telah mengerjakan banyak proyek mulai dari halaman arahan sederhana hingga aplikasi web kompleks.
                         </p>
                         <p class="text-slate-300">
                             Saya percaya pada pembelajaran berkelanjutan dan selalu mengikuti perkembangan teknologi dan tren desain terkini untuk memberikan solusi mutakhir.
@@ -137,7 +144,7 @@
                                 </svg>
                             </div>
                             <h4 class="text-xl font-semibold mb-2">3D Interactions</h4>
-                            <p class="text-slate-300">Menciptakan pengalaman 3D yang mendalam untuk web menggunakan Three.js.</p>
+                            <p class="text-slate-300">Menciptakan pengalaman 3D yang mendalam untuk web.</p>
                         </div>
                         <div class="card p-6 rounded-2xl">
                             <div class="text-4xl mb-4 text-pink-400">
@@ -155,18 +162,37 @@
     </section>
 
     <!-- Skills Section -->
+    <!-- BAGIAN SKILL -->
     <section id="skills" class="py-20 px-4 bg-slate-900/50 section">
         <div class="container mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
                 <span class="gradient-text">Skill Saya</span>
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div class="card p-8 rounded-2xl">
-                    <h3 class="text-2xl font-semibold mb-8 text-center">Skill</h3>
+            <div class="grid grid-cols-1 md:grid-cols gap-10">
+                <div class="card p-8 rounded">
+                    <h3 class="text-2xl font-semibold mb-8 text-center"></h3>
                     <div class="space-y-6">
                         <div>
                             <div class="flex justify-between mb-2">
-                                <span class="font-medium">HTML/CSS</span>
+                                <span class="font-medium">Front-end</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Back-end</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">UI/UX Design</span>
                                 <span>95%</span>
                             </div>
                             <div class="skill-bar">
@@ -175,318 +201,342 @@
                         </div>
                         <div>
                             <div class="flex justify-between mb-2">
-                                <span class="font-medium">JavaScript</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">React.js</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Three.js</span>
+                                <span class="font-medium">Analis</span>
                                 <span>80%</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-progress" data-width="80%"></div>
                             </div>
                         </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Tailwind CSS</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card p-8 rounded-2xl">
-                    <h3 class="text-2xl font-semibold mb-8 text-center">Design Skill</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">UI/UX Design</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Figma</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Canva</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 px-4 section">
+    
+
+ <!-- Certificate -->
+    <!-- BAGIAN SERTIFIKAT -->
+    <div class="container mx-auto px-4 py-12">
+        <!-- Header Section -->
+         <section id="portofolio" class="py-20 px-4 bg-slate-900/50 section">
         <div class="container mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
-                <span class="gradient-text">Projek Saya</span>
+                <span class="gradient-text">Portofolio</span>
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card rounded-xl overflow-hidden">
-                    <div class="w-full h-full">
-                        <img src="assets/image1.png" class="w-full h-full object-cover">
-                      </div>                      
-                    <div class="project-overlay p-6 text-center">
-                        <h3 class="text-xl font-semibold mb-2">E-commerce</h3>
-                        <p class="text-slate-300 mb-4">Website E-comerce Sederhana</p>
-                        <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">PHP</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">Boostrap5</span>
-                       </div>
-                    </div> 
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="project-card rounded-xl overflow-hidden">
-                    <div class="w-full h-full">
-                        <img src="assets/image2.jpg" class="w-full h-full object-cover">
-                      </div> 
-                    <div class="project-overlay p-6 text-center">
-                        <h3 class="text-xl font-semibold mb-2">SI-TENB</h3>
-                        <p class="text-slate-300 mb-4">Sistem Informasi Ticketing BNPT adalah Aplikasi Website untuk Pengaduan Masyarakat Umum dan para Pegawai </p>
-                        <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">React</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">Laravel</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">Tailwind</span>
+        
+        <!-- Navigation Buttons -->
+        <div class="flex flex-wrap justify-center gap-6 mb-16">
+            <button id="projectsBtn" class="btn bg-gradient-to-r from-purple-600 to-blue-500 text-white px-8 py-4 rounded-lg font-semibold text-lg flex items-center gap-2 shadow-lg">
+                <svg class="w-6 h-6 rotate-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                </svg>
+                Projects
+            </button>
+            <button id="certificatesBtn" class="btn bg-gradient-to-r from-green-500 to-teal-400 text-white px-8 py-4 rounded-lg font-semibold text-lg flex items-center gap-2 shadow-lg">
+                <svg class="w-6 h-6 rotate-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Certificates
+            </button>
+            <button id="techStackBtn" class="btn bg-gradient-to-r from-red-500 to-orange-500 text-white px-8 py-4 rounded-lg font-semibold text-lg flex items-center gap-2 shadow-lg">
+                <svg class="w-6 h-6 rotate-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+                Tech Stack
+            </button>
+        </div>
+        
+        <!-- Content Sections -->
+        <div id="projectsSection" style="display: block;" class="content-section bg-gray-900 bg-opacity-70 rounded-xl shadow-2xl mb-8">
+            <h2 class="text-3xl font-bold text-white mb-8 border-b border-blue-500 pb-4">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card project-card bg-gray-800 rounded-lg overflow-hidden shadow-lg relative">
+<div class="h-48 w-full bg-gray-800">
+  <img src="assets/projek1.jpg" alt="image" class="w-full h-full object-cover">
+</div>
+
+
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">SI-TENB</h3>
+                        <p class="text-gray-300 mb-4">Aplikasi Website Pengaduan</p>
+                        <div class="flex justify-between">  
+                            <span class="bg-blue-600 text-xs text-white px-3 py-1 rounded-full">React</span>
+                            <span class="bg-red-600 text-xs text-white px-3 py-1 rounded-full">Laravel</span>
+                            <span class="bg-blue-600 text-xs text-white px-3 py-1 rounded-full">Tailwind</span>
                         </div>
-                        <a href="https://si-tenb.my.id/" class="btn-primary px-6 py-2 rounded-full text-sm">Lihat Projek</a>
+                    </div>
+                    <div class="card-overlay">
+                        <button class=" text-red-600 px-4 py-2 rounded-lg font-semibold transition-all">Tidak Dapat Mengakses</button>
                     </div>
                 </div>
                 
-                <!-- Project 3 -->
-                <div class="project-card rounded-xl overflow-hidden">
-                    <div class="w-full h-full">
-                        <img src="assets/image.png" class="w-full h-full object-cover">
-                      </div> 
-                    <div class="project-overlay p-6 text-center">
-                        <h3 class="text-xl font-semibold mb-2">Perpustakaan Online</h3>
-                        <p class="text-slate-300 mb-4">Website Perpustakaan Online Baca, Pinjam & Kembalikan Buku</p>
-                        <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">React</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">Boostrap</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">Laravel</span>
+                <div class="card project-card bg-gray-800 rounded-lg overflow-hidden shadow-lg relative">
+<div class="h-48 w-full bg-gray-800">
+  <img src="assets/projek2.png" alt="image" class="w-full h-full object-cover">
+</div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Global Prayes Times</h3>
+                        <p class="text-gray-300 mb-4">Website untuk Mencari Jadwal Sholat Internasional</p>
+                        <div class="flex justify-between">
+                            <span class="bg-red-600 text-xs text-white px-3 py-1 rounded-full">Aladhan API</span>
+                            <span class="bg-blue-600 text-xs text-white px-3 py-1 rounded-full">Tailwind</span>
+                            <span class="bg-red-600 text-xs text-white px-3 py-1 rounded-full">Nominatim API (OSM)</span>
                         </div>
+                    </div>
+                    <div class="card-overlay">
+<a href="https://global-prayes-times.netlify.app" target="_blank" rel="noopener noreferrer"
+   class="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all">
+   Kunjungi Aplikasi
+</a>
                     </div>
                 </div>
                 
-                <!-- Project 4 -->
-                <div class="project-card rounded-xl overflow-hidden">
-                    <div class="h-64 bg-slate-800 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                <div class="card project-card bg-gray-800 rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="h-48 bg-gradient-to-r from-red-500 to-orange-600 flex items-center justify-center card-image">
+                        <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                         </svg>
                     </div>
-                    <div class="project-overlay p-6 text-center">
-                        <h3 class="text-xl font-semibold mb-2">Interactive Data Visualization</h3>
-                        <p class="text-slate-300 mb-4">A data visualization project with interactive charts and animations.</p>
-                        <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">D3.js</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">SVG</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">JavaScript</span>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">......</h3>
+                        <p class="text-gray-300 mb-4">.....</p>
+                        <div class="flex justify-between">
+                            <span class="bg-blue-600 text-xs text-white px-3 py-1 rounded-full"></span>
+                            <span class="bg-indigo-600 text-xs text-white px-3 py-1 rounded-full"></span>
                         </div>
-                        <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm">View Project</a>
                     </div>
-                </div>
-                
-                <!-- Project 5 -->
-                <div class="project-card rounded-xl overflow-hidden">
-                    <div class="h-64 bg-slate-800 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                        </svg>
-                    </div>
-                    <div class="project-overlay p-6 text-center">
-                        <h3 class="text-xl font-semibold mb-2">WebGL Game</h3>
-                        <p class="text-slate-300 mb-4">A browser-based 3D game with physics and interactive elements.</p>
-                        <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">Three.js</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">Cannon.js</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">JavaScript</span>
-                        </div>
-                        <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm">View Project</a>
-                    </div>
-                </div>
-                
-                <!-- Project 6 -->
-                <div class="project-card rounded-xl overflow-hidden">
-                    <div class="h-64 bg-slate-800 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                        </svg>
-                    </div>
-                    <div class="project-overlay p-6 text-center">
-                        <h3 class="text-xl font-semibold mb-2">Creative Agency Website</h3>
-                        <p class="text-slate-300 mb-4">A creative agency website with parallax effects and smooth animations.</p>
-                        <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">React</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">Framer Motion</span>
-                            <span class="px-3 py-1 bg-slate-700 rounded-full text-xs">Styled Components</span>
-                        </div>
-                        <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm">View Project</a>
+                    <div class="card-overlay">
+                        <button class="bg-white text-red-600 px-4 py-2 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-all">View Project</button>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+        
+<!-- BAGIAN SERTIFIKAT DENGAN TOGGLE -->
+<div id="certificatesSection" style="display: none;" class="content-section bg-gray-900 bg-opacity-70 rounded-xl shadow-2xl mb-8">
+  <h2 class="text-3xl font-bold text-white mb-8 border-b border-green-500 pb-4">My Certificates</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="certificateGrid">
 
- <!-- Certificate -->
-<section id="certificate" class="py-20 px-4 section">
-  <div class="container mx-auto">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
-      <span class="gradient-text">Sertifikat</span>
-    </h2>
-
-    <!-- Grid Projects -->
-    <div id="certificateGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- certificate 1 -->
-      <div class="project-card rounded-xl overflow-hidden">
-        <img src="assets/sertifikat1.png" class="w-full h-full object-cover">
-        <div class="project-overlay p-6 text-center">
-          <h3 class="text-xl font-semibold mb-2">Sertifikat Kompetensi Kelulusan</h3>
-          <p class="text-slate-300 mb-4">Memulai Dasar Pemrograman untuk Menjadi Pengembang Software</p>
-          <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm"
-             onclick="openCertificate('assets/sertifikat1.png')">Lihat Sertifikat</a>
-        </div>
+    <!-- Sertifikat 1 -->
+    <div class="card certificate-card group bg-gray-800 rounded-lg overflow-hidden shadow-lg relative">
+      <img src="assets/sertifikat1.png" alt="Sertifikat 1" class="w-full h-48 object-cover">
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-white mb-2">Memulai Dasar Pemrograman untuk Menjadi Pengembang Software</h3>
+        <p class="text-gray-300 mb-2">Dicoding-Indonesia</p>
+        <p class="text-gray-400">24 - Agustus - 2023</p>
       </div>
-
-      <!-- certificate 2 -->
-      <div class="project-card rounded-xl overflow-hidden">
-        <img src="assets/sertifikat2.png" class="w-full h-full object-cover">
-        <div class="project-overlay p-6 text-center">
-          <h3 class="text-xl font-semibold mb-2">Sertifikat Kompetensi Kelulusan</h3>
-          <p class="text-slate-300 mb-4">Belajar Dasar Visualisasi Data</p>
-          <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm"
-             onclick="openCertificate('assets/sertifikat2.png')">Lihat Sertifikat</a>
-        </div>
+      <div class="card-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+        <button onclick="window.open('assets/sertifikat1.png', '_blank')" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all">Lihat Sertifikat</button>
       </div>
-
-      <!-- certificate 3 -->
-      <div class="project-card rounded-xl overflow-hidden">
-        <img src="assets/sertifikat3.png" class="w-full h-full object-cover">
-        <div class="project-overlay p-6 text-center">
-          <h3 class="text-xl font-semibold mb-2">Certificate Of Participation</h3>
-          <p class="text-slate-300 mb-4">Kickstart UI UX Design Journey</p>
-          <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm"
-             onclick="openCertificate('assets/sertifikat3.png')">Lihat Sertifikat</a>
-        </div>
-      </div>
-
-      <!-- certificate 4 (hidden by default) -->
-      <div class="project-card rounded-xl overflow-hidden extra-cert hidden">
-        <img src="assets/sertifikat4.png" class="w-full h-full object-cover">
-        <div class="project-overlay p-6 text-center">
-          <h3 class="text-xl font-semibold mb-2">Certificate Of Achievement</h3>
-          <p class="text-slate-300 mb-4">Kickstart UI UX Design Journey</p>
-          <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm"
-             onclick="openCertificate('assets/sertifikat4.png')">Lihat Sertifikat</a>
-        </div>
-      </div>
-
-      <!-- certificate 5 (hidden by default) -->
-      <div class="project-card rounded-xl overflow-hidden extra-cert hidden">
-        <img src="assets/sertifikat5.png" class="w-full h-full object-cover">
-        <div class="project-overlay p-6 text-center">
-          <h3 class="text-xl font-semibold mb-2">Sertifikat</h3>
-          <p class="text-slate-300 mb-4">Sebagai Peserta dalam Pengimbasan Master Trainer 2024</p>
-          <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm"
-             onclick="openCertificate('assets/sertifikat5.png')">Lihat Sertifikat</a>
-        </div>
-      </div>
-
-      <!-- certificate 6 (hidden by default) -->
-      <div class="project-card rounded-xl overflow-hidden extra-cert hidden">
-        <img src="assets/sertifikat6.png" class="w-full h-full object-cover">
-        <div class="project-overlay p-6 text-center">
-          <h3 class="text-xl font-semibold mb-2">Certificate Of Completion</h3>
-          <p class="text-slate-300 mb-4">Online Course UI UX For Beginners</p>
-          <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm"
-             onclick="openCertificate('assets/sertifikat6.png')">Lihat Sertifikat</a>
-        </div>
-      </div>
-
-      <!-- certificate 7 (hidden by default) -->
-      <div class="project-card rounded-xl overflow-hidden extra-cert hidden">
-        <img src="assets/sertifikat7.png" class="w-full h-full object-cover">
-        <div class="project-overlay p-6 text-center">
-          <h3 class="text-xl font-semibold mb-2">Sertifikat Kompetensi Kelulusan</h3>
-          <p class="text-slate-300 mb-4">Pengenalan ke Logika Pemrograman (Programming Logic 101)</p>
-          <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm"
-             onclick="openCertificate('assets/sertifikat7.png')">Lihat Sertifikat</a>
-        </div>
-      </div>
-
-      <!-- certificate 8 (hidden by default) -->
-      <div class="project-card rounded-xl overflow-hidden extra-cert hidden">
-        <img src="assets/sertifikat8.png" class="w-full h-full object-cover">
-        <div class="project-overlay p-6 text-center">
-          <h3 class="text-xl font-semibold mb-2">Sertifikat Partisipasi</h3>
-          <p class="text-slate-300 mb-4">Seminar Literasi Digital Sektor Pendidikan</p>
-          <a href="#" class="btn-primary px-6 py-2 rounded-full text-sm"
-             onclick="openCertificate('assets/sertifikat8.png')">Lihat Sertifikat</a>
-        </div>
-      </div>
-    </div><!-- /#certificateGrid -->
-
-    <!-- Toggle Button -->
-    <div class="mt-10 flex justify-center">
-      <button id="toggleCertificates" onclick="toggleCertificates()"
-              class="btn-primary px-8 py-3 rounded-full text-white font-medium">
-        Lihat Semua Sertifikat
-      </button>
     </div>
+
+    <!-- Sertifikat 2 -->
+    <div class="card certificate-card group bg-gray-800 rounded-lg overflow-hidden shadow-lg relative">
+      <img src="assets/sertifikat2.png" alt="Sertifikat 2" class="w-full h-48 object-cover">
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-white mb-2">Belajar Visualisasi Data</h3>
+        <p class="text-gray-300 mb-2">Dicoding-Indonesia/p>
+        <p class="text-gray-400">18 - September - 2023</p>
+      </div>
+      <div class="card-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+        <button onclick="window.open('assets/sertifikat2.png', '_blank')" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all">Lihat Sertifikat</button>
+      </div>
+    </div>
+
+    <!-- Sertifikat 3 -->
+    <div class="card certificate-card group bg-gray-800 rounded-lg overflow-hidden shadow-lg relative">
+      <img src="assets/sertifikat3.png" alt="Sertifikat 3" class="w-full h-48 object-cover">
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-white mb-2">Flexible Kickstart UI UX Design Journey</h3>
+        <p class="text-gray-300 mb-2">Rakamin Academy</p>
+        <p class="text-gray-400">Juli - 2024</p>
+      </div>
+      <div class="card-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+        <button onclick="window.open('assets/sertifikat3.png', '_blank')" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all">Lihat Sertifikat</button>
+      </div>
+    </div>
+
+    <!-- Sertifikat 4-8 (Hidden by default) -->
+    <div class="card certificate-card group bg-gray-800 rounded-lg overflow-hidden shadow-lg relative hidden">
+      <img src="assets/sertifikat4.png" alt="Sertifikat 4" class="w-full h-48 object-cover">
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-white mb-2">Excellent Grade | Kickstart UI UX Design Journey</h3>
+        <p class="text-gray-300 mb-2">Rakamin Academy</p>
+        <p class="text-gray-400">Juli - 2024</p>
+      </div>
+      <div class="card-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+        <button onclick="window.open('assets/sertifikat4.png', '_blank')" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all">Lihat Sertifikat</button>
+      </div>
+    </div>
+
+    <!-- Placeholder Sertifikat 5-8 -->
+    <div class="card certificate-card group bg-gray-800 rounded-lg overflow-hidden shadow-lg relative hidden">
+      <img src="assets/sertifikat5.png" alt="Sertifikat 5" class="w-full h-48 object-cover">
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-white mb-2">Pengimbasan Master Trainer 2024</h3>
+        <p class="text-gray-300 mb-2">Google - Akun Belajar.id - REFO</p>
+        <p class="text-gray-400">Oktober - 2024</p>
+      </div>
+      <div class="card-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+        <button onclick="window.open('assets/sertifikat5.png', '_blank')" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all">Lihat Sertifikat</button>
+      </div>
+    </div>
+
+        <!-- Placeholder Sertifikat 5-8 -->
+    <div class="card certificate-card group bg-gray-800 rounded-lg overflow-hidden shadow-lg relative hidden">
+      <img src="assets/sertifikat6.png" alt="Sertifikat 5" class="w-full h-48 object-cover">
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-white mb-2">Online Course UI/UX For Beginers</h3>
+        <p class="text-gray-300 mb-2">Great Learning</p>
+        <p class="text-gray-400">Juli - 2024</p>
+      </div>
+      <div class="card-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+        <button onclick="window.open('assets/sertifikat6.png', '_blank')" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all">Lihat Sertifikat</button>
+      </div>
+    </div>
+
+        <!-- Placeholder Sertifikat 5-8 -->
+    <div class="card certificate-card group bg-gray-800 rounded-lg overflow-hidden shadow-lg relative hidden">
+      <img src="assets/sertifikat7.png" alt="Sertifikat 5" class="w-full h-48 object-cover">
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-white mb-2">Pengenalan Logika Pemrograman (Programing Logic 101)</h3>
+        <p class="text-gray-300 mb-2">Dicoding-Indonesia</p>
+        <p class="text-gray-400">30 - Agustus - 2023</p>
+      </div>
+      <div class="card-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+        <button onclick="window.open('assets/sertifikat7.png', '_blank')" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all">Lihat Sertifikat</button>
+      </div>
+    </div>
+
+        <!-- Placeholder Sertifikat 5-8 -->
+    <div class="card certificate-card group bg-gray-800 rounded-lg overflow-hidden shadow-lg relative hidden">
+      <img src="assets/sertifikat8.png" alt="Sertifikat 5" class="w-full h-48 object-cover">
+      <div class="p-6">
+        <h3 class="text-xl font-bold text-white mb-2">Seminar Literasi Digital</h3>
+        <p class="text-gray-300 mb-2">Direktorat Pemberdayaan Informatika - Kominfo</p>
+        <p class="text-gray-400">20 - Februari - 2024</p>
+      </div>
+      <div class="card-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+        <button onclick="window.open('assets/sertifikat8.png', '_blank')" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all">Lihat Sertifikat</button>
+      </div>
+    </div>
+
+    <!-- Tambahkan Sertifikat 6-8 sesuai kebutuhan -->
+    <!-- Duplikasikan struktur di atas dan ganti angka serta informasi -->
+
   </div>
 
-  <!-- Modal Certificate -->
-  <div id="certificateModal"
-       class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
-    <div class="bg-white p-4 rounded-xl relative max-w-4xl w-full">
-      <button onclick="closeCertificate()"
-              class="absolute top-2 right-2 text-gray-700 text-2xl">&times;</button>
-      <img id="certificateImage" src="" alt="Certificate"
-           class="w-full h-auto rounded-lg">
-    </div>
-  </div>
-</section>
+  <!-- Tombol Show All -->
+  <div class="text-center mt-6">
+   <button id="toggleCertificatesBtn"
+  class="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg hover:bg-green-700"
+  onclick="toggleCertificates()">
+  Lihat Semua
+</button>
 
-  
+  </div>
+</div>
+
+        
+        <div id="techStackSection" style="display: none;" class="content-section bg-gray-900 bg-opacity-70 rounded-xl shadow-2xl">
+            <h2 class="text-3xl font-bold text-white mb-8 border-b border-orange-500 pb-4">My Tech Stack</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              <div class="card tech-card flex flex-col items-center">
+  <div class="w-24 h-24 bg-[#E34F26] rounded-full flex items-center justify-center mb-4 tech-icon">
+    <!-- Perbesar logo SVG menjadi w-16 h-16 -->
+    <i class="fab fa-html5 text-white text-5xl"></i>
+  </div>
+  <h3 class="text-xl font-semibold text-[#E34F26] mb-2">HTML</h3>
+  <div class="w-full bg-gray-700 rounded-full h-2.5">
+    <div class="bg-[#E34F26] h-2.5 rounded-full progress-bar" style="width: 95%"></div>
+  </div>
+</div>
+
+                
+                <div class="card tech-card flex flex-col items-center">
+                    <div class="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mb-4 tech-icon">
+                    <i class="fab fa-css3-alt text-white text-5xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">CSS</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2.5">
+                        <div class="bg-blue-600 h-2.5 rounded-full progress-bar" style="width: 90%"></div>
+                    </div>
+                </div>
+                
+                <div class="card tech-card flex flex-col items-center">
+                    <div class="w-24 h-24 bg-yellow-600 rounded-full flex items-center justify-center mb-4 tech-icon">
+                        <i class="fab fa-js-square text-white text-5xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Js</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2.5">
+                        <div class="bg-yellow-600 h-2.5 rounded-full progress-bar" style="width: 85%"></div>
+                    </div>
+                </div>
+                
+<div class="card tech-card flex flex-col items-center">
+  <div class="w-24 h-24 bg-[#7952B3] rounded-full flex items-center justify-center mb-4 tech-icon">
+    <i class="fab fa-bootstrap text-white text-5xl"></i>
+  </div>
+  <h3 class="text-xl font-semibold text-[#7952B3] mb-2">Bootstrap</h3>
+  <div class="w-full bg-gray-700 rounded-full h-2.5">
+    <div class="bg-[#7952B3] h-2.5 rounded-full progress-bar" style="width: 85%"></div>
+  </div>
+</div>
+
+                
+<div class="card tech-card flex flex-col items-center">
+  <div class="w-24 h-24 bg-[#F05032] rounded-full flex items-center justify-center mb-4 tech-icon">
+    <img src="https://cdn.simpleicons.org/git/ffffff" alt="Git" class="w-12 h-12">
+  </div>
+  <h3 class="text-xl font-semibold text-white mb-2">Git</h3>
+  <div class="w-full bg-gray-700 rounded-full h-2.5">
+    <div class="bg-[#F05032] h-2.5 rounded-full progress-bar" style="width: 90%"></div>
+  </div>
+</div>
+
+
+                
+                <div class="card tech-card flex flex-col items-center">
+                    <div class="w-24 h-24 bg-pink-600 rounded-full flex items-center justify-center mb-4 tech-icon">
+                        <svg class="w-12 h-12 text-white" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Tailwind CSS</h3>
+                    <div class="w-full bg-gray-700 rounded-full h-2.5">
+                        <div class="bg-pink-600 h-2.5 rounded-full progress-bar" style="width: 90%"></div>
+                    </div>
+                </div>
+                
+               <div class="card tech-card flex flex-col items-center">
+  <div class="w-24 h-24 bg-[#FF2D20] rounded-full flex items-center justify-center mb-4 tech-icon">
+    <img src="assets/laravel.jpg" alt="Laravel" class="w-12 h-12 object-contain">
+  </div>
+  <h3 class="text-xl font-semibold text-[#FF2D20] mb-2">Laravel</h3>
+  <div class="w-full bg-gray-700 rounded-full h-2.5">
+    <div class="bg-[#FF2D20] h-2.5 rounded-full progress-bar" style="width: 90%"></div>
+  </div>
+</div>
+
+              <div class="card tech-card flex flex-col items-center">
+  <div class="w-24 h-24 bg-[#181717] rounded-full flex items-center justify-center mb-4 tech-icon">
+    <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" class="w-12 h-12">
+  </div>
+  <h3 class="text-xl font-semibold text-white mb-2">GitHub</h3>
+  <div class="w-full bg-gray-700 rounded-full h-2.5">
+    <div class="bg-[#181717] h-2.5 rounded-full progress-bar" style="width: 85%"></div>
+  </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+  </section>
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-4 bg-slate-900/50 section">
+    <!-- BAGIAN KONTAK -->
+         <section id="contact" class="py-20 px-4 section">
         <div class="container mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
-                <span class="gradient-text">Hubungi Kami</span>
+                <span class="gradient-text">Kontak</span>
             </h2>
             <div class="flex flex-col md:flex-row gap-10">
                 <div class="md:w-1/2">
@@ -621,5 +671,7 @@
 <!-- Custom Script HARUS DIBAWAH email.min.js -->
 <script src="js/script.js"></script>
 
+
 </body>
+
 </html>

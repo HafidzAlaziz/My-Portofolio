@@ -352,3 +352,109 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ambil tombol dan section yang diperlukan
+      const projectsBtn = document.getElementById('projectsBtn');
+      const certificatesBtn = document.getElementById('certificatesBtn');
+      const techStackBtn = document.getElementById('techStackBtn');
+
+      const projectsSection = document.getElementById('projectsSection');
+      const certificatesSection = document.getElementById('certificatesSection');
+      const techStackSection = document.getElementById('techStackSection');
+
+      // Tampilkan default section Projects saat pertama kali dibuka
+      projectsSection.classList.add('active');
+
+      // Fungsi reset section aktif
+      function resetSections() {
+        projectsBtn.classList.remove('scale-110');
+        certificatesBtn.classList.remove('scale-110');
+        techStackBtn.classList.remove('scale-110');
+
+        projectsSection.classList.remove('active');
+        certificatesSection.classList.remove('active');
+        techStackSection.classList.remove('active');
+      }
+
+      // Klik tombol Projects
+      projectsBtn.addEventListener('click', function() {
+        resetSections();
+        projectsBtn.classList.add('scale-110');
+        projectsSection.classList.add('active');
+        animateCards(projectsSection);
+      });
+
+      // Klik tombol Certificates
+      certificatesBtn.addEventListener('click', function() {
+        resetSections();
+        certificatesBtn.classList.add('scale-110');
+        certificatesSection.classList.add('active');
+        animateCards(certificatesSection);
+      });
+
+      // Klik tombol Tech Stack
+      techStackBtn.addEventListener('click', function() {
+        resetSections();
+        techStackBtn.classList.add('scale-110');
+        techStackSection.classList.add('active');
+        animateCards(techStackSection);
+      });
+
+      // Fungsi animasi muncul kartu
+      function animateCards(section) {
+        const cards = section.querySelectorAll('.card');
+        cards.forEach((card, index) => {
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, index * 100);
+        });
+      }
+
+     
+        });
+
+ function toggleCertificates() {
+    const cards = document.querySelectorAll('#certificateGrid .certificate-card');
+    const btn = document.getElementById('toggleCertificatesBtn');
+    const hiddenCards = Array.from(cards).slice(3); // Ambil kartu ke-4 dan seterusnya
+
+    const isHidden = hiddenCards[0].classList.contains('hidden');
+    hiddenCards.forEach(card => {
+      if (isHidden) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    btn.textContent = isHidden ? 'Sembunyikan' : 'Lihat Semua';
+  }
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const projects = document.getElementById("projectsSection");
+    const certificates = document.getElementById("certificatesSection");
+    const techStack = document.getElementById("techStackSection");
+
+    projects.style.display = "block";
+    certificates.style.display = "none";
+    techStack.style.display = "none";
+
+    document.getElementById("projectsBtn").addEventListener("click", function () {
+      projects.style.display = "block";
+      certificates.style.display = "none";
+      techStack.style.display = "none";
+    });
+
+    document.getElementById("certificatesBtn").addEventListener("click", function () {
+      projects.style.display = "none";
+      certificates.style.display = "block";
+      techStack.style.display = "none";
+    });
+
+    document.getElementById("techStackBtn").addEventListener("click", function () {
+      projects.style.display = "none";
+      certificates.style.display = "none";
+      techStack.style.display = "block";
+    });
+  });
