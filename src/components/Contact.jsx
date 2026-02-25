@@ -100,7 +100,7 @@ const Contact = () => {
                                     <a href="https://id.linkedin.com/in/hafidz-alaziz-9a044b362" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-slate-700 hover:-translate-y-1 transition-all text-slate-300 hover:text-blue-500">
                                         <Linkedin size={20} />
                                     </a>
-                                    <a href="https://github.com/MfidzDev" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-slate-700 hover:-translate-y-1 transition-all text-slate-300 hover:text-white">
+                                    <a href="https://github.com/HafidzAlaziz" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-slate-700 hover:-translate-y-1 transition-all text-slate-300 hover:text-white">
                                         <Github size={20} />
                                     </a>
                                 </div>

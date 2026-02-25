@@ -20,11 +20,11 @@ const Hero = () => {
         <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 pb-10 px-4" ref={contentRef}>
             <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
                 <div className="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
-                    <h1 className="text-4xl md:text-6xl font-bold mb-4 hero-text">
-                        <span className="block">Hello, Saya</span>
+                    <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 hero-text leading-tight">
+                        <span className="block text-slate-200">Hello, Saya</span>
                         <span className="gradient-text">Muhammad Hafidz Alaziz</span>
                     </h1>
-                    <h2 className="text-xl md:text-2xl text-slate-400 mb-6 hero-text">Fullstack Developer</h2>
+                    <h2 className="text-xl md:text-2xl text-slate-400 mb-8 hero-text font-medium tracking-wide">Fullstack Developer</h2>
                     <div className="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4 hero-text">
                         <a href="#contact" className="btn-primary px-8 py-3 rounded-full text-white font-medium text-center">
                             Kontak Saya
@@ -35,16 +35,17 @@ const Hero = () => {
                     </div>
                 </div>
 
-                <div className="md:w-1/2 flex flex-col items-center hero-text">
-                    <div className="relative w-64 h-64 md:w-80 md:h-80 mb-6 group">
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500 opacity-20 blur-2xl spin-slow"></div>
+                <div className="md:w-1/2 flex flex-col items-center hero-text mt-12 md:mt-0">
+                    <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 mb-6 group">
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500 opacity-20 blur-3xl spin-slow"></div>
                         <div className="floating relative z-10 w-full h-full flex items-center justify-center">
-                            <svg className="w-full h-full absolute" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="#22D3EE" opacity="0.8" d="M40.8,-70.4C52.9,-64.5,62.9,-53.1,70.1,-40C77.3,-26.9,81.7,-13.5,81.2,-0.3C80.7,12.9,75.3,25.8,67.8,37.4C60.3,49,50.7,59.3,39.1,65.3C27.5,71.3,13.8,73,0.7,71.8C-12.3,70.6,-24.6,66.5,-36.9,60.5C-49.2,54.5,-61.5,46.6,-68.9,35.3C-76.3,24,-78.8,9.3,-77.9,-5.2C-77,-19.7,-72.7,-34,-64.3,-45.1C-55.9,-56.2,-43.4,-64.1,-30.5,-69.4C-17.6,-74.7,-4.4,-77.4,8.5,-76.1C21.4,-74.8,28.7,-76.3,40.8,-70.4Z" transform="translate(100 100)" />
+                            <svg className="w-full h-full absolute scale-110 opacity-70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#22D3EE" d="M40.8,-70.4C52.9,-64.5,62.9,-53.1,70.1,-40C77.3,-26.9,81.7,-13.5,81.2,-0.3C80.7,12.9,75.3,25.8,67.8,37.4C60.3,49,50.7,59.3,39.1,65.3C27.5,71.3,13.8,73,0.7,71.8C-12.3,70.6,-24.6,66.5,-36.9,60.5C-49.2,54.5,-61.5,46.6,-68.9,35.3C-76.3,24,-78.8,9.3,-77.9,-5.2C-77,-19.7,-72.7,-34,-64.3,-45.1C-55.9,-56.2,-43.4,-64.1,-30.5,-69.4C-17.6,-74.7,-4.4,-77.4,8.5,-76.1C21.4,-74.8,28.7,-76.3,40.8,-70.4Z" transform="translate(100 100)" />
                             </svg>
 
                             <div className="absolute inset-0 flex items-center justify-center z-10 p-2">
-                                <div className="relative w-48 h-48 md:w-60 md:h-60 rounded-full bg-slate-900 border-4 border-slate-700 overflow-visible flex items-center justify-center shadow-lg">
+                                <div className="relative w-56 h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full bg-slate-900 border-4 border-slate-700/50 overflow-visible flex items-center justify-center shadow-2xl">
+                                    <div className="absolute inset-0 rounded-full border-2 border-cyan-400/20 animate-ping"></div>
                                     <img
                                         src={profileImg}
                                         alt="Muhammad Hafidz Alaziz"

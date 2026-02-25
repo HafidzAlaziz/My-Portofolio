@@ -29,9 +29,9 @@ const Navbar = () => {
                 <a href="#" className="text-2xl font-bold gradient-text">Hafidz</a>
 
                 {/* Desktop Nav */}
-                <div className="hidden md:flex space-x-8">
+                <div className="hidden lg:flex space-x-8">
                     {navLinks.map((link) => (
-                        <a key={link.name} href={link.href} className="nav-link text-slate-300 hover:text-white transition-colors relative group">
+                        <a key={link.name} href={link.href} className="nav-link text-slate-300 hover:text-white transition-colors relative group text-sm xl:text-base">
                             {link.name}
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
                         </a>
@@ -40,21 +40,22 @@ const Navbar = () => {
 
                 {/* Mobile Toggle */}
                 <button
-                    className="md:hidden text-white focus:outline-none"
+                    className="lg:hidden text-white focus:outline-none p-2 hover:bg-slate-800 rounded-lg transition-colors"
                     onClick={() => setIsOpen(!isOpen)}
+                    aria-label="Toggle menu"
                 >
-                    {isOpen ? <X size={24} /> : <Menu size={24} />}
+                    {isOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
             </div>
 
             {/* Mobile Nav */}
-            <div className={`md:hidden absolute w-full bg-slate-900/95 backdrop-blur-lg transition-all duration-500 ease-in-out overflow-hidden ${isOpen ? 'max-h-[500px] py-6 border-b border-slate-700' : 'max-h-0 py-0 opacity-0'}`}>
-                <div className="flex flex-col items-center space-y-4">
+            <div className={`lg:hidden absolute w-full bg-slate-900/98 backdrop-blur-xl transition-all duration-300 ease-in-out overflow-hidden shadow-2xl ${isOpen ? 'max-h-[600px] py-8 border-b border-slate-700 opacity-100' : 'max-h-0 py-0 opacity-0'}`}>
+                <div className="flex flex-col items-center space-y-2 px-6">
                     {navLinks.map((link) => (
                         <a
                             key={link.name}
                             href={link.href}
-                            className="text-slate-300 hover:text-cyan-400 transition-colors w-full text-center py-3 text-lg font-medium hover:bg-slate-800/50"
+                            className="text-slate-300 hover:text-cyan-400 transition-all w-full text-center py-4 text-xl font-medium rounded-xl hover:bg-slate-800/80 active:scale-95"
                             onClick={() => setIsOpen(false)}
                         >
                             {link.name}
