@@ -100,11 +100,16 @@ const Background3D = () => {
         window.addEventListener('resize', handleResize);
 
         // ANIMATION LOOP
-        const clock = new THREE.Clock();
+        let lastTime = performance.now();
+        let elapsedTime = 0;
 
         const animate = () => {
+            const currentTime = performance.now();
+            const deltaTime = (currentTime - lastTime) / 1000;
+            lastTime = currentTime;
+            elapsedTime += deltaTime;
+
             requestAnimationFrame(animate);
-            const elapsedTime = clock.getElapsedTime();
 
             targetX = mouseX * 0.001;
             targetY = mouseY * 0.001;

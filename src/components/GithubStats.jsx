@@ -42,7 +42,7 @@ const GithubStats = () => {
                                 <h3 className="text-xl font-semibold text-slate-200">GitHub Overview</h3>
                             </div>
                             <img
-                                src="https://github-readme-stats-fast.vercel.app/api?username=HafidzAlaziz&show_icons=true&theme=dark&hide_border=true&bg_color=0d1117&title_color=22d3ee&icon_color=22d3ee&text_color=cbd5e1"
+                                src="https://github-readme-stats-fast.vercel.app/api?username=MfidzDev&show_icons=true&theme=dark&hide_border=true&bg_color=0d1117&title_color=22d3ee&icon_color=22d3ee&text_color=cbd5e1"
                                 alt="GitHub Stats"
                                 className="w-full max-w-md hover:scale-105 transition-transform duration-300"
                             />
@@ -54,7 +54,7 @@ const GithubStats = () => {
                                 <h3 className="text-xl font-semibold text-slate-200">Current Streak</h3>
                             </div>
                             <img
-                                src="https://nirzak-streak-stats.vercel.app/?user=HafidzAlaziz&theme=dark&hide_border=true&background=0d1117&ring=22d3ee&fire=22d3ee&stroke=475569"
+                                src="https://nirzak-streak-stats.vercel.app/?user=MfidzDev&theme=dark&hide_border=true&background=0d1117&ring=22d3ee&fire=22d3ee&stroke=475569"
                                 alt="GitHub Streak"
                                 className="w-full max-w-md hover:scale-105 transition-transform duration-300"
                             />
@@ -69,7 +69,7 @@ const GithubStats = () => {
                                 <h3 className="text-xl font-semibold text-slate-200">Top Languages</h3>
                             </div>
                             <img
-                                src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=HafidzAlaziz&theme=dark&hide_border=true&include_all_commits=false&count_private=false&layout=compact&bg_color=0d1117&title_color=c084fc&text_color=cbd5e1"
+                                src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=MfidzDev&theme=dark&hide_border=true&include_all_commits=false&count_private=false&layout=compact&bg_color=0d1117&title_color=c084fc&text_color=cbd5e1"
                                 alt="Top Languages"
                                 className="w-full max-w-md hover:scale-105 transition-transform duration-300"
                             />
@@ -85,6 +85,22 @@ const GithubStats = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* GitHub Trophies */}
+                <div className="mt-8">
+                    <div className="card p-6 rounded-2xl stat-card border border-slate-700/50 hover:border-yellow-500/50 transition-colors flex flex-col items-center justify-center">
+                        <div className="flex items-center gap-2 mb-6 w-full">
+                            <Trophy className="text-yellow-400" />
+                            <h3 className="text-xl font-semibold text-slate-200">GitHub Achievements</h3>
+                        </div>
+                        <img
+                            src="https://github-profile-trophy.vercel.app/?username=MfidzDev&theme=onedark"
+                            alt="GitHub Trophies"
+                            className="w-full hover:scale-[1.02] transition-transform duration-300"
+                        />
+                    </div>
+                </div>
+
 
             </div>
         </section>
