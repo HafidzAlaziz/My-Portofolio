@@ -54,54 +54,54 @@ const Contact = () => {
                 <div className="flex flex-col md:flex-row gap-10 max-w-6xl mx-auto">
                     {/* Contact Info */}
                     <div className="md:w-1/2">
-                        <div className="card p-6 md:p-8 rounded-2xl h-full">
-                            <h3 className="text-2xl font-semibold mb-8 border-b border-slate-700 pb-4">Informasi Kontak</h3>
-                            <div className="space-y-8">
+                        <div className="card p-5 sm:p-6 md:p-8 rounded-2xl h-full border border-slate-700/50">
+                            <h3 className="text-xl sm:text-2xl font-semibold mb-8 border-b border-slate-700 pb-4">Informasi Kontak</h3>
+                            <div className="space-y-6 sm:space-y-8">
                                 <div className="flex items-center group">
-                                    <div className="w-14 h-14 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center mr-6 group-hover:bg-cyan-500/10 group-hover:border-cyan-500/30 transition-colors">
-                                        <Mail className="text-cyan-400 group-hover:scale-110 transition-transform" />
+                                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center mr-4 sm:mr-6 group-hover:bg-cyan-500/10 group-hover:border-cyan-500/30 transition-colors">
+                                        <Mail className="text-cyan-400 group-hover:scale-110 transition-transform w-5 h-5 sm:w-6 sm:h-6" />
                                     </div>
                                     <div>
-                                        <p className="text-sm text-slate-400 mb-1">Email</p>
-                                        <p className="text-slate-200 font-medium">hafidzalaziz721@gmail.com</p>
+                                        <p className="text-xs sm:text-sm text-slate-400 mb-1">Email</p>
+                                        <p className="text-sm sm:text-slate-200 font-medium truncate max-w-[180px] sm:max-w-none">hafidzalaziz721@gmail.com</p>
                                     </div>
                                 </div>
 
                                 <div className="flex items-center group">
-                                    <div className="w-14 h-14 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center mr-6 group-hover:bg-indigo-500/10 group-hover:border-indigo-500/30 transition-colors">
-                                        <Phone className="text-indigo-400 group-hover:scale-110 transition-transform" />
+                                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center mr-4 sm:mr-6 group-hover:bg-indigo-500/10 group-hover:border-indigo-500/30 transition-colors">
+                                        <Phone className="text-indigo-400 group-hover:scale-110 transition-transform w-5 h-5 sm:w-6 sm:h-6" />
                                     </div>
                                     <div>
-                                        <p className="text-sm text-slate-400 mb-1">No Hp</p>
-                                        <p className="text-slate-200 font-medium">+62895613114028</p>
+                                        <p className="text-xs sm:text-sm text-slate-400 mb-1">No Hp</p>
+                                        <p className="text-sm sm:text-slate-200 font-medium">+62895613114028</p>
                                     </div>
                                 </div>
 
                                 <div className="flex items-center group">
-                                    <div className="w-14 h-14 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center mr-6 group-hover:bg-purple-500/10 group-hover:border-purple-500/30 transition-colors">
-                                        <MapPin className="text-purple-400 group-hover:scale-110 transition-transform" />
+                                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center mr-4 sm:mr-6 group-hover:bg-purple-500/10 group-hover:border-purple-500/30 transition-colors">
+                                        <MapPin className="text-purple-400 group-hover:scale-110 transition-transform w-5 h-5 sm:w-6 sm:h-6" />
                                     </div>
                                     <div>
-                                        <p className="text-sm text-slate-400 mb-1">Lokasi</p>
-                                        <p className="text-slate-200 font-medium">Ciomas, Bogor, Jawa Barat</p>
+                                        <p className="text-xs sm:text-sm text-slate-400 mb-1">Lokasi</p>
+                                        <p className="text-sm sm:text-slate-200 font-medium">Ciomas, Bogor, Jawa Barat</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="mt-12 pt-8 border-t border-slate-700">
-                                <h4 className="text-lg font-medium mb-6 text-slate-300">Ikuti Saya</h4>
-                                <div className="flex space-x-4">
-                                    <a href="https://youtube.com/@fidz47" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-slate-700 hover:-translate-y-1 transition-all text-slate-300 hover:text-red-500">
-                                        <Youtube size={20} />
+                            <div className="mt-10 sm:mt-12 pt-8 border-t border-slate-700">
+                                <h4 className="text-base sm:text-lg font-medium mb-6 text-slate-300">Ikuti Saya</h4>
+                                <div className="flex space-x-3 sm:space-x-4">
+                                    <a href="https://youtube.com/@fidz47" target="_blank" rel="noreferrer" className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-slate-700 hover:-translate-y-1 transition-all text-slate-300 hover:text-red-500">
+                                        <Youtube size={18} className="sm:w-5 sm:h-5" />
                                     </a>
-                                    <a href="https://www.instagram.com/hfidz_alaziz" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-slate-700 hover:-translate-y-1 transition-all text-slate-300 hover:text-pink-500">
-                                        <Instagram size={20} />
+                                    <a href="https://www.instagram.com/hfidz_alaziz" target="_blank" rel="noreferrer" className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-slate-700 hover:-translate-y-1 transition-all text-slate-300 hover:text-pink-500">
+                                        <Instagram size={18} className="sm:w-5 sm:h-5" />
                                     </a>
-                                    <a href="https://id.linkedin.com/in/hafidz-alaziz-9a044b362" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-slate-700 hover:-translate-y-1 transition-all text-slate-300 hover:text-blue-500">
-                                        <Linkedin size={20} />
+                                    <a href="https://id.linkedin.com/in/hafidz-alaziz-9a044b362" target="_blank" rel="noreferrer" className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-slate-700 hover:-translate-y-1 transition-all text-slate-300 hover:text-blue-500">
+                                        <Linkedin size={18} className="sm:w-5 sm:h-5" />
                                     </a>
-                                    <a href="https://github.com/HafidzAlaziz" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-slate-700 hover:-translate-y-1 transition-all text-slate-300 hover:text-white">
-                                        <Github size={20} />
+                                    <a href="https://github.com/HafidzAlaziz" target="_blank" rel="noreferrer" className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center hover:bg-slate-700 hover:-translate-y-1 transition-all text-slate-300 hover:text-white">
+                                        <Github size={18} className="sm:w-5 sm:h-5" />
                                     </a>
                                 </div>
                             </div>

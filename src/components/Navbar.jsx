@@ -49,13 +49,13 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Nav */}
-            <div className={`lg:hidden absolute w-full bg-slate-900/98 backdrop-blur-xl transition-all duration-300 ease-in-out overflow-hidden shadow-2xl ${isOpen ? 'max-h-[600px] py-8 border-b border-slate-700 opacity-100' : 'max-h-0 py-0 opacity-0'}`}>
-                <div className="flex flex-col items-center space-y-2 px-6">
+            <div className={`lg:hidden absolute w-full bg-slate-900/98 backdrop-blur-xl transition-all duration-300 ease-in-out overflow-hidden shadow-2xl ${isOpen ? 'max-h-[600px] py-6 border-b border-slate-700 opacity-100' : 'max-h-0 py-0 opacity-0'}`}>
+                <div className="flex flex-col items-center space-y-1 px-6">
                     {navLinks.map((link) => (
                         <a
                             key={link.name}
                             href={link.href}
-                            className="text-slate-300 hover:text-cyan-400 transition-all w-full text-center py-4 text-xl font-medium rounded-xl hover:bg-slate-800/80 active:scale-95"
+                            className="text-slate-300 hover:text-cyan-400 transition-all w-full text-center py-3 text-lg font-medium rounded-xl hover:bg-slate-800/80 active:scale-95"
                             onClick={() => setIsOpen(false)}
                         >
                             {link.name}

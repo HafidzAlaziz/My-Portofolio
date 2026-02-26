@@ -56,8 +56,8 @@ const About = () => {
                 </h2>
                 <div className="flex flex-col md:flex-row items-center gap-10">
                     <div className="md:w-1/2 about-card">
-                        <div className="card p-6 md:p-8 rounded-2xl">
-                            <h3 className="text-2xl font-semibold mb-6">Siapa Saya?</h3>
+                        <div className="card p-5 sm:p-6 md:p-8 rounded-2xl">
+                            <h3 className="text-xl sm:text-2xl font-semibold mb-6">Siapa Saya?</h3>
                             <p className="text-slate-300 mb-4 leading-relaxed">
                                 Saya seorang <strong className="text-cyan-400 font-bold">Fullstack Developer</strong> yang bersemangat dalam menciptakan solusi web komprehensif. Dengan keahlian mendalam di sisi Frontend maupun Backend, saya fokus pada pembangunan aplikasi yang tidak hanya cantik secara visual, tetapi juga kuat secara arsitektur.
                             </p>
@@ -70,12 +70,12 @@ const About = () => {
                         </div>
                     </div>
                     <div className="md:w-1/2">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                             {services.map((service, idx) => (
-                                <div key={idx} className="card p-6 rounded-2xl about-card">
+                                <div key={idx} className="card p-5 sm:p-6 rounded-2xl about-card border border-slate-700/30 hover:border-cyan-500/30 transition-colors">
                                     {service.icon}
-                                    <h4 className="text-xl font-semibold mb-2">{service.title}</h4>
-                                    <p className="text-slate-400 text-sm">{service.desc}</p>
+                                    <h4 className="text-lg sm:text-xl font-semibold mb-2">{service.title}</h4>
+                                    <p className="text-slate-400 text-xs sm:text-sm">{service.desc}</p>
                                 </div>
                             ))}
                         </div>

@@ -53,19 +53,19 @@ const Portfolio = () => {
                 </h2>
 
                 {/* Tab Navigation */}
-                <div className="flex flex-wrap justify-center gap-4 md:gap-6 mb-16">
+                <div className="flex flex-wrap justify-center gap-3 md:gap-6 mb-16">
                     <button
                         onClick={() => setActiveTab('projects')}
-                        className={`btn px-6 py-3 md:px-8 md:py-4 rounded-xl font-semibold text-lg flex items-center gap-2 shadow-lg transition-all ${activeTab === 'projects' ? 'bg-gradient-to-r from-purple-600 to-blue-500 text-white scale-105' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
+                        className={`btn px-5 py-2.5 md:px-8 md:py-4 rounded-xl font-semibold text-base md:text-lg flex items-center gap-2 shadow-lg transition-all ${activeTab === 'projects' ? 'bg-gradient-to-r from-purple-600 to-blue-500 text-white scale-105' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
                     >
-                        <FolderGit2 size={24} /> Projects
+                        <FolderGit2 size={20} className="md:w-6 md:h-6" /> Projects
                     </button>
 
                     <button
                         onClick={() => setActiveTab('certificates')}
-                        className={`btn px-6 py-3 md:px-8 md:py-4 rounded-xl font-semibold text-lg flex items-center gap-2 shadow-lg transition-all ${activeTab === 'certificates' ? 'bg-gradient-to-r from-green-500 to-teal-400 text-white scale-105' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
+                        className={`btn px-5 py-2.5 md:px-8 md:py-4 rounded-xl font-semibold text-base md:text-lg flex items-center gap-2 shadow-lg transition-all ${activeTab === 'certificates' ? 'bg-gradient-to-r from-green-500 to-teal-400 text-white scale-105' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
                     >
-                        <Award size={24} /> Certificates
+                        <Award size={20} className="md:w-6 md:h-6" /> Certificates
                     </button>
                 </div>
 

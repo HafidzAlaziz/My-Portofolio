@@ -20,13 +20,13 @@ const Hero = () => {
         <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 pb-10 px-4" ref={contentRef}>
             <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
                 <div className="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
-                    <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 hero-text leading-tight">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 hero-text leading-tight">
                         <span className="block text-slate-200">Hello, Saya</span>
                         <span className="gradient-text">Muhammad Hafidz Alaziz</span>
                     </h1>
-                    <h2 className="text-xl md:text-2xl text-slate-400 mb-8 hero-text font-medium tracking-wide">Fullstack Developer</h2>
+                    <h2 className="text-lg md:text-2xl text-slate-400 mb-8 hero-text font-medium tracking-wide">Fullstack Developer</h2>
                     <div className="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4 hero-text">
-                        <a href="#contact" className="btn-primary px-8 py-3 rounded-full text-white font-medium text-center">
+                        <a href="#contact" className="btn-primary px-8 py-3 rounded-full text-white font-medium text-center shadow-lg shadow-cyan-500/20">
                             Kontak Saya
                         </a>
                         <a href="#portofolio" className="px-8 py-3 rounded-full border border-slate-600 text-white hover:bg-slate-800 transition-colors text-center">
@@ -35,8 +35,8 @@ const Hero = () => {
                     </div>
                 </div>
 
-                <div className="md:w-1/2 flex flex-col items-center hero-text mt-12 md:mt-0">
-                    <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 mb-6 group">
+                <div className="md:w-1/2 flex flex-col items-center hero-text mt-8 md:mt-0">
+                    <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 mb-6 group">
                         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500 opacity-20 blur-3xl spin-slow"></div>
                         <div className="floating relative z-10 w-full h-full flex items-center justify-center">
                             <svg className="w-full h-full absolute scale-110 opacity-70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +44,7 @@ const Hero = () => {
                             </svg>
 
                             <div className="absolute inset-0 flex items-center justify-center z-10 p-2">
-                                <div className="relative w-56 h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full bg-slate-900 border-4 border-slate-700/50 overflow-visible flex items-center justify-center shadow-2xl">
+                                <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full bg-slate-900 border-4 border-slate-700/50 overflow-visible flex items-center justify-center shadow-2xl">
                                     <div className="absolute inset-0 rounded-full border-2 border-cyan-400/20 animate-ping"></div>
                                     <img
                                         src={profileImg}
@@ -55,7 +55,7 @@ const Hero = () => {
                                             e.target.nextSibling.style.display = 'block';
                                         }}
                                     />
-                                    <User size={120} className="text-slate-600 hidden" />
+                                    <User size={80} className="text-slate-600 hidden" />
 
                                     {/* Achievement Badges in Circle */}
                                     <div className="absolute top-0 right-0 -translate-y-2 translate-x-2 w-12 h-12 md:w-20 md:h-20 drop-shadow-lg transform transition-transform hover:scale-110 cursor-help" title="Pull Shark">
