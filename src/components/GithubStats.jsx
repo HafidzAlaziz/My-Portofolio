@@ -95,7 +95,7 @@ const GithubStats = () => {
                         </div>
                         <div className="w-full overflow-x-auto pb-2 scrollbar-hide">
                             <img
-                                src="https://github-profile-trophy.vercel.app/?username=HafidzAlaziz&theme=onedark"
+                                src="https://github-trophies.vercel.app/?username=HafidzAlaziz&theme=onedark"
                                 alt="GitHub Trophies"
                                 className="min-w-[700px] md:min-w-0 md:w-full hover:scale-[1.01] transition-transform duration-300"
                             />

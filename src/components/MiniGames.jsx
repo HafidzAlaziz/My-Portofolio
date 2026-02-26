@@ -13,18 +13,21 @@ const MiniGames = () => {
             gsap.from(".game-container", {
                 scrollTrigger: {
                     trigger: sectionRef.current,
-                    start: "top 80%",
+                    start: "top 85%",
                 },
-                y: 60,
-                opacity: 0,
-                scale: 0.95,
-                duration: 1,
-                stagger: 0.3,
-                ease: "power3.out"
+                y: 40,
+                opacity: 0.2, // Mulai dari 0.2 agar tidak benar-benar hilang jika macet
+                scale: 0.98,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: "power2.out"
             });
         }, sectionRef);
         return () => ctx.revert();
     }, []);
+
+    // Cache buster to force refresh
+    const version = new Date().getTime();
 
     return (
         <section id="minigames" className="py-20 px-4" ref={sectionRef}>
@@ -37,34 +40,38 @@ const MiniGames = () => {
                 </h2>
 
                 <div className="flex flex-col gap-8 md:gap-12">
-                    {/* Snake Animation - Active on HafidzAlaziz/HafidzAlaziz repo */}
+                    {/* Snake Animation */}
                     <div className="game-container card p-5 sm:p-6 rounded-2xl border border-slate-700/50 hover:border-cyan-500/50 transition-colors w-full overflow-hidden shadow-2xl flex flex-col items-center justify-center bg-slate-800/80">
                         <h3 className="text-base sm:text-lg font-semibold text-slate-300 mb-6 font-primary uppercase tracking-wider">GitHub Contribution Snake</h3>
-                        <div className="w-full overflow-x-auto pb-4 scrollbar-hide flex justify-start md:justify-center">
+                        <div className="w-full overflow-x-auto pb-4 flex justify-start md:justify-center">
                             <img
-                                src="https://raw.githubusercontent.com/HafidzAlaziz/HafidzAlaziz/output/snake.svg"
-                                alt="Snake animation"
-                                className="max-w-none h-auto min-w-[600px] md:min-w-0 md:w-full"
+                                src="https://raw.githubusercontent.com/HafidzAlaziz/HafidzAlaziz/output/snake-dark.svg"
+                                alt="GitHub Snake Animation"
+                                className="max-w-none h-auto min-w-[600px] md:min-w-0 md:w-full select-none"
+                                onError={(e) => {
+                                    e.target.style.display = 'none';
+                                    e.target.nextSibling.style.display = 'block';
+                                }}
                             />
+                            <p className="hidden text-slate-400 text-sm">Gagal memuat animasi Snake. Pastikan file tersedia di repository.</p>
                         </div>
-                        <p className="text-slate-500 text-[10px] mt-2 md:hidden">Scroll ke samping untuk melihat </p>
                     </div>
 
-                    {/* Pacman Animation - Active on HafidzAlaziz/HafidzAlaziz repo */}
+                    {/* Pacman Animation */}
                     <div className="game-container card p-5 sm:p-6 rounded-2xl border border-slate-700/50 hover:border-orange-500/50 transition-colors w-full overflow-hidden shadow-2xl flex flex-col items-center justify-center bg-slate-800/80">
                         <h3 className="text-base sm:text-lg font-semibold text-slate-300 mb-6 font-primary uppercase tracking-wider">GitHub Contribution Pacman</h3>
-                        <div className="w-full overflow-x-auto pb-4 scrollbar-hide flex justify-start md:justify-center">
-                            <picture>
-                                <source media="(prefers-color-scheme: dark)" srcSet="https://raw.githubusercontent.com/HafidzAlaziz/HafidzAlaziz/output/pacman-contribution-graph-dark.svg" />
-                                <source media="(prefers-color-scheme: light)" srcSet="https://raw.githubusercontent.com/HafidzAlaziz/HafidzAlaziz/output/pacman-contribution-graph.svg" />
-                                <img
-                                    alt="pacman contribution graph"
-                                    src="https://raw.githubusercontent.com/HafidzAlaziz/HafidzAlaziz/output/pacman-contribution-graph.svg"
-                                    className="max-w-none h-auto min-w-[600px] md:min-w-0 md:w-full"
-                                />
-                            </picture>
+                        <div className="w-full overflow-x-auto pb-4 flex justify-start md:justify-center">
+                            <img
+                                src="https://raw.githubusercontent.com/HafidzAlaziz/HafidzAlaziz/output/pacman-contribution-graph-dark.svg"
+                                alt="GitHub Pacman Animation"
+                                className="max-w-none h-auto min-w-[600px] md:min-w-0 md:w-full select-none"
+                                onError={(e) => {
+                                    e.target.style.display = 'none';
+                                    e.target.nextSibling.style.display = 'block';
+                                }}
+                            />
+                            <p className="hidden text-slate-400 text-sm">Gagal memuat animasi Pacman. Pastikan file tersedia di repository.</p>
                         </div>
-                        <p className="text-slate-500 text-[10px] mt-2 md:hidden">Scroll ke samping untuk melihat </p>
                     </div>
                 </div>
             </div>
