@@ -14,6 +14,110 @@ const Portfolio = () => {
             locked: true
         },
         {
+            title: "Vayana",
+            desc: "High-performance modern web application built with TypeScript.",
+            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400",
+            tags: ["TypeScript", "Next.js", "Tailwind"],
+            link: "https://vayana-hazel.vercel.app",
+            locked: false
+        },
+        {
+            title: "Handara Bali",
+            desc: "Luxury resort landing page featuring Bali's iconic Handara gate.",
+            image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=400",
+            tags: ["React", "GSAP", "Tailwind"],
+            link: "https://handara-bali.vercel.app",
+            locked: false
+        },
+        {
+            title: "Kopi Senja",
+            desc: "Elegant coffee shop landing page with a warm, sunset aesthetic.",
+            image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=400",
+            tags: ["React", "Tailwind", "Framer Motion"],
+            link: "https://kopi-senja-ten.vercel.app",
+            locked: false
+        },
+        {
+            title: "PulseBoard Agency",
+            desc: "Dynamic agency management dashboard with real-time analytics.",
+            image: "https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&q=80&w=400",
+            tags: ["TypeScript", "React", "Chart.js"],
+            link: "https://pulse-board-agency.vercel.app",
+            locked: false
+        },
+        {
+            title: "Chatbot AI",
+            desc: "Smart conversational agent powered by advanced language models.",
+            image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=400",
+            tags: ["JavaScript", "OpenAI API", "CSS"],
+            link: "https://chatbot-dusky-eta-13.vercel.app",
+            locked: false
+        },
+        {
+            title: "Neural Automation",
+            desc: "Workflow automation platform integrating AI the core logic.",
+            image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=400",
+            tags: ["TypeScript", "React", "Tailwind"],
+            link: "https://neural-automation-platform.vercel.app",
+            locked: false
+        },
+        {
+            title: "Company Profile",
+            desc: "Professional corporate presence with modern design patterns.",
+            image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=400",
+            tags: ["TypeScript", "React", "Tailwind"],
+            link: "https://company-profile-xi-indol.vercel.app",
+            locked: false
+        },
+        {
+            title: "Dashboard Sample",
+            desc: "Clean and minimalist data visualization interface.",
+            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400",
+            tags: ["TypeScript", "React", "Tailwind"],
+            link: "https://dashboard-sample-red.vercel.app",
+            locked: false
+        },
+        {
+            title: "EduSmart Academy",
+            desc: "Online learning platform management system.",
+            image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=400",
+            tags: ["TypeScript", "React", "Tailwind"],
+            link: "https://edu-smart-academy.vercel.app",
+            locked: false
+        },
+        {
+            title: "UMKM Ivory",
+            desc: "Marketplace and management for Small and Medium Enterprises.",
+            image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=400",
+            tags: ["TypeScript", "React", "Tailwind"],
+            link: "https://umkm-ivory.vercel.app",
+            locked: false
+        },
+        {
+            title: "The Wedding",
+            desc: "Digital invitation and guest management system.",
+            image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=400",
+            tags: ["TypeScript", "React", "Tailwind"],
+            link: "https://the-wedding-wheat.vercel.app",
+            locked: false
+        },
+        {
+            title: "Waseas",
+            desc: "Modern SaaS landing page template.",
+            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400",
+            tags: ["TypeScript", "React", "Tailwind"],
+            link: "https://waseas.vercel.app",
+            locked: false
+        },
+        {
+            title: "WebKu",
+            desc: "Personal portfolio and blog platform.",
+            image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=400",
+            tags: ["JavaScript", "React", "Tailwind"],
+            link: "https://web-ku-theta.vercel.app",
+            locked: false
+        },
+        {
             title: "Global Preyest Times",
             desc: "Website untuk Mencari Jadwal Sholat Internasional",
             image: "/assets/projek2.png",
@@ -41,6 +145,9 @@ const Portfolio = () => {
         { title: "Pengenalan Logika Pemrograman", issuer: "Dicoding-Indonesia", date: "30 Agustus 2023", image: "/assets/sertifikat7.png" },
         { title: "Seminar Literasi Digital", issuer: "Kominfo", date: "20 Februari 2024", image: "/assets/sertifikat8.png" }
     ];
+
+    const [showAllProjects, setShowAllProjects] = useState(false);
+    const displayedProjects = showAllProjects ? projects : projects.slice(0, 3);
 
     const [showAllCerts, setShowAllCerts] = useState(false);
     const displayedCerts = showAllCerts ? certificates : certificates.slice(0, 3);
@@ -77,10 +184,16 @@ const Portfolio = () => {
                         <div className="content-section bg-slate-900/80 rounded-2xl shadow-2xl p-6 md:p-8 animate-in fade-in zoom-in duration-300">
                             <h2 className="text-3xl font-bold text-white mb-8 border-b border-blue-500 pb-4">My Projects</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                {projects.map((project, idx) => (
+                                {displayedProjects.map((project, idx) => (
                                     <div key={idx} className="card group bg-slate-800 rounded-xl overflow-hidden shadow-lg relative border border-slate-700 hover:border-blue-500/50 transition-colors">
                                         <div className="h-48 w-full bg-slate-900 overflow-hidden">
-                                            <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                            <img
+                                                src={project.image}
+                                                alt={project.title}
+                                                loading="lazy"
+                                                decoding="async"
+                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                            />
                                         </div>
                                         <div className="p-6">
                                             <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
@@ -107,6 +220,15 @@ const Portfolio = () => {
                                         </div>
                                     </div>
                                 ))}
+                            </div>
+
+                            <div className="text-center mt-10">
+                                <button
+                                    onClick={() => setShowAllProjects(!showAllProjects)}
+                                    className="bg-slate-800 border border-slate-600 hover:border-blue-500 text-white px-8 py-3 rounded-full font-semibold transition-all hover:bg-slate-700"
+                                >
+                                    {showAllProjects ? 'Sembunyikan' : 'Lihat Semua Projek'}
+                                </button>
                             </div>
                         </div>
                     )}
