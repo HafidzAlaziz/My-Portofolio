@@ -31,83 +31,75 @@ async function incrementReaction(emoji, currentCount) {
     }
 }
 
-// ─── Slot-machine style animated counter ──────────────────────────────────
-// Inject keyframes once into <head>
-if (typeof document !== 'undefined' && !document.getElementById('slot-keyframes')) {
-    const style = document.createElement('style');
-    style.id = 'slot-keyframes';
-    style.textContent = `
-        @keyframes slot-exit  { from { transform: translateY(0);    opacity: 1; } to { transform: translateY(-120%); opacity: 0; } }
-        @keyframes slot-enter { from { transform: translateY(120%); opacity: 0; } to { transform: translateY(0);    opacity: 1; } }
-        .slot-exit  { animation: slot-exit  0.22s cubic-bezier(0.4,0,0.2,1) forwards; }
-        .slot-enter { animation: slot-enter 0.28s cubic-bezier(0.34,1.56,0.64,1) forwards; }
-    `;
-    document.head.appendChild(style);
-}
 
+// ─── GSAP Animated Counter ─────────────────────────────────────────────────
 const AnimatedCount = ({ value }) => {
-    // displayed = what the DOM actually shows (may differ during animation)
-    const [displayed, setDisplayed] = useState(0);
-    const [animKey, setAnimKey] = useState(0);
-    const hasLoaded = useRef(false);   // true after first real value from Firebase
-    const rafRef = useRef(null);
+    const spanRef = useRef(null);
+    const tweenRef = useRef(null);
+    const counterObj = useRef({ val: 0 });
+    const hasLoaded = useRef(false);
 
     useEffect(() => {
-        if (value === 0 && !hasLoaded.current) return; // still waiting for Firebase
+        // Skip if Firebase hasn't responded yet (still 0 on init)
+        if (value === 0 && !hasLoaded.current) return;
+
+        if (tweenRef.current) tweenRef.current.kill();
 
         if (!hasLoaded.current) {
-            // ── First real value: count-up from 0 ──────────────────────────
+            // ── First load: count-up 0 → N ──────────────────────────────
             hasLoaded.current = true;
-            let current = 0;
-            const target = value;
-            if (target === 0) { setDisplayed(0); return; }
-
-            // speed up for large numbers (max ~600ms total)
-            const steps = Math.min(target, 30);
-            const stepVal = Math.ceil(target / steps);
-            const delay = Math.min(600 / steps, 40);
-
-            const tick = () => {
-                current = Math.min(current + stepVal, target);
-                setDisplayed(current);
-                setAnimKey(k => k + 1);
-                if (current < target) {
-                    rafRef.current = setTimeout(tick, delay);
-                }
-            };
-            rafRef.current = setTimeout(tick, 60); // slight delay after page load
+            counterObj.current.val = 0;
+            tweenRef.current = gsap.to(counterObj.current, {
+                val: value,
+                duration: Math.min(0.8 + value * 0.02, 1.8), // scales with size
+                ease: 'power2.out',
+                delay: 0.3,
+                onUpdate: () => {
+                    if (spanRef.current) {
+                        spanRef.current.textContent = Math.round(counterObj.current.val);
+                    }
+                },
+            });
         } else {
-            // ── Subsequent clicks: slot-machine slide ─────────────────────
-            if (value === displayed) return;
-            setAnimKey(k => k + 1);
-            setDisplayed(value);
+            // ── On click: quick pop tween ────────────────────────────────
+            tweenRef.current = gsap.to(counterObj.current, {
+                val: value,
+                duration: 0.4,
+                ease: 'back.out(2)',
+                onUpdate: () => {
+                    if (spanRef.current) {
+                        spanRef.current.textContent = Math.round(counterObj.current.val);
+                    }
+                },
+            });
+            // Also scale the span for a "pop" feel
+            gsap.fromTo(spanRef.current,
+                { scale: 1.5, color: '#67e8f9' },
+                { scale: 1, color: '#cbd5e1', duration: 0.35, ease: 'back.out(2)' }
+            );
         }
-        return () => clearTimeout(rafRef.current);
+
+        return () => { if (tweenRef.current) tweenRef.current.kill(); };
     }, [value]); // eslint-disable-line
 
     return (
-        <span className="inline-block overflow-hidden align-middle"
-            style={{ height: '14px', width: '20px', position: 'relative' }}>
-            <span
-                key={animKey}
-                className="slot-enter"
-                style={{
-                    display: 'inline-block',
-                    position: 'absolute',
-                    left: 0, right: 0,
-                    textAlign: 'center',
-                    fontSize: '11px',
-                    fontFamily: 'monospace',
-                    fontWeight: 700,
-                    color: '#cbd5e1',
-                    lineHeight: '14px',
-                }}
-            >
-                {displayed}
-            </span>
+        <span
+            ref={spanRef}
+            style={{
+                fontSize: '11px',
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                color: '#cbd5e1',
+                minWidth: '16px',
+                display: 'inline-block',
+                textAlign: 'center',
+            }}
+        >
+            0
         </span>
     );
 };
+
 
 // ─── Hero Component ────────────────────────────────────────────────────────
 const EMOJI_LIST = ['❤️', '🔥', '🚀', '👍'];
