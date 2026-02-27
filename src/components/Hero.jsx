@@ -1,68 +1,159 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { User, Code2, Heart } from 'lucide-react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { User, Code2 } from 'lucide-react';
 import gsap from 'gsap';
 import profileImg from '../assets/profile.png';
+import { FIREBASE_DB_URL } from '../firebaseConfig';
+
+// ─── Firebase REST helpers ─────────────────────────────────────────────────
+const REACTIONS_PATH = `${FIREBASE_DB_URL}/reactions.json`;
+
+async function fetchReactions() {
+    try {
+        const res = await fetch(REACTIONS_PATH);
+        const data = await res.json();
+        return data || {};
+    } catch {
+        return {};
+    }
+}
+
+async function incrementReaction(emoji, currentCount) {
+    try {
+        await fetch(REACTIONS_PATH, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ [emoji]: (currentCount || 0) + 1 }),
+        });
+    } catch {
+        // silent fail, optimistic update already applied
+    }
+}
+
+// ─── Animated Counter ──────────────────────────────────────────────────────
+const AnimatedCount = ({ value }) => {
+    const ref = useRef(null);
+    const prevValue = useRef(value);
+
+    useEffect(() => {
+        if (ref.current && value !== prevValue.current) {
+            gsap.fromTo(
+                ref.current,
+                { y: -10, opacity: 0, scale: 1.4 },
+                { y: 0, opacity: 1, scale: 1, duration: 0.35, ease: 'back.out(2)' }
+            );
+            prevValue.current = value;
+        }
+    }, [value]);
+
+    return (
+        <span
+            ref={ref}
+            className="text-[11px] text-slate-300 font-mono font-bold min-w-[14px] text-center"
+        >
+            {value}
+        </span>
+    );
+};
+
+// ─── Hero Component ────────────────────────────────────────────────────────
+const EMOJI_LIST = ['❤️', '🔥', '🚀', '👍'];
+const POLL_INTERVAL = 5000; // fallback polling every 5s
 
 const Hero = () => {
     const contentRef = useRef(null);
-    const [reactions, setReactions] = useState({
-        "❤️": 0,
-        "🔥": 0,
-        "🚀": 0,
-        "👍": 0
-    });
+    const [reactions, setReactions] = useState({ '❤️': 0, '🔥': 0, '🚀': 0, '👍': 0 });
     const [floatingEmojis, setFloatingEmojis] = useState([]);
+    const [clickedEmoji, setClickedEmoji] = useState(null);
+    const sseRef = useRef(null);
 
+    // ── Load from Firebase & subscribe via SSE ───────────────────────────
     useEffect(() => {
-        // Load counts from localStorage
-        const savedReactions = localStorage.getItem('portfolio_reactions');
-        if (savedReactions) {
-            setReactions(JSON.parse(savedReactions));
+        // initial load
+        fetchReactions().then(data => {
+            setReactions(prev => ({ ...prev, ...data }));
+        });
+
+        // real-time subscription (Firebase SSE)
+        const sseUrl = `${FIREBASE_DB_URL}/reactions.json?sse=true`;
+        let es;
+        try {
+            es = new EventSource(sseUrl);
+            es.addEventListener('put', (e) => {
+                const payload = JSON.parse(e.data);
+                if (payload && payload.data) {
+                    setReactions(prev => ({ ...prev, ...payload.data }));
+                }
+            });
+            es.addEventListener('patch', (e) => {
+                const payload = JSON.parse(e.data);
+                if (payload && payload.data) {
+                    setReactions(prev => ({ ...prev, ...payload.data }));
+                }
+            });
+            sseRef.current = es;
+        } catch {
+            // fallback polling
+            const interval = setInterval(() => {
+                fetchReactions().then(data => {
+                    setReactions(prev => ({ ...prev, ...data }));
+                });
+            }, POLL_INTERVAL);
+            return () => clearInterval(interval);
         }
 
+        return () => es && es.close();
+    }, []);
+
+    // ── GSAP hero entrance ───────────────────────────────────────────────
+    useEffect(() => {
         const ctx = gsap.context(() => {
-            gsap.fromTo(".hero-text",
+            gsap.fromTo(
+                '.hero-text',
                 { y: 50, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power3.out", delay: 1.5 }
+                { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power3.out', delay: 1.5 }
             );
         }, contentRef);
         return () => ctx.revert();
     }, []);
 
-    const handleEmojiClick = (emoji) => {
-        // Update count
-        const newReactions = { ...reactions, [emoji]: reactions[emoji] + 1 };
-        setReactions(newReactions);
-        localStorage.setItem('portfolio_reactions', JSON.stringify(newReactions));
-
-        // Create floating emoji
-        const id = Date.now();
-        const newFloatingEmoji = { id, emoji, x: Math.random() * 100 - 50 };
-        setFloatingEmojis(prev => [...prev, newFloatingEmoji]);
-
-        // Remove after animation
-        setTimeout(() => {
-            setFloatingEmojis(prev => prev.filter(item => item.id !== id));
-        }, 2000);
-    };
-
-    // GSAP Animation for each new floating emoji
+    // ── GSAP floating emoji animation ────────────────────────────────────
     useEffect(() => {
         floatingEmojis.forEach(item => {
             const el = document.getElementById(`emoji-${item.id}`);
             if (el && !el.dataset.animated) {
-                el.dataset.animated = "true";
+                el.dataset.animated = 'true';
                 gsap.to(el, {
-                    y: -150,
+                    y: -140,
                     x: item.x + (Math.random() * 40 - 20),
                     opacity: 0,
-                    scale: 1.5,
-                    duration: 1.5,
-                    ease: "power1.out"
+                    scale: 1.6,
+                    duration: 1.4,
+                    ease: 'power1.out',
                 });
             }
         });
     }, [floatingEmojis]);
+
+    const handleEmojiClick = useCallback((emoji) => {
+        const currentCount = reactions[emoji] || 0;
+
+        // Optimistic update
+        setReactions(prev => ({ ...prev, [emoji]: prev[emoji] + 1 }));
+
+        // Firebase persist
+        incrementReaction(emoji, currentCount);
+
+        // Floating emoji
+        const id = Date.now();
+        setFloatingEmojis(prev => [...prev, { id, emoji, x: Math.random() * 80 - 40 }]);
+        setTimeout(() => {
+            setFloatingEmojis(prev => prev.filter(item => item.id !== id));
+        }, 2000);
+
+        // Button pop feedback
+        setClickedEmoji(emoji);
+        setTimeout(() => setClickedEmoji(null), 300);
+    }, [reactions]);
 
     return (
         <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 pb-24 md:pb-32 px-4" ref={contentRef}>
@@ -84,23 +175,34 @@ const Hero = () => {
                         </a>
                     </div>
 
-                    <div className="flex items-center justify-center md:justify-start gap-3 bg-slate-800/20 px-4 py-2 rounded-full border border-slate-700/50 backdrop-blur-sm relative hero-text mb-12 md:mb-16 w-fit mx-auto md:mx-0">
-                        <span className="text-[9px] text-slate-500 font-bold uppercase tracking-wider hidden sm:block">Reaksi:</span>
-                        {Object.entries(reactions).map(([emoji, count]) => (
+                    {/* ── Reaction Bar ─────────────────────────────────── */}
+                    <div className="flex items-center justify-center md:justify-start gap-2 bg-slate-800/30 px-4 py-2.5 rounded-full border border-slate-700/50 backdrop-blur-sm relative hero-text mb-12 md:mb-16 w-fit mx-auto md:mx-0">
+                        <span className="text-[9px] text-slate-500 font-bold uppercase tracking-wider hidden sm:block pr-1">Reaksi:</span>
+
+                        {EMOJI_LIST.map((emoji) => (
                             <button
                                 key={emoji}
                                 onClick={() => handleEmojiClick(emoji)}
-                                className="relative group flex items-center gap-1.5 px-1 py-1 hover:bg-slate-700/40 rounded-full transition-all active:scale-95"
+                                className={`relative group flex items-center gap-1.5 px-2.5 py-1.5 rounded-full transition-all duration-150 
+                                    hover:bg-slate-700/50 active:scale-90
+                                    ${clickedEmoji === emoji ? 'scale-90 bg-slate-700/60' : 'scale-100'}`}
+                                title={`Reaksi dengan ${emoji}`}
                             >
-                                <span className="text-lg transition-transform group-hover:scale-120">{emoji}</span>
-                                <span className="text-[10px] text-slate-400 font-mono font-medium">{count}</span>
+                                {/* emoji */}
+                                <span className={`text-base transition-transform duration-150 ${clickedEmoji === emoji ? 'scale-125' : 'group-hover:scale-110'}`}>
+                                    {emoji}
+                                </span>
 
+                                {/* animated counter */}
+                                <AnimatedCount value={reactions[emoji] ?? 0} />
+
+                                {/* floating emoji burst */}
                                 <div className="absolute bottom-full left-1/2 pointer-events-none pb-2">
                                     {floatingEmojis.filter(f => f.emoji === emoji).map(f => (
                                         <span
                                             key={f.id}
                                             id={`emoji-${f.id}`}
-                                            className="absolute text-lg -translate-x-1/2"
+                                            className="absolute text-lg -translate-x-1/2 select-none"
                                         >
                                             {f.emoji}
                                         </span>
@@ -134,7 +236,7 @@ const Hero = () => {
                                     />
                                     <User size={80} className="text-slate-600 hidden" />
 
-                                    {/* Achievement Badges in Circle */}
+                                    {/* Achievement Badges */}
                                     <div className="absolute top-0 right-0 -translate-y-2 translate-x-2 w-10 h-10 sm:w-14 sm:h-14 md:w-20 md:h-20 drop-shadow-lg transform transition-transform hover:scale-110 cursor-help" title="Pull Shark">
                                         <img src="https://github.githubassets.com/images/modules/profile/achievements/pull-shark-default.png" alt="Pull Shark" className="w-full h-full object-contain" />
                                     </div>
