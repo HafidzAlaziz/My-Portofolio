@@ -29,28 +29,53 @@ async function incrementReaction(emoji, currentCount) {
     }
 }
 
-// ─── Animated Counter ──────────────────────────────────────────────────────
+// ─── Slot-machine style animated counter ──────────────────────────────────
+// Inject keyframes once into <head>
+if (typeof document !== 'undefined' && !document.getElementById('slot-keyframes')) {
+    const style = document.createElement('style');
+    style.id = 'slot-keyframes';
+    style.textContent = `
+        @keyframes slot-exit  { from { transform: translateY(0);    opacity: 1; } to { transform: translateY(-120%); opacity: 0; } }
+        @keyframes slot-enter { from { transform: translateY(120%); opacity: 0; } to { transform: translateY(0);    opacity: 1; } }
+        .slot-exit  { animation: slot-exit  0.22s cubic-bezier(0.4,0,0.2,1) forwards; }
+        .slot-enter { animation: slot-enter 0.28s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+    `;
+    document.head.appendChild(style);
+}
+
 const AnimatedCount = ({ value }) => {
-    const ref = useRef(null);
-    const prevValue = useRef(value);
+    const [displayed, setDisplayed] = useState(value);
+    const [animKey, setAnimKey] = useState(0);
+    const isFirst = useRef(true);
 
     useEffect(() => {
-        if (ref.current && value !== prevValue.current) {
-            gsap.fromTo(
-                ref.current,
-                { y: -10, opacity: 0, scale: 1.4 },
-                { y: 0, opacity: 1, scale: 1, duration: 0.35, ease: 'back.out(2)' }
-            );
-            prevValue.current = value;
-        }
-    }, [value]);
+        if (isFirst.current) { isFirst.current = false; return; }
+        if (value === displayed) return;
+        // Trigger re-render with new key so CSS animation replays
+        setAnimKey(k => k + 1);
+        setDisplayed(value);
+    }, [value]); // eslint-disable-line
 
     return (
-        <span
-            ref={ref}
-            className="text-[11px] text-slate-300 font-mono font-bold min-w-[14px] text-center"
-        >
-            {value}
+        <span className="inline-block overflow-hidden align-middle"
+            style={{ height: '14px', width: '18px', position: 'relative' }}>
+            <span
+                key={animKey}
+                className={animKey > 0 ? 'slot-enter' : ''}
+                style={{
+                    display: 'inline-block',
+                    position: 'absolute',
+                    left: 0, right: 0,
+                    textAlign: 'center',
+                    fontSize: '11px',
+                    fontFamily: 'monospace',
+                    fontWeight: 700,
+                    color: '#cbd5e1',
+                    lineHeight: '14px',
+                }}
+            >
+                {displayed}
+            </span>
         </span>
     );
 };
