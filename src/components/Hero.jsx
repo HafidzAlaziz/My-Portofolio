@@ -308,7 +308,7 @@ const Hero = () => {
             </div>
 
             {/* Tech Stack Marquee */}
-            <div className="absolute bottom-20 left-0 w-full overflow-hidden opacity-0 hero-text">
+            <div className="absolute bottom-28 left-0 w-full overflow-hidden opacity-0 hero-text">
                 <div className="container mx-auto px-4">
                     <div className="flex items-center justify-center gap-2 mb-6">
                         <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-cyan-500/50"></div>
