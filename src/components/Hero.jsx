@@ -33,54 +33,49 @@ async function incrementReaction(emoji, currentCount) {
 
 
 // ─── GSAP Animated Counter ─────────────────────────────────────────────────
-const AnimatedCount = ({ value }) => {
+// `loaded` = true once Firebase has responded (even if value is 0)
+const AnimatedCount = ({ value, loaded }) => {
     const spanRef = useRef(null);
     const tweenRef = useRef(null);
     const counterObj = useRef({ val: 0 });
-    const hasLoaded = useRef(false);
+    const hasPlayed = useRef(false); // true after count-up played once
 
     useEffect(() => {
-        // Skip if Firebase hasn't responded yet (still 0 on init)
-        if (value === 0 && !hasLoaded.current) return;
-
+        if (!loaded) return; // wait for Firebase
         if (tweenRef.current) tweenRef.current.kill();
 
-        if (!hasLoaded.current) {
+        if (!hasPlayed.current) {
             // ── First load: count-up 0 → N ──────────────────────────────
-            hasLoaded.current = true;
+            hasPlayed.current = true;
             counterObj.current.val = 0;
             tweenRef.current = gsap.to(counterObj.current, {
                 val: value,
-                duration: Math.min(0.8 + value * 0.02, 1.8), // scales with size
+                duration: Math.min(0.6 + value * 0.025, 2.0),
                 ease: 'power2.out',
-                delay: 0.3,
+                delay: 0.5,
                 onUpdate: () => {
-                    if (spanRef.current) {
+                    if (spanRef.current)
                         spanRef.current.textContent = Math.round(counterObj.current.val);
-                    }
                 },
             });
         } else {
-            // ── On click: quick pop tween ────────────────────────────────
+            // ── On click: quick pop ──────────────────────────────────────
             tweenRef.current = gsap.to(counterObj.current, {
                 val: value,
-                duration: 0.4,
+                duration: 0.35,
                 ease: 'back.out(2)',
                 onUpdate: () => {
-                    if (spanRef.current) {
+                    if (spanRef.current)
                         spanRef.current.textContent = Math.round(counterObj.current.val);
-                    }
                 },
             });
-            // Also scale the span for a "pop" feel
             gsap.fromTo(spanRef.current,
-                { scale: 1.5, color: '#67e8f9' },
-                { scale: 1, color: '#cbd5e1', duration: 0.35, ease: 'back.out(2)' }
+                { scale: 1.6, color: '#67e8f9' },
+                { scale: 1, color: '#cbd5e1', duration: 0.3, ease: 'back.out(2)' }
             );
         }
-
         return () => { if (tweenRef.current) tweenRef.current.kill(); };
-    }, [value]); // eslint-disable-line
+    }, [value, loaded]); // eslint-disable-line
 
     return (
         <span
@@ -108,6 +103,7 @@ const POLL_INTERVAL = 5000; // fallback polling every 5s
 const Hero = () => {
     const contentRef = useRef(null);
     const [reactions, setReactions] = useState({ '❤️': 0, '🔥': 0, '🚀': 0, '👍': 0 });
+    const [reactionsLoaded, setReactionsLoaded] = useState(false); // true once Firebase responded
     const [floatingEmojis, setFloatingEmojis] = useState([]);
     const [clickedEmoji, setClickedEmoji] = useState(null);
     const sseRef = useRef(null);
@@ -117,6 +113,7 @@ const Hero = () => {
         // initial load
         fetchReactions().then(data => {
             setReactions(prev => ({ ...prev, ...data }));
+            setReactionsLoaded(true); // signal AnimatedCount to start count-up
         });
 
         // real-time subscription (Firebase SSE)
@@ -240,7 +237,7 @@ const Hero = () => {
                                 </span>
 
                                 {/* animated counter */}
-                                <AnimatedCount value={reactions[emoji] ?? 0} />
+                                <AnimatedCount value={reactions[emoji] ?? 0} loaded={reactionsLoaded} />
 
                                 {/* floating emoji burst */}
                                 <div className="absolute bottom-full left-1/2 pointer-events-none pb-2">
