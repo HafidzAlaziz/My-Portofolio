@@ -12,6 +12,7 @@ const REACTIONS_PATH = `${DB_BASE}/reactions.json`;
 async function fetchReactions() {
     try {
         const res = await fetch(REACTIONS_PATH);
+        if (!res.ok) return {}; // Ignore 401/404 errors as valid data
         const data = await res.json();
         return data || {};
     } catch {
@@ -33,36 +34,45 @@ async function incrementReaction(emoji, currentCount) {
 
 
 // ─── GSAP Animated Counter ─────────────────────────────────────────────────
-// `loaded` = true once Firebase has responded (even if value is 0)
 const AnimatedCount = ({ value, loaded }) => {
     const spanRef = useRef(null);
     const tweenRef = useRef(null);
     const counterObj = useRef({ val: 0 });
-    const hasPlayed = useRef(false); // true after count-up played once
+    const hasPlayed = useRef(false);
 
     useEffect(() => {
-        if (!loaded) return; // wait for Firebase
+        if (!loaded) return;
         if (tweenRef.current) tweenRef.current.kill();
 
         if (!hasPlayed.current) {
-            // ── First load: count-up 0 → N ──────────────────────────────
+            // ── First load: Dramatic Count-Up ───────────────────────────
             hasPlayed.current = true;
             counterObj.current.val = 0;
+
+            // Jolt animation for the container
+            gsap.fromTo(spanRef.current,
+                { opacity: 0, scale: 0, y: 5 },
+                { opacity: 1, scale: 1.1, y: 0, duration: 0.8, ease: 'back.out(1.7)', delay: 1.8 }
+            ).eventCallback("onComplete", () => {
+                gsap.to(spanRef.current, { scale: 1, duration: 0.3 });
+            });
+
+            // Numeric tween
             tweenRef.current = gsap.to(counterObj.current, {
                 val: value,
-                duration: Math.min(0.6 + value * 0.025, 2.0),
+                duration: 1.2,
                 ease: 'power2.out',
-                delay: 0.5,
+                delay: 2.0, // wait for hero text stagger
                 onUpdate: () => {
                     if (spanRef.current)
                         spanRef.current.textContent = Math.round(counterObj.current.val);
                 },
             });
         } else {
-            // ── On click: quick pop ──────────────────────────────────────
+            // ── On click/update: quick pop ──────────────────────────────
             tweenRef.current = gsap.to(counterObj.current, {
                 val: value,
-                duration: 0.35,
+                duration: 0.4,
                 ease: 'back.out(2)',
                 onUpdate: () => {
                     if (spanRef.current)
@@ -70,8 +80,8 @@ const AnimatedCount = ({ value, loaded }) => {
                 },
             });
             gsap.fromTo(spanRef.current,
-                { scale: 1.6, color: '#67e8f9' },
-                { scale: 1, color: '#cbd5e1', duration: 0.3, ease: 'back.out(2)' }
+                { scale: 1.8, color: '#67e8f9', filter: 'brightness(1.5)' },
+                { scale: 1, color: '#cbd5e1', filter: 'brightness(1)', duration: 0.4, ease: 'back.out(2)' }
             );
         }
         return () => { if (tweenRef.current) tweenRef.current.kill(); };
@@ -88,6 +98,7 @@ const AnimatedCount = ({ value, loaded }) => {
                 minWidth: '16px',
                 display: 'inline-block',
                 textAlign: 'center',
+                opacity: 0, // initially hidden for dramatic entry
             }}
         >
             0
