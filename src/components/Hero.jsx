@@ -210,7 +210,7 @@ const Hero = () => {
     }, [reactions]);
 
     return (
-        <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 pb-20 md:pb-0 px-4" ref={contentRef}>
+        <section id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-28 pb-12 px-4" ref={contentRef}>
             <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
                 {/* Left Column */}
                 <div className="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
@@ -308,7 +308,7 @@ const Hero = () => {
             </div>
 
             {/* Tech Stack Marquee */}
-            <div className="md:absolute relative md:bottom-12 bottom-auto left-0 w-full overflow-hidden opacity-0 hero-text mt-12 md:mt-0 mb-4">
+            <div className="relative w-full overflow-hidden opacity-0 hero-text mt-auto pt-16 mb-4">
                 <div className="container mx-auto px-4">
                     <div className="flex items-center justify-center gap-2 mb-6">
                         <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-cyan-500/50"></div>
