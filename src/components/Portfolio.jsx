@@ -132,6 +132,15 @@ const Portfolio = () => {
             tags: ["Javascript", "Tailwind"],
             link: "https://ecomerce0.netlify.app/",
             locked: false
+        },
+        {
+            title: "E-Learning App",
+            desc: "Smart Attendance System & Management Akademik terintegrasi.",
+            image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80&w=400",
+            tags: ["Flutter", "Firebase", "Dart"],
+            link: "https://github.com/HafidzAlaziz/E-Learning_App/raw/2d761e873c75b1965fda172fa58b03388c8d9084/build/app/outputs/flutter-apk/app-release.apk",
+            locked: false,
+            isApp: true
         }
     ];
 
@@ -214,7 +223,7 @@ const Portfolio = () => {
                                                 </button>
                                             ) : (
                                                 <a href={project.link} target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30">
-                                                    Kunjungi Aplikasi
+                                                    {project.isApp ? "Download Demo" : "Kunjungi Aplikasi"}
                                                 </a>
                                             )}
                                         </div>
