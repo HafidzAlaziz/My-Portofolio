@@ -5,7 +5,9 @@ import profileImg from '../assets/profile.png';
 import { FIREBASE_DB_URL } from '../firebaseConfig';
 
 // ─── Firebase REST helpers ─────────────────────────────────────────────────
-const REACTIONS_PATH = `${FIREBASE_DB_URL}/reactions.json`;
+// Strip trailing slash to avoid double-slash in path
+const DB_BASE = FIREBASE_DB_URL.replace(/\/$/, '');
+const REACTIONS_PATH = `${DB_BASE}/reactions.json`;
 
 async function fetchReactions() {
     try {
@@ -44,24 +46,51 @@ if (typeof document !== 'undefined' && !document.getElementById('slot-keyframes'
 }
 
 const AnimatedCount = ({ value }) => {
-    const [displayed, setDisplayed] = useState(value);
+    // displayed = what the DOM actually shows (may differ during animation)
+    const [displayed, setDisplayed] = useState(0);
     const [animKey, setAnimKey] = useState(0);
-    const isFirst = useRef(true);
+    const hasLoaded = useRef(false);   // true after first real value from Firebase
+    const rafRef = useRef(null);
 
     useEffect(() => {
-        if (isFirst.current) { isFirst.current = false; return; }
-        if (value === displayed) return;
-        // Trigger re-render with new key so CSS animation replays
-        setAnimKey(k => k + 1);
-        setDisplayed(value);
+        if (value === 0 && !hasLoaded.current) return; // still waiting for Firebase
+
+        if (!hasLoaded.current) {
+            // ── First real value: count-up from 0 ──────────────────────────
+            hasLoaded.current = true;
+            let current = 0;
+            const target = value;
+            if (target === 0) { setDisplayed(0); return; }
+
+            // speed up for large numbers (max ~600ms total)
+            const steps = Math.min(target, 30);
+            const stepVal = Math.ceil(target / steps);
+            const delay = Math.min(600 / steps, 40);
+
+            const tick = () => {
+                current = Math.min(current + stepVal, target);
+                setDisplayed(current);
+                setAnimKey(k => k + 1);
+                if (current < target) {
+                    rafRef.current = setTimeout(tick, delay);
+                }
+            };
+            rafRef.current = setTimeout(tick, 60); // slight delay after page load
+        } else {
+            // ── Subsequent clicks: slot-machine slide ─────────────────────
+            if (value === displayed) return;
+            setAnimKey(k => k + 1);
+            setDisplayed(value);
+        }
+        return () => clearTimeout(rafRef.current);
     }, [value]); // eslint-disable-line
 
     return (
         <span className="inline-block overflow-hidden align-middle"
-            style={{ height: '14px', width: '18px', position: 'relative' }}>
+            style={{ height: '14px', width: '20px', position: 'relative' }}>
             <span
                 key={animKey}
-                className={animKey > 0 ? 'slot-enter' : ''}
+                className="slot-enter"
                 style={{
                     display: 'inline-block',
                     position: 'absolute',
