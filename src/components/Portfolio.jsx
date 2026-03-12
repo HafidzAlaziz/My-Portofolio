@@ -196,7 +196,7 @@ const Portfolio = () => {
             desc: "Sistem Manajemen Akademik & Absensi Pintar terintegrasi yang dirancang untuk memodernisasi proses belajar mengajar dengan fitur presensi digital dan manajemen kursus.",
             image: "/Preview/E-Learning/app_logo.png",
             tags: ["Flutter", "Firebase", "QR Scanner"],
-            link: "/Preview/E-Learning/E-Learning.apk",
+            link: "https://drive.google.com/uc?export=download&id=1kRho6VvMq0DoK1yLaDh0ki1OfzvEG7rd",
             locked: false,
             category: "mobile",
             size: "70.4 MB",
@@ -241,7 +241,7 @@ const Portfolio = () => {
             desc: "Aplikasi keuangan cerdas yang menggabungkan kecerdasan buatan dan elemen gamifikasi untuk membantu Anda mencapai kebebasan finansial dengan cara yang menyenangkan.",
             image: "/Preview/FinFlow/logo.png",
             tags: ["Flutter", "Gemini AI", "SQLite"],
-            link: "/Preview/FinFlow/FinFlow.apk",
+            link: "https://drive.google.com/uc?export=download&id=1xEKbh54Ux8opmoD15axKGz94l3YXNQ65",
             locked: false,
             category: "mobile",
             size: "54.6 MB",
@@ -254,11 +254,11 @@ const Portfolio = () => {
                     screenshots: [
                         "/Preview/FinFlow/image.png",
                         "/Preview/FinFlow/image copy.png",
-                        "/Preview/FinFlow/image copy 6.png",
                         "/Preview/FinFlow/image copy 2.png",
                         "/Preview/FinFlow/image copy 3.png",
                         "/Preview/FinFlow/image copy 4.png",
-                        "/Preview/FinFlow/image copy 5.png"
+                        "/Preview/FinFlow/image copy 5.png",
+                        "/Preview/FinFlow/image copy 6.png"
                     ]
                 }
             ]
@@ -267,14 +267,18 @@ const Portfolio = () => {
 
 
     const certificates = [
-        { title: "Memulai Dasar Pemrograman", issuer: "Dicoding-Indonesia", date: "24 Agustus 2023", image: "/assets/sertifikat1.png" },
-        { title: "Belajar Visualisasi Data", issuer: "Dicoding-Indonesia", date: "18 September 2023", image: "/assets/sertifikat2.png" },
-        { title: "Flexible Kickstart UI UX Design Journey", issuer: "Rakamin Academy", date: "Juli 2024", image: "/assets/sertifikat3.png" },
-        { title: "Excellent Grade | Kickstart UI UX", issuer: "Rakamin Academy", date: "Juli 2024", image: "/assets/sertifikat4.png" },
-        { title: "Pengimbasan Master Trainer 2024", issuer: "Google - REFO", date: "Oktober 2024", image: "/assets/sertifikat5.png" },
-        { title: "Online Course UI/UX For Beginers", issuer: "Great Learning", date: "Juli 2024", image: "/assets/sertifikat6.png" },
-        { title: "Pengenalan Logika Pemrograman", issuer: "Dicoding-Indonesia", date: "30 Agustus 2023", image: "/assets/sertifikat7.png" },
-        { title: "Seminar Literasi Digital", issuer: "Kominfo", date: "20 Februari 2024", image: "/assets/sertifikat8.png" }
+        { title: "Flexible Kickstart UI UX Design", issuer: "Rakamin Academy", date: "Juli 2024", image: "/assets/sertifikat/certificate-314889UI_UX272024-EG.pdf" },
+        { title: "Kickstart UI UX Design Journey", issuer: "Rakamin Academy", date: "Juli 2024", image: "/assets/sertifikat/certificate-314889UI_UX272024.pdf" },
+        { title: "UI / UX for Beginners", issuer: "Great Learning Academy", date: "Juli 2024", image: "/assets/sertifikat/Great Learning.pdf" },
+        { title: "Seminar Literasi Digital Sektor Pendidikan", issuer: "Kominfo", date: "Februari 2024", image: "/assets/sertifikat/Literasi .png" },
+        { title: "Webinar Large Language Model AI", issuer: "B-TECH", date: "Juni 2025", image: "/assets/sertifikat/Muhammad Hafidz Alaziz (3).pdf" },
+        { title: "Pengimbasan Master Trainer 2024", issuer: "Google for Education", date: "Oktober 2024", image: "/assets/sertifikat/Muhammad Hafidz Alaziz.pdf" },
+        { title: "Introduction to Information Security", issuer: "Cyber Academy", date: "September 2025", image: "/assets/sertifikat/Certificate-of-Completion-Introduction-to-Information-Security.pdf" },
+        { title: "Belajar Dasar Visualisasi Data", issuer: "Dicoding", date: "September 2023", image: "/assets/sertifikat/sertifikat_course_177_3239478_180923135021.png" },
+        { title: "Memulai Dasar Pemrograman", issuer: "Dicoding", date: "Agustus 2023", image: "/assets/sertifikat/sertifikat_course_237_3239478_240823193807.png" },
+        { title: "Pengenalan ke Logika Pemrograman", issuer: "Dicoding", date: "Agustus 2023", image: "/assets/sertifikat/sertifikat_course_302_3239478_300823081623.png" },
+        { title: "Belajar Dasar AI", issuer: "Dicoding", date: "Oktober 2025", image: "/assets/sertifikat/sertifikat_course_653_3239478_041025155139.pdf" },
+        { title: "Introduction to Financial Literacy", issuer: "Dicoding", date: "Desember 2025", image: "/assets/sertifikat/sertifikat_course_905_3239478_191225181656.pdf" }
     ];
 
     const [showAllProjects, setShowAllProjects] = useState(false);
@@ -585,47 +589,66 @@ const Portfolio = () => {
                             className="h-full overflow-y-auto custom-scrollbar flex-1 relative rounded-3xl"
                             style={{ scrollbarGutter: 'stable' }}
                         >
-                            <div className={`sticky top-0 bg-slate-900/95 backdrop-blur-md z-[70] border-b border-slate-800 transition-all duration-500 ease-in-out rounded-t-3xl ${isModalScrolled ? 'h-16 px-4 py-2' : 'min-h-[320px] md:h-52 p-6 md:p-8'}`}>
-                                <div className={`flex items-center h-full transition-all duration-500 ease-in-out relative ${isModalScrolled ? 'flex-row gap-3 pr-10' : 'flex-col sm:flex-row sm:items-start gap-6 pt-8 sm:pt-0 mb-4'}`}>
+                            <div className={`sticky top-0 bg-slate-900/95 backdrop-blur-md z-[70] border-b border-slate-800 transition-all duration-300 ease-in-out rounded-t-3xl ${isModalScrolled ? 'p-3 md:p-4 shadow-xl' : 'p-5 md:p-8'}`}>
+                                <div className="flex items-start md:items-center gap-4 relative pr-14 md:pr-16">
                                     <img 
                                         src={selectedApp.image} 
                                         alt={selectedApp.title} 
-                                        className={`rounded-2xl object-cover shadow-2xl border border-slate-700 transition-all duration-500 ease-in-out origin-left flex-shrink-0 ${isModalScrolled ? 'w-10 h-10' : 'w-24 h-24 md:w-32 md:h-32'}`} 
+                                        className={`rounded-2xl object-cover shadow-lg border border-slate-700 transition-all duration-300 ease-in-out flex-shrink-0 ${isModalScrolled ? 'w-12 h-12 md:w-14 md:h-14' : 'w-20 h-20 md:w-32 md:h-32'}`} 
                                     />
-                                    <div className={`flex-1 min-w-0 transition-all duration-500 ease-in-out h-full flex flex-col justify-center ${isModalScrolled ? 'text-left' : 'text-center sm:text-left'}`}>
-                                        <div className={`transition-all duration-500 ease-in-out ${isModalScrolled ? 'flex flex-row items-center justify-between w-full gap-2' : ''}`}>
-                                            <div className="min-w-0 flex-1">
-                                                <h3 className={`font-bold text-white transition-all duration-500 ease-in-out truncate ${isModalScrolled ? 'text-sm md:text-lg mb-0' : 'text-3xl md:text-4xl mb-1'}`}>{selectedApp.title}</h3>
-                                                {!isModalScrolled && <p className="text-blue-400 font-medium mb-2 text-sm md:text-lg animate-in fade-in slide-in-from-top-1 duration-300">Hafidz Alaziz</p>}
+                                    <div className="flex-1 min-w-0">
+                                        <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 md:gap-4 transition-all duration-300">
+                                            
+                                            {/* Text and Stats */}
+                                            <div className="min-w-0 flex-1 mt-1 md:mt-0">
+                                                <h3 className={`font-bold text-white transition-all duration-300 truncate ${isModalScrolled ? 'text-lg md:text-xl' : 'text-xl md:text-3xl lg:text-4xl'}`}>
+                                                    {selectedApp.title}
+                                                </h3>
                                                 
-                                                <div className={`flex flex-wrap items-center transition-all duration-500 ease-in-out ${isModalScrolled ? 'hidden md:flex gap-1.5 text-xs' : 'justify-center sm:justify-start gap-3 text-xs md:text-base'}`}>
-                                                    <div className="flex items-center gap-1 text-slate-300">
-                                                        <span className="font-bold">{selectedApp.rating}</span>
-                                                        <Star size={14} className="fill-yellow-500 text-yellow-500" />
-                                                        <span className="text-slate-500 ml-0.5">
-                                                            (<PortfolioCounter value={downloadCounts[selectedApp.title] || 0} />)
-                                                        </span>
-                                                    </div>
-                                                    <div className="w-px h-2.5 bg-slate-700"></div>
-                                                    <div className="flex items-center gap-1 text-slate-400">
-                                                        <Info size={14} />
-                                                        <span>{selectedApp.size}</span>
+                                                <div className={`flex items-center gap-1 text-[11px] md:text-xs transition-all duration-300 ease-in-out ${isModalScrolled && selectedApp.rating ? 'opacity-100 max-h-10 mt-0.5' : 'opacity-0 max-h-0 overflow-hidden m-0'}`}>
+                                                    <span className="font-bold text-white">{selectedApp.rating}</span>
+                                                    <Star size={10} className="fill-yellow-500 text-yellow-500" />
+                                                    <span className="text-slate-400 ml-0.5">
+                                                        (<PortfolioCounter value={downloadCounts[selectedApp.title] || 0} />)
+                                                    </span>
+                                                </div>
+
+                                                <div className={`grid transition-all duration-300 ease-in-out ${isModalScrolled ? 'grid-rows-[0fr] opacity-0' : 'grid-rows-[1fr] opacity-100 mt-1 md:mt-3'}`}>
+                                                    <div className="overflow-hidden">
+                                                        <p className="text-blue-400 font-medium mb-2 md:mb-4 text-xs md:text-base">Hafidz Alaziz</p>
+                                                        <div className="flex flex-wrap items-center gap-2 md:gap-3 text-xs md:text-sm">
+                                                            <div className="flex items-center gap-1 text-slate-300 bg-slate-800/80 px-2.5 py-1 md:px-3 md:py-1.5 rounded-lg border border-slate-700/50">
+                                                                <span className="font-bold text-white">{selectedApp.rating}</span>
+                                                                <Star size={12} className="fill-yellow-500 text-yellow-500" />
+                                                                <span className="text-slate-500 ml-1 hidden md:inline">
+                                                                    (<PortfolioCounter value={downloadCounts[selectedApp.title] || 0} />)
+                                                                </span>
+                                                            </div>
+                                                            <div className="flex items-center gap-1.5 text-slate-300 bg-slate-800/80 px-2.5 py-1 md:px-3 md:py-1.5 rounded-lg border border-slate-700/50">
+                                                                <Info size={12} className="text-blue-400" />
+                                                                <span>{selectedApp.size}</span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div className={`flex flex-row flex-wrap gap-2 transition-all duration-500 ease-in-out ${isModalScrolled ? 'scale-75 md:scale-95 origin-right pr-2' : 'mt-8 justify-center sm:justify-start'}`}>
-                                                <button onClick={() => handleInstall(selectedApp)} className="bg-green-600 hover:bg-green-500 text-white px-3 md:px-8 py-2 md:py-3 rounded-full font-bold transition-all flex items-center gap-2 shadow-lg active:scale-95 text-[10px] md:text-sm">
-                                                    <Download size={18} /> {isModalScrolled ? '' : 'Install'}
+                                            {/* Buttons Action */}
+                                            <div className={`flex flex-row gap-2 transition-all duration-300 flex-shrink-0 origin-top-right mt-1 md:mt-0 ${isModalScrolled ? 'scale-90 md:scale-95' : 'scale-100 lg:mt-2'}`}>
+                                                <button onClick={() => handleInstall(selectedApp)} className="bg-green-600 hover:bg-green-500 text-white px-4 md:px-6 py-2 md:py-3 rounded-xl font-bold transition-transform active:scale-95 flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(22,163,74,0.3)] hover:shadow-[0_0_20px_rgba(22,163,74,0.5)] text-xs md:text-sm border border-green-500/30">
+                                                    <Download size={16} /> <span>Install</span>
                                                 </button>
-                                                <button onClick={() => handleShare(selectedApp)} className="bg-slate-800 hover:bg-slate-700 text-white px-3 md:px-6 py-2 md:py-3 rounded-full font-semibold transition-all text-[10px] md:text-sm flex items-center gap-2">
-                                                    <Share2 size={18} /> {isModalScrolled ? '' : 'Share'}
+                                                <button onClick={() => handleShare(selectedApp)} className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 md:px-4 py-2 md:py-3 rounded-xl font-semibold transition-all active:scale-95 text-xs md:text-sm flex items-center justify-center gap-2 border border-slate-600 hover:border-slate-500 shadow-lg">
+                                                    <Share2 size={16} />
                                                 </button>
                                             </div>
+
                                         </div>
                                     </div>
-                                    <button onClick={() => setSelectedApp(null)} className={`absolute p-1.5 md:p-2 hover:bg-slate-800 rounded-full text-slate-400 transition-all z-[80] ${isModalScrolled ? 'top-1 right-0' : 'top-4 right-0 md:top-6 md:right-0'}`}>
-                                        <X size={isModalScrolled ? 20 : 28} />
+                                    
+                                    {/* Close Button Absolute Pos */}
+                                    <button onClick={() => setSelectedApp(null)} className={`absolute top-0 right-0 p-1.5 bg-slate-800/80 backdrop-blur hover:bg-red-500/20 rounded-full text-slate-400 hover:text-red-400 transition-colors z-[80] border border-slate-700/50`}>
+                                        <X size={18} />
                                     </button>
                                 </div>
                             </div>
@@ -721,3 +744,4 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+
