@@ -210,17 +210,17 @@ const Hero = () => {
     }, [reactions]);
 
     return (
-        <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 pb-24 md:pb-32 px-4" ref={contentRef}>
-            <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
+        <section id="home" className="min-h-[100dvh] flex items-center justify-center pt-24 pb-28 lg:pt-20 lg:pb-32 px-4 relative overflow-hidden" ref={contentRef}>
+            <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-0 mt-8 lg:mt-0 w-full">
                 {/* Left Column */}
-                <div className="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 hero-text leading-tight">
+                <div className="w-full lg:w-1/2 text-center lg:text-left flex flex-col items-center lg:items-start z-10 font-sans">
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-bold mb-4 sm:mb-6 hero-text leading-[1.15] sm:leading-tight">
                         <span className="block text-slate-200">Hello, Saya</span>
-                        <span className="gradient-text">Muhammad Hafidz Alaziz</span>
+                        <span className="gradient-text block mt-1.5 sm:mt-0">Muhammad Hafidz Alaziz</span>
                     </h1>
-                    <h2 className="text-lg md:text-2xl text-slate-400 mb-8 hero-text font-medium tracking-wide">Fullstack Developer</h2>
+                    <h2 className="text-base sm:text-lg lg:text-2xl text-slate-400 mb-8 hero-text font-medium tracking-wide">Fullstack Developer</h2>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 hero-text mb-8">
+                    <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 hero-text mb-8 w-full sm:w-auto">
                         <a href="#contact" className="btn-primary px-8 py-3 rounded-full text-white font-medium text-center shadow-lg shadow-cyan-500/20 whitespace-nowrap w-full sm:w-auto">
                             Kontak Saya
                         </a>
@@ -230,8 +230,8 @@ const Hero = () => {
                     </div>
 
                     {/* ── Reaction Bar ─────────────────────────────────── */}
-                    <div className="flex items-center justify-center md:justify-start gap-2 bg-slate-800/30 px-4 py-2.5 rounded-full border border-slate-700/50 backdrop-blur-sm relative hero-text mb-12 md:mb-16 w-fit mx-auto md:mx-0">
-                        <span className="text-[9px] text-slate-500 font-bold uppercase tracking-wider hidden sm:block pr-1">Reaksi:</span>
+                    <div className="flex items-center justify-center lg:justify-start gap-1 sm:gap-2 bg-slate-800/30 px-3 sm:px-4 py-2 rounded-full border border-slate-700/50 backdrop-blur-sm relative hero-text mb-6 lg:mb-16 w-fit mx-auto lg:mx-0">
+                        <span className="text-[8px] sm:text-[9px] text-slate-500 font-bold uppercase tracking-wider hidden sm:block pr-1">Reaksi:</span>
 
                         {EMOJI_LIST.map((emoji) => (
                             <button
@@ -268,8 +268,8 @@ const Hero = () => {
                 </div>
 
                 {/* Right Column (Hero Illustration) */}
-                <div className="md:w-1/2 flex flex-col items-center hero-text mt-8 md:mt-0">
-                    <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 mb-6 group">
+                <div className="w-full lg:w-1/2 flex flex-col items-center justify-center hero-text mt-2 lg:mt-0 z-10">
+                    <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-96 lg:h-96 mb-6 group mx-auto">
                         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500 opacity-20 blur-3xl spin-slow"></div>
                         <div className="floating relative z-10 w-full h-full flex items-center justify-center">
                             <svg className="w-full h-full absolute scale-110 opacity-70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -308,9 +308,9 @@ const Hero = () => {
             </div>
 
             {/* Tech Stack Marquee */}
-            <div className="absolute bottom-20 left-0 w-full overflow-hidden opacity-0 hero-text">
-                <div className="container mx-auto px-4">
-                    <div className="flex items-center justify-center gap-2 mb-6">
+            <div className="absolute bottom-16 sm:bottom-20 lg:bottom-24 left-0 w-full overflow-hidden opacity-0 hero-text z-20">
+                <div className="container mx-auto px-2 sm:px-4">
+                    <div className="flex items-center justify-center gap-2 mb-4 md:mb-6">
                         <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-cyan-500/50"></div>
                         <Code2 size={16} className="text-cyan-400" />
                         <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-[0.2em]">Full Tech Stack</h3>

@@ -25,7 +25,7 @@ const About = () => {
                 });
 
                 // Left text card slides in from left
-                gsap.from('.about-text-card', {
+                gsap.from('.about-text-wrapper', {
                     scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
                     x: -60,
                     opacity: 0,
@@ -103,16 +103,16 @@ const About = () => {
                 </h2>
                 <div className="flex flex-col md:flex-row items-center gap-10">
                     {/* Text */}
-                    <div className="md:w-1/2 about-text-wrapper">
-                        <div className="card tilt-card p-5 sm:p-6 md:p-8 rounded-2xl about-text-content">
-                            <h3 className="text-xl sm:text-2xl font-semibold mb-6">Siapa Saya?</h3>
-                            <p className="text-slate-300 mb-4 leading-relaxed">
+                    <div className="md:w-1/2 about-text-wrapper w-full">
+                        <div className="card tilt-card p-5 sm:p-8 rounded-2xl about-text-content text-center md:text-left">
+                            <h3 className="text-lg sm:text-2xl font-semibold mb-4 sm:mb-6">Siapa Saya?</h3>
+                            <p className="text-slate-300 mb-4 leading-relaxed text-sm sm:text-base">
                                 Saya seorang <strong className="text-cyan-400 font-bold">Fullstack Developer</strong> yang bersemangat dalam menciptakan solusi web komprehensif. Dengan keahlian mendalam di sisi Frontend maupun Backend, saya fokus pada pembangunan aplikasi yang tidak hanya cantik secara visual, tetapi juga kuat secara arsitektur.
                             </p>
-                            <p className="text-slate-300 mb-4 leading-relaxed">
+                            <p className="text-slate-300 mb-4 leading-relaxed text-sm sm:text-base">
                                 Perjalanan saya dalam pengembangan web dimulai 3 tahun yang lalu, dan sejak itu, saya telah mengerjakan banyak proyek mulai dari halaman arahan sederhana hingga aplikasi web kompleks.
                             </p>
-                            <p className="text-slate-300 leading-relaxed">
+                            <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
                                 Saya percaya pada pembelajaran berkelanjutan dan selalu mengikuti perkembangan teknologi dan tren desain terkini untuk memberikan solusi mutakhir.
                             </p>
                         </div>

@@ -429,8 +429,8 @@ const Portfolio = () => {
 
                 <div className="relative min-h-[500px]">
                     {activeTab === 'projects' && (
-                        <div className="content-section bg-slate-900/80 rounded-2xl shadow-2xl p-6 md:p-8 animate-in fade-in zoom-in duration-300">
-                            <h2 className="text-3xl font-bold text-white mb-8 border-b border-blue-500 pb-4">
+                        <div className="content-section bg-slate-900/80 rounded-2xl shadow-2xl p-5 md:p-8 animate-in fade-in zoom-in duration-300">
+                            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8 border-b border-blue-500 pb-4">
                                 {activeSubTab === 'web' ? 'Website Portfolio' : 'Mobile Application Store'}
                             </h2>
 
@@ -475,7 +475,7 @@ const Portfolio = () => {
                                     ))}
                                 </div>
                             ) : (
-                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
                                     {displayedProjects.map((project, idx) => (
                                         <div key={idx} className="project-card-wrapper">
                                             <div
@@ -525,8 +525,21 @@ const Portfolio = () => {
                                 {displayedCerts.map((cert, idx) => (
                                     <div key={idx} className="project-card-wrapper">
                                         <div className="project-card card group bg-slate-800 rounded-xl overflow-hidden shadow-lg relative border border-slate-700 hover:border-green-500/50 transition-all hover:-translate-y-2 hover:shadow-green-500/20">
-                                            <div className="h-48 w-full bg-slate-900 overflow-hidden">
-                                                <img src={cert.image} alt={cert.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                            <div className="h-48 w-full bg-slate-900 overflow-hidden relative">
+                                                <img 
+                                                    src={cert.image} 
+                                                    alt={cert.title} 
+                                                    loading="lazy"
+                                                    onError={(e) => {
+                                                        e.target.style.display = 'none';
+                                                        e.target.nextSibling.style.display = 'flex';
+                                                    }}
+                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                                                />
+                                                <div style={{ display: 'none' }} className="w-full h-full flex-col items-center justify-center text-center p-4 bg-slate-800">
+                                                    <Award size={32} className="text-slate-500 mb-2" />
+                                                    <span className="text-xs text-slate-400">Gambar Terbatas (Too Many Requests). Lihat via tautan.</span>
+                                                </div>
                                             </div>
                                             <div className="p-6">
                                                 <h3 className="text-lg font-bold text-white mb-2 truncate group-hover:text-green-400 transition-colors" title={cert.title}>{cert.title}</h3>
@@ -535,7 +548,7 @@ const Portfolio = () => {
                                             </div>
                                             <div className="absolute inset-0 bg-slate-900/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                                 <button
-                                                    onClick={() => window.open(cert.image, '_blank')}
+                                                    onClick={() => setSelectedImage(cert.image)}
                                                     className="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-500 transition-colors shadow-lg shadow-green-500/30"
                                                 >
                                                     Lihat Sertifikat

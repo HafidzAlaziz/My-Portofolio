@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 import gsap from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+gsap.registerPlugin(ScrollToPlugin);
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -39,6 +42,24 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const handleNavClick = (e, href) => {
+        if (href.startsWith('#')) {
+            e.preventDefault();
+            const targetId = href.substring(1);
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+                // Adjust for fixed navbar height
+                const navHeight = 80;
+                gsap.to(window, {
+                    duration: 1, // Smooth aniamtion duration
+                    scrollTo: { y: targetEl, offsetY: navHeight },
+                    ease: "power3.inOut" // Nice smooth easing
+                });
+            }
+            setIsOpen(false);
+        }
+    };
+
     const navLinks = [
         { name: 'Beranda', href: '#home', id: 'home' },
         { name: 'Tentang Saya', href: '#about', id: 'about' },
@@ -52,7 +73,14 @@ const Navbar = () => {
     return (
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-slate-900/90 backdrop-blur-md border-b border-slate-800/80 py-3 shadow-xl shadow-black/20' : 'bg-transparent py-5'}`}>
             <div className="container mx-auto px-4 flex justify-between items-center">
-                <a href="#" className="text-2xl font-bold shimmer-text" ref={logoRef}>Hafidz</a>
+                <a 
+                    href="#home" 
+                    onClick={(e) => handleNavClick(e, '#home')}
+                    className="text-2xl font-bold shimmer-text" 
+                    ref={logoRef}
+                >
+                    Hafidz
+                </a>
 
                 {/* Desktop Nav */}
                 <div className="hidden lg:flex space-x-8">
@@ -60,6 +88,7 @@ const Navbar = () => {
                         <a
                             key={link.name}
                             href={link.href}
+                            onClick={(e) => handleNavClick(e, link.href)}
                             className={`nav-link nav-link-anim text-sm xl:text-base relative group transition-colors duration-300 ${activeSection === link.id ? 'text-cyan-400' : 'text-slate-300 hover:text-white'}`}
                         >
                             {link.name}
@@ -89,7 +118,7 @@ const Navbar = () => {
                             href={link.href}
                             className={`w-full text-center py-3 text-base font-medium rounded-xl transition-all duration-200 active:scale-95 ${activeSection === link.id ? 'text-cyan-400 bg-cyan-500/10' : 'text-slate-300 hover:text-cyan-400 hover:bg-slate-800/80'}`}
                             style={{ transitionDelay: isOpen ? `${i * 40}ms` : '0ms' }}
-                            onClick={() => setIsOpen(false)}
+                            onClick={(e) => handleNavClick(e, link.href)}
                         >
                             {link.name}
                         </a>

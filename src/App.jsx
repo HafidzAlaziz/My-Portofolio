@@ -18,12 +18,18 @@ function App() {
     // Simulate preloader
     const timer = setTimeout(() => {
       setLoading(false);
+      // Wait a bit for React to render and for layout to settle, then refresh GSAP
+      setTimeout(() => {
+        import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+          ScrollTrigger.refresh();
+        });
+      }, 300);
     }, 1500);
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative overflow-x-hidden w-full">
       {/* Preloader */}
       {loading && (
         <div className="preloader" style={{ opacity: loading ? 1 : 0 }}>

@@ -110,8 +110,8 @@ const Contact = () => {
                 <div className="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto">
                     {/* Contact Info */}
                     <div className="md:w-1/2 contact-info-wrapper">
-                        <div className="card tilt-card p-6 md:p-8 rounded-2xl h-full border border-slate-700/50 contact-info-content">
-                            <h3 className="text-xl sm:text-2xl font-semibold mb-8 border-b border-slate-700 pb-4">Informasi Kontak</h3>
+                        <div className="card tilt-card p-5 md:p-8 rounded-2xl h-full border border-slate-700/50 contact-info-content">
+                            <h3 className="text-lg sm:text-2xl font-semibold mb-6 md:mb-8 border-b border-slate-700 pb-4">Informasi Kontak</h3>
                             <div className="space-y-6">
                                 {contactItems.map((item, i) => (
                                     <div key={i} className="contact-item-wrapper">
@@ -150,8 +150,8 @@ const Contact = () => {
 
                     {/* Form */}
                     <div className="md:w-1/2 contact-form-wrapper">
-                        <div className="card p-6 md:p-8 rounded-2xl h-full border border-slate-700/50 contact-form-content">
-                            <h3 className="text-2xl font-semibold mb-8 text-white">Kirim Pesan</h3>
+                        <div className="card p-5 md:p-8 rounded-2xl h-full border border-slate-700/50 contact-form-content">
+                            <h3 className="text-lg sm:text-2xl font-semibold mb-6 md:mb-8 text-white">Kirim Pesan</h3>
                             {submitted ? (
                                 <div className="flex flex-col items-center justify-center h-64 gap-4 animate-bounce-in">
                                     <div className="w-16 h-16 rounded-full bg-green-500/20 border border-green-500/40 flex items-center justify-center">
