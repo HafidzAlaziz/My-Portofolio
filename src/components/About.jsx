@@ -7,56 +7,104 @@ gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
     const sectionRef = useRef(null);
+    const headingRef = useRef(null);
 
     useEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.from(".about-card", {
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 80%",
-                },
-                y: 40,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.15,
-                ease: "power2.out"
-            });
-        }, sectionRef);
-        return () => ctx.revert();
+        let ctx;
+        // Gunakan timeout kecil untuk memastikan DOM dirender sebelum kalkulasi posisi ScrollTrigger
+        const timer = setTimeout(() => {
+            ctx = gsap.context(() => {
+                // Heading reveal + underline
+                gsap.from(headingRef.current, {
+                    scrollTrigger: { trigger: headingRef.current, start: 'top 85%' },
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    onComplete: () => headingRef.current?.classList.add('visible'),
+                });
+
+                // Left text card slides in from left
+                gsap.from('.about-text-card', {
+                    scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
+                    x: -60,
+                    opacity: 0,
+                    duration: 0.9,
+                    ease: 'power3.out',
+                });
+
+                // Service cards stagger from bottom
+                gsap.from('.about-card-wrapper', {
+                    scrollTrigger: { trigger: '.about-cards-grid', start: 'top 85%' },
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.7,
+                    stagger: 0.15,
+                    ease: 'back.out(1.4)',
+                });
+
+                // Icon micro-animation on each card hover (GSAP)
+                document.querySelectorAll('.about-card-content').forEach(card => {
+                    const icon = card.querySelector('.card-icon');
+                    if (icon) {
+                        card.addEventListener('mouseenter', () => gsap.to(icon, { rotate: 8, scale: 1.2, duration: 0.3, ease: 'back.out(2)' }));
+                        card.addEventListener('mouseleave', () => gsap.to(icon, { rotate: 0, scale: 1, duration: 0.3, ease: 'power2.out' }));
+                    }
+                });
+                
+                // Segarkan perhitungan posisi ScrollTrigger
+                ScrollTrigger.refresh();
+
+            }, sectionRef);
+        }, 100);
+
+        return () => {
+            clearTimeout(timer);
+            if (ctx) ctx.revert();
+        };
     }, []);
 
     const services = [
         {
-            title: "Frontend Development",
-            desc: "Membangun antarmuka web yang responsif, interaktif, dan berperforma tinggi.",
-            icon: <MonitorPlay size={40} className="text-cyan-400 mb-4" />
+            title: 'Frontend Development',
+            desc: 'Membangun antarmuka web yang responsif, interaktif, dan berperforma tinggi.',
+            icon: <MonitorPlay size={36} className="text-cyan-400 mb-4 card-icon" />,
+            border: 'hover:border-cyan-500/40',
+            glow: 'group-hover:text-cyan-300',
         },
         {
-            title: "Backend Development",
-            desc: "Mengembangkan logika sisi server, API, dan pengelolaan database yang aman.",
-            icon: <Zap size={40} className="text-indigo-400 mb-4" />
+            title: 'Backend Development',
+            desc: 'Mengembangkan logika sisi server, API, dan pengelolaan database yang aman.',
+            icon: <Zap size={36} className="text-indigo-400 mb-4 card-icon" />,
+            border: 'hover:border-indigo-500/40',
+            glow: 'group-hover:text-indigo-300',
         },
         {
-            title: "UI/UX Design",
-            desc: "Merancang pengalaman pengguna yang intuitif dengan estetika modern.",
-            icon: <PenTool size={40} className="text-purple-400 mb-4" />
+            title: 'UI/UX Design',
+            desc: 'Merancang pengalaman pengguna yang intuitif dengan estetika modern.',
+            icon: <PenTool size={36} className="text-purple-400 mb-4 card-icon" />,
+            border: 'hover:border-purple-500/40',
+            glow: 'group-hover:text-purple-300',
         },
         {
-            title: "Fullstack Solutions",
-            desc: "Memberikan solusi end-to-end dari perancangan hingga deployment.",
-            icon: <Cuboid size={40} className="text-pink-400 mb-4" />
+            title: 'Fullstack Solutions',
+            desc: 'Memberikan solusi end-to-end dari perancangan hingga deployment.',
+            icon: <Cuboid size={36} className="text-pink-400 mb-4 card-icon" />,
+            border: 'hover:border-pink-500/40',
+            glow: 'group-hover:text-pink-300',
         }
     ];
 
     return (
         <section id="about" className="py-20 px-4" ref={sectionRef}>
             <div className="container mx-auto">
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 about-card">
-                    <span className="gradient-text">Tentang Saya</span>
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-16" ref={headingRef}>
+                    <span className="gradient-text section-heading">Tentang Saya</span>
                 </h2>
                 <div className="flex flex-col md:flex-row items-center gap-10">
-                    <div className="md:w-1/2 about-card">
-                        <div className="card p-5 sm:p-6 md:p-8 rounded-2xl">
+                    {/* Text */}
+                    <div className="md:w-1/2 about-text-wrapper">
+                        <div className="card tilt-card p-5 sm:p-6 md:p-8 rounded-2xl about-text-content">
                             <h3 className="text-xl sm:text-2xl font-semibold mb-6">Siapa Saya?</h3>
                             <p className="text-slate-300 mb-4 leading-relaxed">
                                 Saya seorang <strong className="text-cyan-400 font-bold">Fullstack Developer</strong> yang bersemangat dalam menciptakan solusi web komprehensif. Dengan keahlian mendalam di sisi Frontend maupun Backend, saya fokus pada pembangunan aplikasi yang tidak hanya cantik secara visual, tetapi juga kuat secara arsitektur.
@@ -69,13 +117,19 @@ const About = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="md:w-1/2">
+
+                    {/* Service Cards */}
+                    <div className="md:w-1/2 about-cards-grid">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                             {services.map((service, idx) => (
-                                <div key={idx} className="card p-5 sm:p-6 rounded-2xl about-card border border-slate-700/30 hover:border-cyan-500/30 transition-colors">
-                                    {service.icon}
-                                    <h4 className="text-lg sm:text-xl font-semibold mb-2">{service.title}</h4>
-                                    <p className="text-slate-400 text-xs sm:text-sm">{service.desc}</p>
+                                <div key={idx} className="about-card-wrapper">
+                                    <div
+                                        className={`group card card-glow p-5 sm:p-6 rounded-2xl about-card-content border border-slate-700/30 ${service.border} transition-all duration-300 cursor-default`}
+                                    >
+                                        {service.icon}
+                                        <h4 className={`text-lg sm:text-xl font-semibold mb-2 transition-colors ${service.glow}`}>{service.title}</h4>
+                                        <p className="text-slate-400 text-xs sm:text-sm">{service.desc}</p>
+                                    </div>
                                 </div>
                             ))}
                         </div>

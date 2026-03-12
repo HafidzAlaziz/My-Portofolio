@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FolderGit2, Award, Smartphone, Globe, Star, Download, X, Info, ChevronRight, Share2 } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { FIREBASE_DB_URL } from '../firebaseConfig';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const DB_BASE = FIREBASE_DB_URL?.replace(/\/$/, '');
 const DOWNLOADS_PATH = `${DB_BASE}/app_downloads.json`;
@@ -36,6 +40,42 @@ const Portfolio = () => {
     const [activeRoleTab, setActiveRoleTab] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const [isModalScrolled, setIsModalScrolled] = useState(false);
+    const sectionRef = useRef(null);
+
+    // Scroll-reveal animations
+    useEffect(() => {
+        let ctx;
+        const timer = setTimeout(() => {
+            ctx = gsap.context(() => {
+                // Section heading
+                gsap.from('.portfolio-heading-wrapper', {
+                    scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' },
+                    y: 30, opacity: 0, duration: 0.7, ease: 'power3.out',
+                    onComplete: () => document.querySelector('.portfolio-heading')?.classList.add('visible'),
+                });
+                // Tab buttons
+                gsap.from('.tab-btn-wrapper', {
+                    scrollTrigger: { trigger: '.portfolio-tabs', start: 'top 90%' },
+                    y: 20, opacity: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out',
+                });
+                ScrollTrigger.refresh();
+            }, sectionRef);
+        }, 100);
+
+        return () => {
+            clearTimeout(timer);
+            if (ctx) ctx.revert();
+        };
+    }, []);
+
+    // Card stagger when tab changes
+    useEffect(() => {
+        gsap.fromTo('.project-card-wrapper',
+            { y: 30, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: 'power2.out', clearProps: 'all', 
+              onComplete: () => ScrollTrigger.refresh() }
+        );
+    }, [activeTab, activeSubTab]);
 
     const handleModalScroll = (e) => {
         const scrollTop = e.target.scrollTop;
@@ -48,146 +88,74 @@ const Portfolio = () => {
 
     const projects = [
         {
-            title: "SI-TENB",
-            desc: "Aplikasi Website Pengaduan",
-            image: "/assets/projek1.jpg",
-            tags: ["React", "Laravel", "Tailwind"],
-            link: null,
-            locked: true,
-            category: "web"
-        },
-        {
-            title: "Vayana",
-            desc: "High-performance modern web application built with TypeScript.",
-            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400",
-            tags: ["TypeScript", "Next.js", "Tailwind"],
-            link: "https://vayana-hazel.vercel.app",
+            title: "WebKuu",
+            desc: "Layanan jasa pembuatan website profesional dan solusi digital kreatif untuk bisnis Anda.",
+            image: "https://s0.wp.com/mshots/v1/https://www.web-kuu.my.id?w=1200",
+            tags: ["React", "Supabase", "Framer Motion"],
+            link: "https://www.web-kuu.my.id",
             locked: false,
             category: "web"
         },
         {
-            title: "Handara Bali",
-            desc: "Luxury resort landing page featuring Bali's iconic Handara gate.",
-            image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=400",
-            tags: ["React", "GSAP", "Tailwind"],
-            link: "https://handara-bali.vercel.app",
+            title: "Wina Collection",
+            desc: "Website profil toko pusat obat herbal dan produk thibbun nabawi di Bogor.",
+            image: "https://s0.wp.com/mshots/v1/https://wina-collection.vercel.app?w=1200",
+            tags: ["HTML", "CSS", "JavaScript"],
+            link: "https://wina-collection.vercel.app",
+            locked: false,
+            category: "web"
+        },
+        {
+            title: "EduSmart Academy",
+            desc: "Platform kursus online modern dengan kurikulum standar industri dan mentor berpengalaman.",
+            image: "https://s0.wp.com/mshots/v1/https://edu-smart-academy.vercel.app?w=1200",
+            tags: ["React", "React Router", "Tailwind"],
+            link: "https://edu-smart-academy.vercel.app",
             locked: false,
             category: "web"
         },
         {
             title: "Kopi Senja",
-            desc: "Elegant coffee shop landing page with a warm, sunset aesthetic.",
-            image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=400",
+            desc: "Landing page kedai kopi dengan estetika hangat dan animasi yang memanjakan mata.",
+            image: "https://s0.wp.com/mshots/v1/https://kopi-senja-ten.vercel.app?w=1200",
             tags: ["React", "Tailwind", "Framer Motion"],
             link: "https://kopi-senja-ten.vercel.app",
             locked: false,
             category: "web"
         },
         {
-            title: "PulseBoard Agency",
-            desc: "Dynamic agency management dashboard with real-time analytics.",
-            image: "https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&q=80&w=400",
-            tags: ["TypeScript", "React", "Chart.js"],
-            link: "https://pulse-board-agency.vercel.app",
-            locked: false,
-            category: "web"
-        },
-        {
-            title: "Chatbot AI",
-            desc: "Smart conversational agent powered by advanced language models.",
-            image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=400",
-            tags: ["JavaScript", "OpenAI API", "CSS"],
-            link: "https://chatbot-dusky-eta-13.vercel.app",
-            locked: false,
-            category: "web"
-        },
-        {
-            title: "Neural Automation",
-            desc: "Workflow automation platform integrating AI the core logic.",
-            image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=400",
-            tags: ["TypeScript", "React", "Tailwind"],
-            link: "https://neural-automation-platform.vercel.app",
-            locked: false,
-            category: "web"
-        },
-        {
-            title: "Company Profile",
-            desc: "Professional corporate presence with modern design patterns.",
-            image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=400",
-            tags: ["TypeScript", "React", "Tailwind"],
-            link: "https://company-profile-xi-indol.vercel.app",
-            locked: false,
-            category: "web"
-        },
-        {
-            title: "Dashboard Sample",
-            desc: "Clean and minimalist data visualization interface.",
-            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400",
-            tags: ["TypeScript", "React", "Tailwind"],
-            link: "https://dashboard-sample-red.vercel.app",
-            locked: false,
-            category: "web"
-        },
-        {
-            title: "EduSmart Academy",
-            desc: "Online learning platform management system.",
-            image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=400",
-            tags: ["TypeScript", "React", "Tailwind"],
-            link: "https://edu-smart-academy.vercel.app",
-            locked: false,
-            category: "web"
-        },
-        {
-            title: "UMKM Ivory",
-            desc: "Marketplace and management for Small and Medium Enterprises.",
-            image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=400",
-            tags: ["TypeScript", "React", "Tailwind"],
-            link: "https://umkm-ivory.vercel.app",
-            locked: false,
-            category: "web"
-        },
-        {
             title: "The Wedding",
-            desc: "Digital invitation and guest management system.",
-            image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=400",
-            tags: ["TypeScript", "React", "Tailwind"],
+            desc: "Undangan digital pernikahan premium dengan countdown, RSVP, dan galeri foto interaktif.",
+            image: "https://s0.wp.com/mshots/v1/https://the-wedding-wheat.vercel.app?w=1200",
+            tags: ["React", "Tailwind", "Framer Motion"],
             link: "https://the-wedding-wheat.vercel.app",
             locked: false,
             category: "web"
         },
         {
-            title: "Waseas",
-            desc: "Modern SaaS landing page template.",
-            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400",
-            tags: ["TypeScript", "React", "Tailwind"],
-            link: "https://waseas.vercel.app",
+            title: "EcoSmart Dashboard",
+            desc: "Dashboard analitik e-commerce UMKM dengan visualisasi data yang komprehensif dan modern.",
+            image: "https://s0.wp.com/mshots/v1/https://dashboard-sample-smoky.vercel.app?w=1200",
+            tags: ["Next.js", "TypeScript", "Tailwind"],
+            link: "https://dashboard-sample-smoky.vercel.app",
             locked: false,
             category: "web"
         },
         {
-            title: "WebKu",
-            desc: "Personal portfolio and blog platform.",
-            image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=400",
-            tags: ["JavaScript", "React", "Tailwind"],
-            link: "https://web-ku-theta.vercel.app",
+            title: "UMKM Store",
+            desc: "Platform marketplace untuk mendukung produk-produk lokal UMKM Indonesia.",
+            image: "https://s0.wp.com/mshots/v1/https://umkm-ivory.vercel.app?w=1200",
+            tags: ["React", "Tailwind", "React Router"],
+            link: "https://umkm-ivory.vercel.app",
             locked: false,
             category: "web"
         },
         {
-            title: "Global Preyest Times",
-            desc: "Website untuk Mencari Jadwal Sholat Internasional",
-            image: "/assets/projek2.png",
-            tags: ["Aladhan API", "Tailwind", "Nominatim API"],
-            link: "https://global-prayes-times.netlify.app",
-            locked: false,
-            category: "web"
-        },
-        {
-            title: "Ecommerce Sederhana",
-            desc: "Sebuah website ecommerce sederhana",
-            image: "/assets/projek3.png",
-            tags: ["Javascript", "Tailwind"],
-            link: "https://ecomerce0.netlify.app/",
+            title: "Professional Service",
+            desc: "Website jasa konsultasi bisnis profesional dengan desain premium dan modern.",
+            image: "https://s0.wp.com/mshots/v1/https://professional-service-topaz.vercel.app?w=1200",
+            tags: ["Next.js", "TypeScript", "Tailwind"],
+            link: "https://professional-service-topaz.vercel.app",
             locked: false,
             category: "web"
         },
@@ -267,18 +235,18 @@ const Portfolio = () => {
 
 
     const certificates = [
-        { title: "Flexible Kickstart UI UX Design", issuer: "Rakamin Academy", date: "Juli 2024", image: "/assets/sertifikat/certificate-314889UI_UX272024-EG.pdf" },
-        { title: "Kickstart UI UX Design Journey", issuer: "Rakamin Academy", date: "Juli 2024", image: "/assets/sertifikat/certificate-314889UI_UX272024.pdf" },
-        { title: "UI / UX for Beginners", issuer: "Great Learning Academy", date: "Juli 2024", image: "/assets/sertifikat/Great Learning.pdf" },
-        { title: "Seminar Literasi Digital Sektor Pendidikan", issuer: "Kominfo", date: "Februari 2024", image: "/assets/sertifikat/Literasi .png" },
-        { title: "Webinar Large Language Model AI", issuer: "B-TECH", date: "Juni 2025", image: "/assets/sertifikat/Muhammad Hafidz Alaziz (3).pdf" },
-        { title: "Pengimbasan Master Trainer 2024", issuer: "Google for Education", date: "Oktober 2024", image: "/assets/sertifikat/Muhammad Hafidz Alaziz.pdf" },
-        { title: "Introduction to Information Security", issuer: "Cyber Academy", date: "September 2025", image: "/assets/sertifikat/Certificate-of-Completion-Introduction-to-Information-Security.pdf" },
-        { title: "Belajar Dasar Visualisasi Data", issuer: "Dicoding", date: "September 2023", image: "/assets/sertifikat/sertifikat_course_177_3239478_180923135021.png" },
-        { title: "Memulai Dasar Pemrograman", issuer: "Dicoding", date: "Agustus 2023", image: "/assets/sertifikat/sertifikat_course_237_3239478_240823193807.png" },
-        { title: "Pengenalan ke Logika Pemrograman", issuer: "Dicoding", date: "Agustus 2023", image: "/assets/sertifikat/sertifikat_course_302_3239478_300823081623.png" },
-        { title: "Belajar Dasar AI", issuer: "Dicoding", date: "Oktober 2025", image: "/assets/sertifikat/sertifikat_course_653_3239478_041025155139.pdf" },
-        { title: "Introduction to Financial Literacy", issuer: "Dicoding", date: "Desember 2025", image: "/assets/sertifikat/sertifikat_course_905_3239478_191225181656.pdf" }
+        { title: "Flexible Kickstart UI UX Design", issuer: "Rakamin Academy", date: "Juli 2024", image: "https://drive.google.com/thumbnail?id=1-2NQlw-4Pb_yUs1_3iWBYZL0A7y6gpeI&sz=w800" },
+        { title: "Kickstart UI UX Design Journey", issuer: "Rakamin Academy", date: "Juli 2024", image: "https://drive.google.com/thumbnail?id=1-3gpLviGbInU7nNR0NGTTnSEf5Im0PiO&sz=w800" },
+        { title: "UI / UX for Beginners", issuer: "Great Learning Academy", date: "Juli 2024", image: "https://drive.google.com/thumbnail?id=1ADxEFnr_NgmxoLjID4z3GhtnrVs-Ow_3&sz=w800" },
+        { title: "Seminar Literasi Digital Sektor Pendidikan", issuer: "Kominfo", date: "Februari 2024", image: "https://drive.google.com/thumbnail?id=12MtYCqH1V8TMWewseprcHVx8CUj3AIXB&sz=w800" },
+        { title: "Webinar Large Language Model AI", issuer: "B-TECH", date: "Juni 2025", image: "https://drive.google.com/thumbnail?id=1M0bXELHxZBKCKlnWpRnRGku6O8Tsc7Nk&sz=w800" },
+        { title: "Pengimbasan Master Trainer 2024", issuer: "Google for Education", date: "Oktober 2024", image: "https://drive.google.com/thumbnail?id=1d6zvBaDKq2k3e1-wKIy3n9TwCgRtsWO3&sz=w800" },
+        { title: "Introduction to Information Security", issuer: "Cyber Academy", date: "September 2025", image: "https://drive.google.com/thumbnail?id=1PpgzyBen0315Cc4b0r6Zo7y2xVBUtIc5&sz=w800" },
+        { title: "Belajar Dasar Visualisasi Data", issuer: "Dicoding", date: "September 2023", image: "https://drive.google.com/thumbnail?id=1-Xkos4qJd5_vXsnFg-9N8tT9B_W5-gxs&sz=w800" },
+        { title: "Memulai Dasar Pemrograman", issuer: "Dicoding", date: "Agustus 2023", image: "https://drive.google.com/thumbnail?id=12Q33YiImFjcj2uf7tdGBeCBHA6Sif_sh&sz=w800" },
+        { title: "Pengenalan ke Logika Pemrograman", issuer: "Dicoding", date: "Agustus 2023", image: "https://drive.google.com/thumbnail?id=13Qu2mR9Inwpw5nolaI6NBUdeP-FF7cxM&sz=w800" },
+        { title: "Belajar Dasar AI", issuer: "Dicoding", date: "Oktober 2025", image: "https://drive.google.com/thumbnail?id=1dIb0jj1dHVNqbhb7bpM3GtFlWcbltUmA&sz=w800" },
+        { title: "Introduction to Financial Literacy", issuer: "Dicoding", date: "Desember 2025", image: "https://drive.google.com/thumbnail?id=1c6FSho325zX0ycjjt3SKVFLDUxx4WL4F&sz=w800" }
     ];
 
     const [showAllProjects, setShowAllProjects] = useState(false);
@@ -414,26 +382,32 @@ const Portfolio = () => {
     const activeRole = selectedApp?.roles?.find(r => r.name === activeRoleTab);
 
     return (
-        <section id="portofolio" className="py-20 px-4 bg-slate-900/50">
+        <section id="portofolio" className="py-20 px-4 bg-slate-900/50" ref={sectionRef}>
             <div className="container mx-auto">
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-                    <span className="gradient-text">Portofolio</span>
-                </h2>
+                <div className="portfolio-heading-wrapper text-center mb-16">
+                    <h2 className="text-3xl md:text-4xl font-bold portfolio-heading">
+                        <span className="gradient-text section-heading">Portofolio</span>
+                    </h2>
+                </div>
 
-                <div className="flex flex-wrap justify-center gap-3 md:gap-6 mb-12">
-                    <button
-                        onClick={() => { setActiveTab('projects'); setShowAllProjects(false); }}
-                        className={`btn px-5 py-2.5 md:px-8 md:py-4 rounded-xl font-semibold text-base md:text-lg flex items-center gap-2 shadow-lg transition-all ${activeTab === 'projects' ? 'bg-gradient-to-r from-purple-600 to-blue-500 text-white scale-105' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
-                    >
-                        <FolderGit2 size={20} className="md:w-6 md:h-6" /> Projects
-                    </button>
+                <div className="flex flex-wrap justify-center gap-3 md:gap-6 mb-12 portfolio-tabs">
+                    <div className="tab-btn-wrapper">
+                        <button
+                            onClick={() => { setActiveTab('projects'); setShowAllProjects(false); }}
+                            className={`tab-btn btn px-5 py-2.5 md:px-8 md:py-4 rounded-xl font-semibold text-base md:text-lg flex items-center gap-2 shadow-lg transition-all ${activeTab === 'projects' ? 'bg-gradient-to-r from-purple-600 to-blue-500 text-white scale-105 shadow-blue-500/30' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:-translate-y-1'}`}
+                        >
+                            <FolderGit2 size={20} className="md:w-6 md:h-6" /> Projects
+                        </button>
+                    </div>
 
-                    <button
-                        onClick={() => setActiveTab('certificates')}
-                        className={`btn px-5 py-2.5 md:px-8 md:py-4 rounded-xl font-semibold text-base md:text-lg flex items-center gap-2 shadow-lg transition-all ${activeTab === 'certificates' ? 'bg-gradient-to-r from-green-500 to-teal-400 text-white scale-105' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
-                    >
-                        <Award size={20} className="md:w-6 md:h-6" /> Certificates
-                    </button>
+                    <div className="tab-btn-wrapper">
+                        <button
+                            onClick={() => setActiveTab('certificates')}
+                            className={`tab-btn btn px-5 py-2.5 md:px-8 md:py-4 rounded-xl font-semibold text-base md:text-lg flex items-center gap-2 shadow-lg transition-all ${activeTab === 'certificates' ? 'bg-gradient-to-r from-green-500 to-teal-400 text-white scale-105 shadow-green-500/30' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:-translate-y-1'}`}
+                        >
+                            <Award size={20} className="md:w-6 md:h-6" /> Certificates
+                        </button>
+                    </div>
                 </div>
 
                 {activeTab === 'projects' && (
@@ -463,37 +437,39 @@ const Portfolio = () => {
                             {activeSubTab === 'web' ? (
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                     {displayedProjects.map((project, idx) => (
-                                        <div key={idx} className="card group bg-slate-800 rounded-xl overflow-hidden shadow-lg relative border border-slate-700 hover:border-blue-500/50 transition-colors">
-                                            <div className="h-48 w-full bg-slate-900 overflow-hidden">
-                                                <img
-                                                    src={project.image}
-                                                    alt={project.title}
-                                                    loading="lazy"
-                                                    decoding="async"
-                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                                />
-                                            </div>
-                                            <div className="p-6">
-                                                <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                                                <p className="text-slate-400 mb-6 text-sm h-10">{project.desc}</p>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {project.tags.map((tag, i) => (
-                                                        <span key={i} className="bg-slate-700/50 border border-slate-600 text-xs text-slate-300 px-3 py-1 rounded-full">
-                                                            {tag}
-                                                        </span>
-                                                    ))}
+                                        <div key={idx} className="project-card-wrapper">
+                                            <div className="project-card card group bg-slate-800 rounded-xl overflow-hidden shadow-lg relative border border-slate-700 hover:border-blue-500/50 transition-all hover:-translate-y-2 hover:shadow-blue-500/20">
+                                                <div className="h-48 w-full bg-slate-900 overflow-hidden">
+                                                    <img
+                                                        src={project.image}
+                                                        alt={project.title}
+                                                        loading="lazy"
+                                                        decoding="async"
+                                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                    />
                                                 </div>
-                                            </div>
-                                            <div className="absolute inset-0 bg-slate-900/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                {project.locked ? (
-                                                    <button className="bg-red-500/20 text-red-400 border border-red-500/50 px-6 py-2 rounded-lg font-semibold backdrop-blur-sm cursor-not-allowed">
-                                                        Tidak Dapat Mengakses
-                                                    </button>
-                                                ) : (
-                                                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30">
-                                                        Kunjungi Aplikasi
-                                                    </a>
-                                                )}
+                                                <div className="p-6">
+                                                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">{project.title}</h3>
+                                                    <p className="text-slate-400 mb-6 text-sm h-10 line-clamp-2">{project.desc}</p>
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {project.tags.map((tag, i) => (
+                                                            <span key={i} className="bg-slate-700/50 border border-slate-600 group-hover:border-blue-500/30 group-hover:bg-blue-500/10 transition-colors text-xs text-slate-300 px-3 py-1 rounded-full">
+                                                                {tag}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                                <div className="absolute inset-0 bg-slate-900/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                    {project.locked ? (
+                                                        <button className="bg-red-500/20 text-red-400 border border-red-500/50 px-6 py-2 rounded-lg font-semibold backdrop-blur-sm cursor-not-allowed">
+                                                            Tidak Dapat Mengakses
+                                                        </button>
+                                                    ) : (
+                                                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30">
+                                                            Kunjungi Aplikasi
+                                                        </a>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
                                     ))}
@@ -501,27 +477,28 @@ const Portfolio = () => {
                             ) : (
                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
                                     {displayedProjects.map((project, idx) => (
-                                        <div
-                                            key={idx}
-                                            onClick={() => setSelectedApp(project)}
-                                            className="group cursor-pointer flex flex-col items-center animate-in fade-in zoom-in duration-300"
-                                        >
-                                            <div className="relative w-24 h-24 md:w-32 md:h-32 mb-3">
-                                                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl opacity-20 group-hover:opacity-40 transition-opacity blur-lg"></div>
-                                                <div className="relative w-full h-full bg-slate-800 rounded-3xl overflow-hidden border border-slate-700 group-hover:border-purple-500 transition-colors p-1 shadow-xl">
-                                                    <img
-                                                        src={project.image}
-                                                        alt={project.title}
-                                                        className="w-full h-full object-cover rounded-2xl"
-                                                    />
+                                        <div key={idx} className="project-card-wrapper">
+                                            <div
+                                                onClick={() => setSelectedApp(project)}
+                                                className="project-card group cursor-pointer flex flex-col items-center hover:-translate-y-2 transition-transform"
+                                            >
+                                                <div className="relative w-24 h-24 md:w-32 md:h-32 mb-3">
+                                                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl opacity-20 group-hover:opacity-40 transition-opacity blur-lg"></div>
+                                                    <div className="relative w-full h-full bg-slate-800 rounded-3xl overflow-hidden border border-slate-700 group-hover:border-purple-500 transition-colors p-1 shadow-xl">
+                                                        <img
+                                                            src={project.image}
+                                                            alt={project.title}
+                                                            className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-300"
+                                                        />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <h3 className="text-white font-medium text-center text-sm md:text-base line-clamp-1 w-full">{project.title}</h3>
-                                            <div className="flex items-center gap-1 mt-1 text-slate-400 text-xs">
-                                                <span>{project.rating}</span>
-                                                <Star size={10} className="fill-yellow-500 text-yellow-500" />
-                                                <span className="mx-1">•</span>
-                                                <PortfolioCounter value={downloadCounts[project.title] || 0} />
+                                                <h3 className="text-white font-medium text-center text-sm md:text-base line-clamp-1 w-full group-hover:text-purple-400 transition-colors">{project.title}</h3>
+                                                <div className="flex items-center gap-1 mt-1 text-slate-400 text-xs">
+                                                    <span>{project.rating}</span>
+                                                    <Star size={10} className="fill-yellow-500 text-yellow-500" />
+                                                    <span className="mx-1">•</span>
+                                                    <PortfolioCounter value={downloadCounts[project.title] || 0} />
+                                                </div>
                                             </div>
                                         </div>
                                     ))}
@@ -546,22 +523,24 @@ const Portfolio = () => {
                             <h2 className="text-3xl font-bold text-white mb-8 border-b border-green-500 pb-4">My Certificates</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 {displayedCerts.map((cert, idx) => (
-                                    <div key={idx} className="card group bg-slate-800 rounded-xl overflow-hidden shadow-lg relative border border-slate-700 hover:border-green-500/50 transition-colors">
-                                        <div className="h-48 w-full bg-slate-900 overflow-hidden">
-                                            <img src={cert.image} alt={cert.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                                        </div>
-                                        <div className="p-6">
-                                            <h3 className="text-lg font-bold text-white mb-2 truncate" title={cert.title}>{cert.title}</h3>
-                                            <p className="text-slate-400 text-sm mb-1">{cert.issuer}</p>
-                                            <p className="text-slate-500 text-xs">{cert.date}</p>
-                                        </div>
-                                        <div className="absolute inset-0 bg-slate-900/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                            <button
-                                                onClick={() => window.open(cert.image, '_blank')}
-                                                className="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-500 transition-colors shadow-lg shadow-green-500/30"
-                                            >
-                                                Lihat Sertifikat
-                                            </button>
+                                    <div key={idx} className="project-card-wrapper">
+                                        <div className="project-card card group bg-slate-800 rounded-xl overflow-hidden shadow-lg relative border border-slate-700 hover:border-green-500/50 transition-all hover:-translate-y-2 hover:shadow-green-500/20">
+                                            <div className="h-48 w-full bg-slate-900 overflow-hidden">
+                                                <img src={cert.image} alt={cert.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                            </div>
+                                            <div className="p-6">
+                                                <h3 className="text-lg font-bold text-white mb-2 truncate group-hover:text-green-400 transition-colors" title={cert.title}>{cert.title}</h3>
+                                                <p className="text-slate-400 text-sm mb-1">{cert.issuer}</p>
+                                                <p className="text-slate-500 text-xs">{cert.date}</p>
+                                            </div>
+                                            <div className="absolute inset-0 bg-slate-900/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                <button
+                                                    onClick={() => window.open(cert.image, '_blank')}
+                                                    className="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-500 transition-colors shadow-lg shadow-green-500/30"
+                                                >
+                                                    Lihat Sertifikat
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 ))}
@@ -589,67 +568,66 @@ const Portfolio = () => {
                             className="h-full overflow-y-auto custom-scrollbar flex-1 relative rounded-3xl"
                             style={{ scrollbarGutter: 'stable' }}
                         >
-                            <div className={`sticky top-0 bg-slate-900/95 backdrop-blur-md z-[70] border-b border-slate-800 transition-all duration-300 ease-in-out rounded-t-3xl ${isModalScrolled ? 'p-3 md:p-4 shadow-xl' : 'p-5 md:p-8'}`}>
-                                <div className="flex items-start md:items-center gap-4 relative pr-14 md:pr-16">
+                            <div className={`sticky top-0 bg-slate-900/95 backdrop-blur-md z-[70] border-b border-slate-800 transition-all duration-300 ease-in-out rounded-t-3xl ${isModalScrolled ? 'p-3 md:p-4 shadow-xl' : 'p-4 md:p-8'}`}>
+                                {/* Close Button */}
+                                <button onClick={() => setSelectedApp(null)} className="absolute top-3 right-3 md:top-4 md:right-4 p-1.5 bg-slate-800/80 backdrop-blur hover:bg-red-500/20 rounded-full text-slate-400 hover:text-red-400 transition-colors z-[80] border border-slate-700/50">
+                                    <X size={18} />
+                                </button>
+
+                                <div className="flex items-start gap-3 md:gap-4">
+                                    {/* App Icon */}
                                     <img 
                                         src={selectedApp.image} 
                                         alt={selectedApp.title} 
-                                        className={`rounded-2xl object-cover shadow-lg border border-slate-700 transition-all duration-300 ease-in-out flex-shrink-0 ${isModalScrolled ? 'w-12 h-12 md:w-14 md:h-14' : 'w-20 h-20 md:w-32 md:h-32'}`} 
+                                        className={`rounded-2xl object-cover shadow-lg border border-slate-700 transition-all duration-300 ease-in-out flex-shrink-0 ${isModalScrolled ? 'w-11 h-11 md:w-14 md:h-14' : 'w-16 h-16 md:w-28 md:h-28'}`} 
                                     />
-                                    <div className="flex-1 min-w-0">
-                                        <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 md:gap-4 transition-all duration-300">
-                                            
-                                            {/* Text and Stats */}
-                                            <div className="min-w-0 flex-1 mt-1 md:mt-0">
-                                                <h3 className={`font-bold text-white transition-all duration-300 truncate ${isModalScrolled ? 'text-lg md:text-xl' : 'text-xl md:text-3xl lg:text-4xl'}`}>
-                                                    {selectedApp.title}
-                                                </h3>
-                                                
-                                                <div className={`flex items-center gap-1 text-[11px] md:text-xs transition-all duration-300 ease-in-out ${isModalScrolled && selectedApp.rating ? 'opacity-100 max-h-10 mt-0.5' : 'opacity-0 max-h-0 overflow-hidden m-0'}`}>
-                                                    <span className="font-bold text-white">{selectedApp.rating}</span>
-                                                    <Star size={10} className="fill-yellow-500 text-yellow-500" />
-                                                    <span className="text-slate-400 ml-0.5">
-                                                        (<PortfolioCounter value={downloadCounts[selectedApp.title] || 0} />)
-                                                    </span>
-                                                </div>
 
-                                                <div className={`grid transition-all duration-300 ease-in-out ${isModalScrolled ? 'grid-rows-[0fr] opacity-0' : 'grid-rows-[1fr] opacity-100 mt-1 md:mt-3'}`}>
-                                                    <div className="overflow-hidden">
-                                                        <p className="text-blue-400 font-medium mb-2 md:mb-4 text-xs md:text-base">Hafidz Alaziz</p>
-                                                        <div className="flex flex-wrap items-center gap-2 md:gap-3 text-xs md:text-sm">
-                                                            <div className="flex items-center gap-1 text-slate-300 bg-slate-800/80 px-2.5 py-1 md:px-3 md:py-1.5 rounded-lg border border-slate-700/50">
-                                                                <span className="font-bold text-white">{selectedApp.rating}</span>
-                                                                <Star size={12} className="fill-yellow-500 text-yellow-500" />
-                                                                <span className="text-slate-500 ml-1 hidden md:inline">
-                                                                    (<PortfolioCounter value={downloadCounts[selectedApp.title] || 0} />)
-                                                                </span>
-                                                            </div>
-                                                            <div className="flex items-center gap-1.5 text-slate-300 bg-slate-800/80 px-2.5 py-1 md:px-3 md:py-1.5 rounded-lg border border-slate-700/50">
-                                                                <Info size={12} className="text-blue-400" />
-                                                                <span>{selectedApp.size}</span>
-                                                            </div>
-                                                        </div>
+                                    {/* Info + Buttons */}
+                                    <div className="flex-1 min-w-0 flex flex-col gap-2">
+                                        {/* Title */}
+                                        <h3 className={`font-bold text-white transition-all duration-300 truncate pr-8 ${isModalScrolled ? 'text-base md:text-xl' : 'text-lg md:text-3xl lg:text-4xl'}`}>
+                                            {selectedApp.title}
+                                        </h3>
+                                        
+                                        {/* Compact star shown when scrolled */}
+                                        <div className={`flex items-center gap-1 text-[11px] transition-all duration-300 ease-in-out ${isModalScrolled && selectedApp.rating ? 'opacity-100 max-h-6' : 'opacity-0 max-h-0 overflow-hidden'}`}>
+                                            <span className="font-bold text-white">{selectedApp.rating}</span>
+                                            <Star size={10} className="fill-yellow-500 text-yellow-500" />
+                                            <span className="text-slate-400 ml-0.5">
+                                                (<PortfolioCounter value={downloadCounts[selectedApp.title] || 0} />)
+                                            </span>
+                                        </div>
+
+                                        {/* Full stats (hidden when scrolled) */}
+                                        <div className={`grid transition-all duration-300 ease-in-out ${isModalScrolled ? 'grid-rows-[0fr] opacity-0' : 'grid-rows-[1fr] opacity-100'}`}>
+                                            <div className="overflow-hidden">
+                                                <p className="text-blue-400 font-medium mb-1.5 md:mb-3 text-xs md:text-base">Hafidz Alaziz</p>
+                                                <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm mb-2 md:mb-0">
+                                                    <div className="flex items-center gap-1 text-slate-300 bg-slate-800/80 px-2.5 py-1 rounded-lg border border-slate-700/50">
+                                                        <span className="font-bold text-white">{selectedApp.rating}</span>
+                                                        <Star size={12} className="fill-yellow-500 text-yellow-500" />
+                                                        <span className="text-slate-500 ml-1 hidden md:inline">
+                                                            (<PortfolioCounter value={downloadCounts[selectedApp.title] || 0} />)
+                                                        </span>
+                                                    </div>
+                                                    <div className="flex items-center gap-1.5 text-slate-300 bg-slate-800/80 px-2.5 py-1 rounded-lg border border-slate-700/50">
+                                                        <Info size={12} className="text-blue-400" />
+                                                        <span>{selectedApp.size}</span>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            {/* Buttons Action */}
-                                            <div className={`flex flex-row gap-2 transition-all duration-300 flex-shrink-0 origin-top-right mt-1 md:mt-0 ${isModalScrolled ? 'scale-90 md:scale-95' : 'scale-100 lg:mt-2'}`}>
-                                                <button onClick={() => handleInstall(selectedApp)} className="bg-green-600 hover:bg-green-500 text-white px-4 md:px-6 py-2 md:py-3 rounded-xl font-bold transition-transform active:scale-95 flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(22,163,74,0.3)] hover:shadow-[0_0_20px_rgba(22,163,74,0.5)] text-xs md:text-sm border border-green-500/30">
-                                                    <Download size={16} /> <span>Install</span>
-                                                </button>
-                                                <button onClick={() => handleShare(selectedApp)} className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 md:px-4 py-2 md:py-3 rounded-xl font-semibold transition-all active:scale-95 text-xs md:text-sm flex items-center justify-center gap-2 border border-slate-600 hover:border-slate-500 shadow-lg">
-                                                    <Share2 size={16} />
-                                                </button>
-                                            </div>
-
+                                        {/* Action Buttons — always visible below info */}
+                                        <div className={`flex flex-row gap-2 transition-all duration-300 ${isModalScrolled ? 'scale-95 origin-left' : 'scale-100'}`}>
+                                            <button onClick={() => handleInstall(selectedApp)} className="bg-green-600 hover:bg-green-500 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-xl font-bold transition-transform active:scale-95 flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(22,163,74,0.3)] hover:shadow-[0_0_20px_rgba(22,163,74,0.5)] text-xs md:text-sm border border-green-500/30">
+                                                <Download size={15} /> <span>Install</span>
+                                            </button>
+                                            <button onClick={() => handleShare(selectedApp)} className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 md:px-4 py-2 md:py-2.5 rounded-xl font-semibold transition-all active:scale-95 text-xs md:text-sm flex items-center justify-center gap-2 border border-slate-600 hover:border-slate-500 shadow-lg">
+                                                <Share2 size={15} />
+                                            </button>
                                         </div>
                                     </div>
-                                    
-                                    {/* Close Button Absolute Pos */}
-                                    <button onClick={() => setSelectedApp(null)} className={`absolute top-0 right-0 p-1.5 bg-slate-800/80 backdrop-blur hover:bg-red-500/20 rounded-full text-slate-400 hover:text-red-400 transition-colors z-[80] border border-slate-700/50`}>
-                                        <X size={18} />
-                                    </button>
                                 </div>
                             </div>
 

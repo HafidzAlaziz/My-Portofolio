@@ -260,3 +260,147 @@ h6 {
     scrollbar-width: thin;
     scrollbar-color: #1e293b #0c111c;
 }
+
+/* ── Scroll Reveal ─────────────────────────────────────────────── */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+.reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ── Shimmer ───────────────────────────────────────────────────── */
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+.shimmer-text {
+    background: linear-gradient(90deg, #22d3ee 0%, #c084fc 40%, #22d3ee 80%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
+}
+
+/* ── Pulse Glow ────────────────────────────────────────────────── */
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 8px rgba(34, 211, 238, 0.3); }
+    50% { box-shadow: 0 0 24px rgba(34, 211, 238, 0.7), 0 0 48px rgba(99, 102, 241, 0.3); }
+}
+.pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* ── Typewriter cursor blink ────────────────────────────────────── */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+.cursor-blink::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    color: #22d3ee;
+    margin-left: 2px;
+}
+
+/* ── Gradient border card ───────────────────────────────────────── */
+.card-glow {
+    position: relative;
+    border-radius: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-glow::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #22d3ee22, #6366f122, #c084fc22);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+.card-glow:hover::before {
+    opacity: 1;
+}
+.card-glow:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 20px 60px -15px rgba(34, 211, 238, 0.25);
+}
+
+/* ── Stagger delay helpers ──────────────────────────────────────── */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* ── Slide in from bottom ───────────────────────────────────────── */
+@keyframes slide-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up {
+    animation: slide-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Bounce entry ───────────────────────────────────────────────── */
+@keyframes bounce-in {
+    0%   { opacity: 0; transform: scale(0.7); }
+    60%  { opacity: 1; transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+.animate-bounce-in {
+    animation: bounce-in 0.5s ease forwards;
+}
+
+/* ── Tilt card ──────────────────────────────────────────────────── */
+.tilt-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.tilt-card:hover {
+    transform: perspective(600px) rotateX(-2deg) rotateY(3deg) translateY(-5px);
+    box-shadow: 0 25px 50px -10px rgba(34, 211, 238, 0.2);
+}
+
+/* ── Section heading underline animation ────────────────────────── */
+.section-heading {
+    position: relative;
+    display: inline-block;
+}
+.section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, #22d3ee, #6366f1, #c084fc);
+    border-radius: 2px;
+    transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.section-heading.visible::after {
+    width: 60%;
+}
