@@ -1,0 +1,68 @@
+# E-Learning App - Smart Attendance System 🎓
+
+A comprehensive and modern E-Learning management system built with **Flutter** and **Firebase**. This application is designed to streamline the academic process through digital attendance, course management, and real-time grading.
+
+---
+
+## 🚀 Fitur Utama
+
+Aplikasi ini memiliki tiga peran utama dengan fitur yang disesuaikan untuk masing-masing kebutuhan:
+
+### 👤 Mahasiswa (Student)
+- **Login Google**: Masuk dengan mudah menggunakan akun Google.
+- **KRS Digital**: Memilih dan mendaftar mata kuliah secara mandiri.
+- **QR Scanner Presensi**: Melakukan absensi kelas secara instan dengan memindai kode QR dari dosen.
+- **Riwayat Nilai**: Melihat transkrip nilai dan perkembangan akademik setiap semester.
+- **Jadwal Kuliah**: Melihat kalender akademik dan jadwal mata kuliah yang diikuti.
+
+### 👨‍🏫 Dosen (Teacher)
+- **Manajemen Kelas**: Mengelola daftar mahasiswa dan mata kuliah yang diampu.
+- **Generate QR Attendance**: Membuat kode QR dinamis untuk absensi mahasiswa di kelas.
+- **Manajemen Tugas**: Memberikan tugas dan melakukan penilaian secara langsung.
+- **Input Nilai**: Mengelola nilai mahasiswa dengan antarmuka yang intuitif.
+
+### ⚙️ Administrator (Admin)
+- **User Management**: Mengelola data mahasiswa, dosen, dan staf.
+- **Course Management**: Membuat, mengedit, dan menghapus mata kuliah.
+- **Major Management**: Mengelola daftar jurusan/program studi.
+- **Penugasan Dosen**: Menghubungkan dosen dengan mata kuliah yang sesuai.
+
+---
+
+## 🛠️ Detail Teknis
+
+- **Framework**: Flutter
+- **Database & Auth**: Firebase Firestore & Firebase Auth
+- **Offline Mode**: Mendukung persistensi data offline untuk akses cepat tanpa internet.
+- **UI/UX**: Desain modern dengan dukungan **Dark Mode** dan **Light Mode**.
+- **Responsive**: Tampilan optimal untuk perangkat Mobile dan Web.
+
+---
+
+## 📥 Download APK Demo
+
+Silakan unduh versi terbaru aplikasi untuk mencobanya langsung di perangkat Android Anda.
+
+[ ![Download APK](https://img.shields.io/badge/Download-APK_Release-00695C?style=for-the-badge&logo=android) ](https://github.com/HafidzAlaziz/E-Learning_App/raw/main/build/app/outputs/flutter-apk/E-Learning.apk)
+
+
+---
+
+## 📸 Tampilan Aplikasi
+
+<table style="width: 100%; border: none;">
+  <tr>
+    <td align="center"><b>Splash Screen</b></td>
+    <td align="center"><b>Login Screen</b></td>
+    <td align="center"><b>Dashboard</b></td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/HafidzAlaziz/E-Learning_App/main/assets/images/app_logo.png" width="200"></td>
+    <td><i>(Tampilan Login Google)</i></td>
+    <td><i>(Tampilan Dashboard User)</i></td>
+  </tr>
+</table>
+
+---
+
+Developed by [Hafidz Alaziz](https://github.com/HafidzAlaziz)

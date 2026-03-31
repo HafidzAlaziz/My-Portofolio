@@ -1,0 +1,63 @@
+# FinFlow - Smart Gamified Finance 💰
+
+A sophisticated and modern personal finance management system built with **Flutter** and **Google Gemini AI**. This application is designed to revolutionize financial habits through AI-powered insights, emotional tracking, and interactive gamification.
+
+---
+
+## 🚀 Fitur Utama
+
+Aplikasi ini mengintegrasikan kecerdasan buatan dan psikologi keuangan untuk membantu pengguna mencapai kemandirian finansial:
+
+### 🤖 Smart AI Analysis
+- **AI Receipt Scanner**: Ekstraksi data transaksi otomatis dari struk belanja menggunakan Google Gemini 1.5 Flash.
+- **AI Financial Advisor**: Konsultasi kesehatan keuangan real-time melalui chatbot cerdas.
+- **Automated Categorization**: Pendeteksian kategori pengeluaran secara otomatis berdasarkan judul transaksi.
+
+### 🎮 Game-Fi & Psychology
+- **Daily & Weekly Quests**: Tantangan menabung yang seru untuk membangun disiplin keuangan.
+- **Achievement Badges**: Koleksi lencana unik seperti *Coffee Breaker* dan *Minimalist Wardrobe* atas keberhasilan mencapai target.
+- **Mood Tracking**: Analisis hubungan antara kondisi emosional (Senang/Sedih/Marah) dengan pola pengeluaran.
+
+### 📊 Financial Management
+- **Interactive Insights**: Visualisasi tren keuangan yang mendalam melalui grafik harian hingga tahunan.
+- **Smart Goals**: Pengaturan target menabung yang dipantau secara real-time dengan indikator visual.
+- **Report Export**: Cetak riwayat keuangan ke format PDF profesional untuk dokumentasi pribadi.
+
+---
+
+## 🛠️ Detail Teknis
+
+- **Framework**: Flutter (Dart)
+- **Database**: SQLite (sqflite) via Private Local Storage
+- **AI Engine**: Google Gemini AI (REST API Integration)
+- **Local Persistence**: Dukungan penuh mode offline dan widget layar utama (Home Widget).
+- **UI/UX**: Estetika modern dengan dukungan **Dark Mode** dan animasi transisi yang mulus.
+
+---
+
+## 📥 Download APK Demo
+
+Unduh versi terbaru FinFlow untuk mengelola keuangan Anda dengan cara yang lebih menyenangkan dan cerdas.
+
+[ ![Download APK](https://img.shields.io/badge/Download-FinFlow_APK-2ECC71?style=for-the-badge&logo=android) ](https://github.com/HafidzAlaziz/FinFlow/raw/main/build/app/outputs/flutter-apk/FinFlow.apk)
+
+---
+
+## 📸 Tampilan Aplikasi
+
+<table style="width: 100%; border: none;">
+  <tr>
+    <td align="center"><b>Splash Screen</b></td>
+    <td align="center"><b>Dashboard</b></td>
+    <td align="center"><b>AI Chat</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/images/logo.png" width="150"></td>
+    <td align="center"><i>(Tampilan Dashboard Visual)</i></td>
+    <td align="center"><i>(Tampilan Konsultasi AI)</i></td>
+  </tr>
+</table>
+
+---
+
+Developed by [Hafidz Alaziz](https://github.com/HafidzAlaziz)

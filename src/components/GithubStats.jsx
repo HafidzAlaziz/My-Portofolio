@@ -67,7 +67,7 @@ const GithubStats = () => {
                                     <h3 className="text-base sm:text-xl font-semibold text-slate-200">Current Streak</h3>
                                 </div>
                                 <img
-                                    src="https://nirzak-streak-stats.vercel.app/?user=HafidzAlaziz&theme=dark&hide_border=true&background=0d1117&ring=22d3ee&fire=22d3ee&stroke=475569"
+                                    src="https://streak-stats.demolab.com/?user=HafidzAlaziz&theme=dark&hide_border=true&background=0d1117&ring=22d3ee&fire=22d3ee&stroke=475569"
                                     alt="GitHub Streak"
                                     className="w-full max-w-md hover:scale-105 transition-transform duration-300 rounded-lg"
                                 />
