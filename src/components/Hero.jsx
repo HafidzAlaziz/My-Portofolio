@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { User, Code2 } from 'lucide-react';
+import { User, Code2, Download } from 'lucide-react';
 import gsap from 'gsap';
 import profileImg from '../assets/profile.png';
 import { FIREBASE_DB_URL } from '../firebaseConfig';
@@ -227,6 +227,10 @@ const Hero = () => {
                         <a href="#portofolio" className="px-8 py-3 rounded-full border border-slate-600 text-white hover:bg-slate-800 transition-colors text-center whitespace-nowrap w-full sm:w-auto">
                             Lihat Portofolio
                         </a>
+                        <button onClick={() => window.print()} className="px-8 py-3 rounded-full border border-slate-600 text-white hover:bg-slate-800 transition-colors text-center whitespace-nowrap w-full sm:w-auto flex items-center justify-center gap-2 cursor-pointer">
+                            <Download size={18} />
+                            Download CV
+                        </button>
                     </div>
 
                     {/* ── Reaction Bar ─────────────────────────────────── */}

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { MonitorPlay, PenTool, Cuboid, Zap } from 'lucide-react';
+import { MonitorPlay, PenTool, Cuboid, Zap, Download } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -115,6 +115,12 @@ const About = () => {
                             <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
                                 Saya percaya pada pembelajaran berkelanjutan dan selalu mengikuti perkembangan teknologi dan tren desain terkini untuk memberikan solusi mutakhir.
                             </p>
+                            <div className="mt-6 flex justify-center md:justify-start">
+                                <button onClick={() => window.print()} className="btn-primary px-6 py-2.5 rounded-full text-white font-medium text-sm flex items-center gap-2 shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/20 cursor-pointer">
+                                    <Download size={16} />
+                                    Download CV
+                                </button>
+                            </div>
                         </div>
                     </div>
 

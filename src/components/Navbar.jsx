@@ -29,7 +29,7 @@ const Navbar = () => {
             setScrolled(window.scrollY > 20);
 
             // Active section tracker
-            const sections = ['home', 'about', 'skills', 'portofolio', 'github-stats', 'minigames', 'contact'];
+            const sections = ['home', 'about', 'education', 'skills', 'portofolio', 'github-stats', 'minigames', 'contact'];
             const current = sections.find(id => {
                 const el = document.getElementById(id);
                 if (!el) return false;
@@ -63,6 +63,7 @@ const Navbar = () => {
     const navLinks = [
         { name: 'Beranda', href: '#home', id: 'home' },
         { name: 'Tentang Saya', href: '#about', id: 'about' },
+        { name: 'Pendidikan', href: '#education', id: 'education' },
         { name: 'Skill', href: '#skills', id: 'skills' },
         { name: 'Portofolio', href: '#portofolio', id: 'portofolio' },
         { name: 'GitHub Stats', href: '#github-stats', id: 'github-stats' },

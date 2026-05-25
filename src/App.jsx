@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Education from './components/Education';
 import Skills from './components/Skills';
+import PrintCV from './components/PrintCV';
 import Portfolio from './components/Portfolio';
 import GithubStats from './components/GithubStats';
 import MiniGames from './components/MiniGames';
@@ -44,15 +46,19 @@ function App() {
       <Background3D />
 
       {/* Main Content */}
-      <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Portfolio />
-      <GithubStats />
-      <MiniGames />
-      <Contact />
-      <Footer />
+      <div className="screen-content">
+        <Navbar />
+        <Hero />
+        <About />
+        <Education />
+        <Skills />
+        <Portfolio />
+        <GithubStats />
+        <MiniGames />
+        <Contact />
+        <Footer />
+      </div>
+      <PrintCV />
     </div>
   );
 }
