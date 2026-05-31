@@ -161,7 +161,8 @@ const Contact = () => {
                     {/* Contact Info */}
                     <div className="md:w-1/2 contact-info-wrapper">
                         <div className="card tilt-card p-5 md:p-8 rounded-2xl h-full border border-slate-700/50 contact-info-content">
-                            <h3 className="text-lg sm:text-2xl font-semibold mb-6 md:mb-8 border-b border-slate-700 pb-4">Informasi Kontak</h3>
+                            <h3 className="text-lg sm:text-2xl font-semibold mb-2 border-b border-slate-700 pb-4">Informasi Kontak</h3>
+                            <p className="text-xs text-slate-400 mb-6 italic">Atau hubungi saya secara langsung dengan mengeklik opsi di bawah ini:</p>
                             <div className="space-y-6">
                                 {contactItems.map((item, i) => (
                                     <div key={i} className="contact-item-wrapper">
