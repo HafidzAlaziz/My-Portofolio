@@ -2,10 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Gamepad2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const MiniGames = () => {
+    const { t } = useLanguage();
     const sectionRef = useRef(null);
 
     useEffect(() => {
@@ -44,7 +46,7 @@ const MiniGames = () => {
                     <h2 className="text-xl sm:text-2xl md:text-4xl font-bold game-container">
                         <span className="gradient-text flex items-center justify-center gap-3">
                             <Gamepad2 size={32} className="text-cyan-400 w-8 h-8 sm:w-10 sm:h-10" />
-                            Play Games!! Let's Goo!
+                            {t('miniGames.title')}
                         </span>
                     </h2>
                 </div>
@@ -53,7 +55,7 @@ const MiniGames = () => {
                     {/* Snake Animation */}
                     <div className="game-container-wrapper">
                         <div className="game-container card p-5 sm:p-6 rounded-2xl border border-slate-700/50 hover:border-cyan-500/50 transition-colors w-full overflow-hidden shadow-2xl flex flex-col items-center justify-center bg-slate-800/80">
-                            <h3 className="text-sm sm:text-lg font-semibold text-slate-300 mb-6 font-primary uppercase tracking-wider">GitHub Contribution Snake</h3>
+                            <h3 className="text-sm sm:text-lg font-semibold text-slate-300 mb-6 font-primary uppercase tracking-wider">{t('miniGames.snakeTitle')}</h3>
                             <div className="w-full overflow-x-auto pb-4 flex justify-start md:justify-center">
                                 <img
                                     src="https://raw.githubusercontent.com/HafidzAlaziz/HafidzAlaziz/output/snake-dark.svg"
@@ -64,7 +66,7 @@ const MiniGames = () => {
                                         e.target.nextSibling.style.display = 'block';
                                     }}
                                 />
-                                <p className="hidden text-slate-400 text-sm">Gagal memuat animasi Snake. Pastikan file tersedia di repository.</p>
+                                <p className="hidden text-slate-400 text-sm">{t('miniGames.snakeError')}</p>
                             </div>
                         </div>
                     </div>
@@ -72,7 +74,7 @@ const MiniGames = () => {
                     {/* Pacman Animation */}
                     <div className="game-container-wrapper">
                         <div className="game-container card p-5 sm:p-6 rounded-2xl border border-slate-700/50 hover:border-orange-500/50 transition-colors w-full overflow-hidden shadow-2xl flex flex-col items-center justify-center bg-slate-800/80">
-                            <h3 className="text-sm sm:text-lg font-semibold text-slate-300 mb-6 font-primary uppercase tracking-wider">GitHub Contribution Pacman</h3>
+                            <h3 className="text-sm sm:text-lg font-semibold text-slate-300 mb-6 font-primary uppercase tracking-wider">{t('miniGames.pacmanTitle')}</h3>
                             <div className="w-full overflow-x-auto pb-4 flex justify-start md:justify-center">
                                 <img
                                     src="https://raw.githubusercontent.com/HafidzAlaziz/HafidzAlaziz/output/pacman-contribution-graph-dark.svg"
@@ -83,7 +85,7 @@ const MiniGames = () => {
                                         e.target.nextSibling.style.display = 'block';
                                     }}
                                 />
-                                <p className="hidden text-slate-400 text-sm">Gagal memuat animasi Pacman. Pastikan file tersedia di repository.</p>
+                                <p className="hidden text-slate-400 text-sm">{t('miniGames.pacmanError')}</p>
                             </div>
                         </div>
                     </div>

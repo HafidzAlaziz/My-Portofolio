@@ -1,8 +1,31 @@
 import React from 'react';
 import profileImg from '../assets/profile.png';
 import { Mail, Phone, MapPin, Github, Linkedin, Award, BookOpen, Briefcase, GraduationCap } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+
+const translateDate = (dateStr, lang) => {
+    if (!dateStr) return '';
+    if (lang === 'en') {
+        return dateStr
+            .replace('Juli', 'July')
+            .replace('Februari', 'February')
+            .replace('Juni', 'June')
+            .replace('Okt ', 'Oct ')
+            .replace('Okt', 'October')
+            .replace('Oktober', 'October')
+            .replace('Agustus', 'August')
+            .replace('Desember', 'December')
+            .replace('Des ', 'Dec ')
+            .replace('Des', 'December')
+            .replace('Sept', 'Sept')
+            .replace('Sekarang', 'Present');
+    }
+    return dateStr;
+};
 
 const PrintCV = () => {
+    const { language, t } = useLanguage();
+
     const skills = [
         { name: 'Frontend', desc: 'React, Tailwind CSS, Vite, Vue.js, Next.js' },
         { name: 'Backend', desc: 'Laravel, PHP, Go' },
@@ -11,28 +34,20 @@ const PrintCV = () => {
 
     const education = [
         {
-            institution: 'STMIK Tazkia',
-            period: '2025 - Sekarang',
-            level: 'Pendidikan Tinggi (Kuliah)',
-            title: 'Sains dan Teknologi - Teknik Informatika',
-            status: 'Semester 2',
-            highlights: [
-                'Algoritma & Struktur Data',
-                'Dasar Cloud Computing & OS',
-                'Pemrograman Terstruktur & Problem Solving'
-            ]
+            institution: t('education.college.institution'),
+            period: t('education.college.period'),
+            level: t('education.college.level'),
+            title: t('education.college.title'),
+            status: t('education.college.status'),
+            highlights: t('education.college.highlights') || []
         },
         {
-            institution: 'SMKN 1 Ciomas',
-            period: '2022 - 2025',
-            level: 'Sekolah Menengah Kejuruan (SMK)',
-            title: 'PPLG (Pengembangan Perangkat Lunak dan Gim)',
-            status: 'Lulus',
-            highlights: [
-                'Web Dev (HTML, CSS, JS, PHP, React, Laravel)',
-                'Internet of Things (IoT) & Sirkuit Perangkat Keras',
-                'C++ & Konsep Object Oriented Programming'
-            ]
+            institution: t('education.highschool.institution'),
+            period: t('education.highschool.period'),
+            level: t('education.highschool.level'),
+            title: t('education.highschool.title'),
+            status: t('education.highschool.status'),
+            highlights: t('education.highschool.highlights') || []
         }
     ];
 
@@ -52,9 +67,27 @@ const PrintCV = () => {
     ];
 
     const projects = [
-        { title: 'WebKuu', desc: 'Layanan jasa pembuatan website profesional dan solusi digital kreatif.', tech: 'React, Supabase' },
-        { title: 'E-Learning App', desc: 'Sistem Manajemen Akademik & Absensi Pintar dengan QR Scanner.', tech: 'Flutter, Firebase' },
-        { title: 'FinFlow', desc: 'Aplikasi keuangan cerdas terintegrasi Google Gemini AI dan Gamifikasi.', tech: 'Flutter, Gemini AI' }
+        { 
+            title: 'WebKuu', 
+            desc: language === 'en' 
+                ? 'Professional website creation services and creative digital solutions.' 
+                : 'Layanan jasa pembuatan website profesional dan solusi digital kreatif.', 
+            tech: 'React, Supabase' 
+        },
+        { 
+            title: 'E-Learning App', 
+            desc: language === 'en' 
+                ? 'Smart Academic Management & Attendance system with QR Scanner.' 
+                : 'Sistem Manajemen Akademik & Absensi Pintar dengan QR Scanner.', 
+            tech: 'Flutter, Firebase' 
+        },
+        { 
+            title: 'FinFlow', 
+            desc: language === 'en' 
+                ? 'Smart financial application integrated with Google Gemini AI and Gamification.' 
+                : 'Aplikasi keuangan cerdas terintegrasi Google Gemini AI dan Gamifikasi.', 
+            tech: 'Flutter, Gemini AI' 
+        }
     ];
 
     return (
@@ -76,7 +109,7 @@ const PrintCV = () => {
                         </div>
                         <div className="flex items-center gap-1">
                             <MapPin size={12} className="text-slate-800" />
-                            <span>Bogor, Jawa Barat</span>
+                            <span>{language === 'en' ? 'Bogor, West Java' : 'Bogor, Jawa Barat'}</span>
                         </div>
                     </div>
                 </div>
@@ -100,15 +133,22 @@ const PrintCV = () => {
                 <div className="col-span-1 border-r border-slate-200 pr-4 space-y-4">
                     {/* Ringkasan Profil */}
                     <div>
-                        <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-800 pb-0.5 mb-1.5">Profil</h2>
+                        <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-800 pb-0.5 mb-1.5">
+                            {language === 'en' ? 'Profile' : 'Profil'}
+                        </h2>
                         <p className="text-[11px] text-slate-600 leading-relaxed">
-                            Saya seorang Fullstack Developer yang bersemangat menciptakan solusi web komprehensif. Fokus pada aplikasi yang tidak hanya cantik secara visual, tetapi juga kuat secara arsitektur.
+                            {language === 'en' 
+                                ? "I'm a Fullstack Developer passionate about creating comprehensive web solutions. Focused on applications that are not only visually stunning but also architecturally robust."
+                                : "Saya seorang Fullstack Developer yang bersemangat menciptakan solusi web komprehensif. Fokus pada aplikasi yang tidak hanya cantik secara visual, tetapi juga kuat secara arsitektur."
+                            }
                         </p>
                     </div>
 
                     {/* Keterampilan */}
                     <div>
-                        <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-800 pb-0.5 mb-1.5">Keterampilan</h2>
+                        <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-800 pb-0.5 mb-1.5">
+                            {language === 'en' ? 'Skills' : 'Keterampilan'}
+                        </h2>
                         <ul className="space-y-1.5">
                             {skills.map((skill, index) => (
                                 <li key={index}>
@@ -121,7 +161,9 @@ const PrintCV = () => {
 
                     {/* Tautan Sosial */}
                     <div>
-                        <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-800 pb-0.5 mb-1.5">Kontak Sosial</h2>
+                        <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-800 pb-0.5 mb-1.5">
+                            {language === 'en' ? 'Social Links' : 'Kontak Sosial'}
+                        </h2>
                         <ul className="space-y-1 text-[11px] text-slate-600">
                             <li className="flex items-center gap-1">
                                 <Github size={11} className="text-slate-800" />
@@ -140,7 +182,7 @@ const PrintCV = () => {
                     {/* Pendidikan */}
                     <div>
                         <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-800 pb-0.5 mb-2 flex items-center gap-1.5">
-                            <GraduationCap size={14} /> Pendidikan
+                            <GraduationCap size={14} /> {language === 'en' ? 'Education' : 'Pendidikan'}
                         </h2>
                         <div className="space-y-2.5">
                             {education.map((edu, idx) => (
@@ -151,7 +193,7 @@ const PrintCV = () => {
                                     </div>
                                     <p className="text-xs font-semibold text-indigo-600 mb-1">{edu.title} | {edu.status}</p>
                                     <ul className="list-disc list-inside text-[11px] text-slate-600 space-y-0.5">
-                                        {edu.highlights.map((h, i) => (
+                                        {Array.isArray(edu.highlights) && edu.highlights.map((h, i) => (
                                             <li key={i}>{h}</li>
                                         ))}
                                     </ul>
@@ -163,7 +205,7 @@ const PrintCV = () => {
                     {/* Projek Pilihan */}
                     <div>
                         <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-800 pb-0.5 mb-2 flex items-center gap-1.5">
-                            <Briefcase size={13} /> Projek Pilihan
+                            <Briefcase size={13} /> {language === 'en' ? 'Featured Projects' : 'Projek Pilihan'}
                         </h2>
                         <div className="space-y-2">
                             {projects.map((proj, idx) => (
@@ -181,13 +223,13 @@ const PrintCV = () => {
                     {/* Sertifikat */}
                     <div>
                         <h2 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-800 pb-0.5 mb-2 flex items-center gap-1.5">
-                            <Award size={14} /> Sertifikat
+                            <Award size={14} /> {language === 'en' ? 'Certificates' : 'Sertifikat'}
                         </h2>
                         <div className="grid grid-cols-2 gap-x-5 gap-y-1.5 text-[11px] text-slate-600">
                             {certificates.map((cert, idx) => (
                                 <div key={idx} className="flex flex-col border-b border-slate-100 pb-0.5">
                                     <span className="font-semibold text-slate-800 leading-tight">{cert.title}</span>
-                                    <span className="text-[9px] text-slate-500 mt-0.5">{cert.issuer} • {cert.date}</span>
+                                    <span className="text-[9px] text-slate-500 mt-0.5">{cert.issuer} • {translateDate(cert.date, language)}</span>
                                 </div>
                             ))}
                         </div>

@@ -11,6 +11,7 @@ import MiniGames from './components/MiniGames';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
+import { LanguageProvider } from './context/LanguageContext';
 
 const Background3D = lazy(() => import('./components/Background3D'));
 
@@ -32,37 +33,39 @@ function App() {
   }, []);
 
   return (
-    <div className="relative overflow-x-hidden w-full">
-      {/* Preloader */}
-      {loading && (
-        <div className="preloader" style={{ opacity: loading ? 1 : 0 }}>
-          <div className="loader"></div>
+    <LanguageProvider>
+      <div className="relative overflow-x-hidden w-full">
+        {/* Preloader */}
+        {loading && (
+          <div className="preloader" style={{ opacity: loading ? 1 : 0 }}>
+            <div className="loader"></div>
+          </div>
+        )}
+
+        {/* Custom Cursor */}
+        <CustomCursor />
+
+        {/* 3D Background */}
+        <Suspense fallback={null}>
+          <Background3D />
+        </Suspense>
+
+        {/* Main Content */}
+        <div className="screen-content">
+          <Navbar />
+          <Hero />
+          <About />
+          <Education />
+          <Skills />
+          <Portfolio />
+          <GithubStats />
+          <MiniGames />
+          <Contact />
+          <Footer />
         </div>
-      )}
-
-      {/* Custom Cursor */}
-      <CustomCursor />
-
-      {/* 3D Background */}
-      <Suspense fallback={null}>
-        <Background3D />
-      </Suspense>
-
-      {/* Main Content */}
-      <div className="screen-content">
-        <Navbar />
-        <Hero />
-        <About />
-        <Education />
-        <Skills />
-        <Portfolio />
-        <GithubStats />
-        <MiniGames />
-        <Contact />
-        <Footer />
+        <PrintCV />
       </div>
-      <PrintCV />
-    </div>
+    </LanguageProvider>
   );
 }
 

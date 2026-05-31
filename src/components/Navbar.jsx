@@ -2,10 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollToPlugin);
 
 const Navbar = () => {
+    const { language, toggleLanguage, t } = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
@@ -61,15 +63,27 @@ const Navbar = () => {
     };
 
     const navLinks = [
-        { name: 'Beranda', href: '#home', id: 'home' },
-        { name: 'Tentang Saya', href: '#about', id: 'about' },
-        { name: 'Pendidikan', href: '#education', id: 'education' },
-        { name: 'Skill', href: '#skills', id: 'skills' },
-        { name: 'Portofolio', href: '#portofolio', id: 'portofolio' },
-        { name: 'GitHub Stats', href: '#github-stats', id: 'github-stats' },
-        { name: 'Mini Games', href: '#minigames', id: 'minigames' },
-        { name: 'Kontak', href: '#contact', id: 'contact' },
+        { name: t('navbar.home'), href: '#home', id: 'home' },
+        { name: t('navbar.about'), href: '#about', id: 'about' },
+        { name: t('navbar.education'), href: '#education', id: 'education' },
+        { name: t('navbar.skills'), href: '#skills', id: 'skills' },
+        { name: t('navbar.portfolio'), href: '#portofolio', id: 'portofolio' },
+        { name: t('navbar.githubStats'), href: '#github-stats', id: 'github-stats' },
+        { name: t('navbar.miniGames'), href: '#minigames', id: 'minigames' },
+        { name: t('navbar.contact'), href: '#contact', id: 'contact' },
     ];
+
+    const languageToggleButton = (
+        <button
+            onClick={toggleLanguage}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 hover:bg-slate-700/80 hover:border-cyan-400/50 transition-all duration-300 shadow-md font-sans text-xs font-bold text-slate-300 cursor-pointer"
+            title={language === 'en' ? 'Switch to Bahasa Indonesia' : 'Ubah ke Bahasa Inggris'}
+        >
+            <span className={language === 'en' ? 'text-cyan-400' : 'text-slate-500'}>EN</span>
+            <span className="text-slate-600">|</span>
+            <span className={language === 'id' ? 'text-cyan-400' : 'text-slate-500'}>ID</span>
+        </button>
+    );
 
     return (
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-slate-900/90 backdrop-blur-md border-b border-slate-800/80 py-3 shadow-xl shadow-black/20' : 'bg-transparent py-5'}`}>
@@ -84,30 +98,36 @@ const Navbar = () => {
                 </a>
 
                 {/* Desktop Nav */}
-                <div className="hidden lg:flex space-x-8">
-                    {navLinks.map((link) => (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            onClick={(e) => handleNavClick(e, link.href)}
-                            className={`nav-link nav-link-anim text-sm xl:text-base relative group transition-colors duration-300 ${activeSection === link.id ? 'text-cyan-400' : 'text-slate-300 hover:text-white'}`}
-                        >
-                            {link.name}
-                            <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 rounded-full ${activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'}`} />
-                        </a>
-                    ))}
+                <div className="hidden lg:flex items-center space-x-8">
+                    <div className="flex space-x-8 mr-4">
+                        {navLinks.map((link) => (
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                onClick={(e) => handleNavClick(e, link.href)}
+                                className={`nav-link nav-link-anim text-sm xl:text-base relative group transition-colors duration-300 ${activeSection === link.id ? 'text-cyan-400' : 'text-slate-300 hover:text-white'}`}
+                            >
+                                {link.name}
+                                <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 rounded-full ${activeSection === link.id ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                            </a>
+                        ))}
+                    </div>
+                    {languageToggleButton}
                 </div>
 
-                {/* Mobile Toggle */}
-                <button
-                    className="lg:hidden text-white focus:outline-none p-2 hover:bg-slate-800 rounded-lg transition-all duration-200 active:scale-90"
-                    onClick={() => setIsOpen(!isOpen)}
-                    aria-label="Toggle menu"
-                >
-                    <div className="transition-all duration-300">
-                        {isOpen ? <X size={26} className="rotate-90 transition-transform duration-300" /> : <Menu size={26} />}
-                    </div>
-                </button>
+                {/* Mobile Toggle Container */}
+                <div className="lg:hidden flex items-center gap-3">
+                    {languageToggleButton}
+                    <button
+                        className="text-white focus:outline-none p-2 hover:bg-slate-800 rounded-lg transition-all duration-200 active:scale-90"
+                        onClick={() => setIsOpen(!isOpen)}
+                        aria-label="Toggle menu"
+                    >
+                        <div className="transition-all duration-300">
+                            {isOpen ? <X size={26} className="rotate-90 transition-transform duration-300" /> : <Menu size={26} />}
+                        </div>
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Nav */}

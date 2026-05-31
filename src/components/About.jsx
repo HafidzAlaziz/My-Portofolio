@@ -2,10 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import { MonitorPlay, PenTool, Cuboid, Zap, Download } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+    const { t } = useLanguage();
     const sectionRef = useRef(null);
     const headingRef = useRef(null);
 
@@ -66,29 +68,29 @@ const About = () => {
 
     const services = [
         {
-            title: 'Frontend Development',
-            desc: 'Membangun antarmuka web yang responsif, interaktif, dan berperforma tinggi.',
+            title: t('about.services.frontend.title'),
+            desc: t('about.services.frontend.desc'),
             icon: <MonitorPlay size={36} className="text-cyan-400 mb-4 card-icon" />,
             border: 'hover:border-cyan-500/40',
             glow: 'group-hover:text-cyan-300',
         },
         {
-            title: 'Backend Development',
-            desc: 'Mengembangkan logika sisi server, API, dan pengelolaan database yang aman.',
+            title: t('about.services.backend.title'),
+            desc: t('about.services.backend.desc'),
             icon: <Zap size={36} className="text-indigo-400 mb-4 card-icon" />,
             border: 'hover:border-indigo-500/40',
             glow: 'group-hover:text-indigo-300',
         },
         {
-            title: 'UI/UX Design',
-            desc: 'Merancang pengalaman pengguna yang intuitif dengan estetika modern.',
+            title: t('about.services.uiux.title'),
+            desc: t('about.services.uiux.desc'),
             icon: <PenTool size={36} className="text-purple-400 mb-4 card-icon" />,
             border: 'hover:border-purple-500/40',
             glow: 'group-hover:text-purple-300',
         },
         {
-            title: 'Fullstack Solutions',
-            desc: 'Memberikan solusi end-to-end dari perancangan hingga deployment.',
+            title: t('about.services.fullstack.title'),
+            desc: t('about.services.fullstack.desc'),
             icon: <Cuboid size={36} className="text-pink-400 mb-4 card-icon" />,
             border: 'hover:border-pink-500/40',
             glow: 'group-hover:text-pink-300',
@@ -99,26 +101,26 @@ const About = () => {
         <section id="about" className="py-20 px-4" ref={sectionRef}>
             <div className="container mx-auto">
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-16" ref={headingRef}>
-                    <span className="gradient-text section-heading">Tentang Saya</span>
+                    <span className="gradient-text section-heading">{t('about.title')}</span>
                 </h2>
                 <div className="flex flex-col md:flex-row items-center gap-10">
                     {/* Text */}
                     <div className="md:w-1/2 about-text-wrapper w-full">
                         <div className="card tilt-card p-5 sm:p-8 rounded-2xl about-text-content text-center md:text-left">
-                            <h3 className="text-lg sm:text-2xl font-semibold mb-4 sm:mb-6">Siapa Saya?</h3>
+                            <h3 className="text-lg sm:text-2xl font-semibold mb-4 sm:mb-6">{t('about.whoAmI')}</h3>
                             <p className="text-slate-300 mb-4 leading-relaxed text-sm sm:text-base">
-                                Saya seorang <strong className="text-cyan-400 font-bold">Fullstack Developer</strong> yang bersemangat dalam menciptakan solusi web komprehensif. Dengan keahlian mendalam di sisi Frontend maupun Backend, saya fokus pada pembangunan aplikasi yang tidak hanya cantik secara visual, tetapi juga kuat secara arsitektur.
+                                {t('about.desc1').split('{cyanText}')[0]}<strong className="text-cyan-400 font-bold">{t('hero.title')}</strong>{t('about.desc1').split('{cyanText}')[1]}
                             </p>
                             <p className="text-slate-300 mb-4 leading-relaxed text-sm sm:text-base">
-                                Perjalanan saya dalam pengembangan web dimulai 3 tahun yang lalu, dan sejak itu, saya telah mengerjakan banyak proyek mulai dari halaman arahan sederhana hingga aplikasi web kompleks.
+                                {t('about.desc2')}
                             </p>
                             <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
-                                Saya percaya pada pembelajaran berkelanjutan dan selalu mengikuti perkembangan teknologi dan tren desain terkini untuk memberikan solusi mutakhir.
+                                {t('about.desc3')}
                             </p>
                             <div className="mt-6 flex justify-center md:justify-start">
                                 <button onClick={() => window.print()} className="btn-primary px-6 py-2.5 rounded-full text-white font-medium text-sm flex items-center gap-2 shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/20 cursor-pointer">
                                     <Download size={16} />
-                                    Download CV
+                                    {t('about.downloadBtn')}
                                 </button>
                             </div>
                         </div>

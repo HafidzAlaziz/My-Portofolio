@@ -3,6 +3,7 @@ import { User, Code2, Download } from 'lucide-react';
 import gsap from 'gsap';
 import profileImg from '../assets/profile.png';
 import { FIREBASE_DB_URL } from '../firebaseConfig';
+import { useLanguage } from '../context/LanguageContext';
 
 // ─── Firebase REST helpers ─────────────────────────────────────────────────
 // Strip trailing slash to avoid double-slash in path
@@ -112,6 +113,7 @@ const EMOJI_LIST = ['❤️', '🔥', '🚀', '👍'];
 const POLL_INTERVAL = 5000; // fallback polling every 5s
 
 const Hero = () => {
+    const { t } = useLanguage();
     const contentRef = useRef(null);
     const [reactions, setReactions] = useState({ '❤️': 0, '🔥': 0, '🚀': 0, '👍': 0 });
     const [reactionsLoaded, setReactionsLoaded] = useState(false); // true once Firebase responded
@@ -215,27 +217,27 @@ const Hero = () => {
                 {/* Left Column */}
                 <div className="w-full lg:w-1/2 text-center lg:text-left flex flex-col items-center lg:items-start z-10 font-sans">
                     <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-bold mb-4 sm:mb-6 hero-text leading-[1.15] sm:leading-tight">
-                        <span className="block text-slate-200">Hello, Saya</span>
+                        <span className="block text-slate-200">{t('hero.hello')}</span>
                         <span className="gradient-text block mt-1.5 sm:mt-0">Muhammad Hafidz Alaziz</span>
                     </h1>
-                    <h2 className="text-base sm:text-lg lg:text-2xl text-slate-400 mb-8 hero-text font-medium tracking-wide">Fullstack Developer</h2>
+                    <h2 className="text-base sm:text-lg lg:text-2xl text-slate-400 mb-8 hero-text font-medium tracking-wide">{t('hero.title')}</h2>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 hero-text mb-8 w-full sm:w-auto">
                         <a href="#contact" className="btn-primary px-8 py-3 rounded-full text-white font-medium text-center shadow-lg shadow-cyan-500/20 whitespace-nowrap w-full sm:w-auto">
-                            Kontak Saya
+                            {t('hero.contactBtn')}
                         </a>
                         <a href="#portofolio" className="px-8 py-3 rounded-full border border-slate-600 text-white hover:bg-slate-800 transition-colors text-center whitespace-nowrap w-full sm:w-auto">
-                            Lihat Portofolio
+                            {t('hero.portfolioBtn')}
                         </a>
                         <button onClick={() => window.print()} className="px-8 py-3 rounded-full border border-slate-600 text-white hover:bg-slate-800 transition-colors text-center whitespace-nowrap w-full sm:w-auto flex items-center justify-center gap-2 cursor-pointer">
                             <Download size={18} />
-                            Download CV
+                            {t('hero.downloadBtn')}
                         </button>
                     </div>
 
                     {/* ── Reaction Bar ─────────────────────────────────── */}
                     <div className="flex items-center justify-center lg:justify-start gap-1 sm:gap-2 bg-slate-800/30 px-3 sm:px-4 py-2 rounded-full border border-slate-700/50 backdrop-blur-sm relative hero-text mb-6 lg:mb-16 w-fit mx-auto lg:mx-0">
-                        <span className="text-[8px] sm:text-[9px] text-slate-500 font-bold uppercase tracking-wider hidden sm:block pr-1">Reaksi:</span>
+                        <span className="text-[8px] sm:text-[9px] text-slate-500 font-bold uppercase tracking-wider hidden sm:block pr-1">{t('hero.reactionLabel')}</span>
 
                         {EMOJI_LIST.map((emoji) => (
                             <button
@@ -244,7 +246,7 @@ const Hero = () => {
                                 className={`relative group flex items-center gap-1.5 px-2.5 py-1.5 rounded-full transition-all duration-150 
                                     hover:bg-slate-700/50 active:scale-90
                                     ${clickedEmoji === emoji ? 'scale-90 bg-slate-700/60' : 'scale-100'}`}
-                                title={`Reaksi dengan ${emoji}`}
+                                title={t('hero.reactionTitle', { emoji })}
                             >
                                 {/* emoji */}
                                 <span className={`text-base transition-transform duration-150 ${clickedEmoji === emoji ? 'scale-125' : 'group-hover:scale-110'}`}>

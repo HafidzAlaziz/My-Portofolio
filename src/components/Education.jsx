@@ -2,10 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import { GraduationCap, Code, Calendar, BookOpen } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Education = () => {
+    const { t } = useLanguage();
     const sectionRef = useRef(null);
     const lineRef = useRef(null);
     const titleRef = useRef(null);
@@ -95,17 +97,13 @@ const Education = () => {
         {
             id: 'highschool',
             type: 'highschool',
-            institution: 'SMKN 1 Ciomas',
-            period: '2022 - 2025',
-            level: 'Sekolah Menengah Kejuruan (SMK)',
-            title: 'PPLG (Pengembangan Perangkat Lunak dan Gim)',
-            status: 'Lulus',
-            desc: 'Fondasi awal dalam dunia pemrograman, berfokus pada pengembangan website (web development) dan sistem Internet of Things (IoT).',
-            highlights: [
-                'Mempelajari pemrograman C++, JavaScript, HTML, CSS, PHP, serta framework React JS dan Laravel.',
-                'Mengembangkan sistem berbasis IoT (Internet of Things) dan integrasi perangkat keras sederhana.',
-                'Membangun berbagai proyek aplikasi web dinamis, responsif, dan fungsional.'
-            ],
+            institution: t('education.highschool.institution'),
+            period: t('education.highschool.period'),
+            level: t('education.highschool.level'),
+            title: t('education.highschool.title'),
+            status: t('education.highschool.status'),
+            desc: t('education.highschool.desc'),
+            highlights: t('education.highschool.highlights') || [],
             icon: <GraduationCap size={24} className="text-purple-400 relative z-10" />,
             accentColor: 'from-indigo-500 to-purple-600',
             glowColor: 'group-hover:border-purple-500/50',
@@ -114,18 +112,13 @@ const Education = () => {
         {
             id: 'college',
             type: 'college',
-            institution: 'STMIK Tazkia',
-            period: '2025 - Sekarang',
-            level: 'Pendidikan Tinggi (Kuliah)',
-            title: 'Sains dan Teknologi - Teknik Informatika',
-            status: 'Semester 2',
-            desc: 'Fokus pada fondasi dasar ilmu komputer, pengembangan logika pemrograman, arsitektur sistem, serta konsep administrasi dan infrastruktur modern.',
-            highlights: [
-                'Mempelajari Algoritma & Struktur Data untuk optimasi kode.',
-                'Mempelajari konsep dasar Cloud Computing dan pengelolaan infrastruktur.',
-                'Mempelajari sistem kerja, arsitektur, dan manajemen memori pada Sistem Operasi.',
-                'Mengembangkan kemampuan problem solving melalui pemrograman terstruktur.'
-            ],
+            institution: t('education.college.institution'),
+            period: t('education.college.period'),
+            level: t('education.college.level'),
+            title: t('education.college.title'),
+            status: t('education.college.status'),
+            desc: t('education.college.desc'),
+            highlights: t('education.college.highlights') || [],
             icon: <Code size={24} className="text-cyan-400 relative z-10" />,
             accentColor: 'from-cyan-400 to-indigo-500',
             glowColor: 'group-hover:border-cyan-500/50',
@@ -141,7 +134,7 @@ const Education = () => {
 
             <div className="container mx-auto max-w-5xl relative z-10">
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-20" ref={titleRef}>
-                    <span className="gradient-text section-heading">Perjalanan Pendidikan</span>
+                    <span className="gradient-text section-heading">{t('education.title')}</span>
                 </h2>
 
                 <div className="relative">
@@ -207,7 +200,7 @@ const Education = () => {
 
                                             {/* Highlights */}
                                             <div className="border-t border-slate-800/80 pt-4">
-                                                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Apa yang Dipelajari/Dicapai:</h4>
+                                                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">{t('education.learnHeader')}</h4>
                                                 <ul className="space-y-2">
                                                     {item.highlights.map((highlight, idx) => (
                                                         <li key={idx} className="flex items-start gap-2.5 text-xs md:text-sm text-slate-300 leading-relaxed">

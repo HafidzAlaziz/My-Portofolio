@@ -1,17 +1,19 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Skills = () => {
+    const { t } = useLanguage();
     const sectionRef = useRef(null);
 
     const skills = [
-        { name: 'Frontend (React, Tailwind, Vite)', percentage: 95, color: 'from-cyan-400 to-blue-500' },
-        { name: 'Backend (Laravel, PHP, Go)', percentage: 88, color: 'from-indigo-400 to-purple-500' },
-        { name: 'Database & API Management', percentage: 85, color: 'from-purple-400 to-pink-500' },
-        { name: 'UI/UX Design (Figma, Canva)', percentage: 92, color: 'from-pink-400 to-orange-400' }
+        { name: t('skills.categories.frontend'), percentage: 95, color: 'from-cyan-400 to-blue-500' },
+        { name: t('skills.categories.backend'), percentage: 88, color: 'from-indigo-400 to-purple-500' },
+        { name: t('skills.categories.database'), percentage: 85, color: 'from-purple-400 to-pink-500' },
+        { name: t('skills.categories.uiux'), percentage: 92, color: 'from-pink-400 to-orange-400' }
     ];
 
     useEffect(() => {
@@ -82,7 +84,7 @@ const Skills = () => {
             <div className="container mx-auto max-w-4xl">
                 <div className="skills-heading-wrapper">
                     <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 skills-heading">
-                        <span className="gradient-text section-heading">Skill Saya</span>
+                        <span className="gradient-text section-heading">{t('skills.title')}</span>
                     </h2>
                 </div>
                 

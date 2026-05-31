@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
+    const { t } = useLanguage();
     const footerRef = useRef(null);
 
     useEffect(() => {
@@ -38,8 +40,8 @@ const Footer = () => {
                 <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6">
                     <div className="footer-content-wrapper">
                         <div className="footer-content-body">
-                            <a href="#" className="text-2xl font-bold shimmer-text">Portfolio</a>
-                            <p className="text-slate-400 mt-2 text-sm">Fullstack Developer</p>
+                            <a href="#" className="text-2xl font-bold shimmer-text">{t('footer.title')}</a>
+                            <p className="text-slate-400 mt-2 text-sm">{t('footer.subTitle')}</p>
                         </div>
                     </div>
 
@@ -48,7 +50,7 @@ const Footer = () => {
                         <button
                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                             className="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-cyan-400 hover:bg-cyan-500/20 hover:border-cyan-500/50 hover:-translate-y-2 transition-all duration-300 pulse-glow text-xl"
-                            title="Kembali ke atas"
+                            title={t('footer.backToTop')}
                         >
                             ↑
                         </button>
@@ -56,10 +58,10 @@ const Footer = () => {
 
                     <div className="footer-content-wrapper">
                         <div className="footer-content-body flex flex-col items-center md:items-end gap-2">
-                            <p className="text-slate-400 text-sm">© {new Date().getFullYear()} Hafidz. All rights reserved.</p>
+                            <p className="text-slate-400 text-sm">{t('footer.copyright', { year: new Date().getFullYear() })}</p>
                             <div className="flex space-x-4">
-                                <a href="#" className="text-slate-500 hover:text-cyan-400 transition-colors text-sm">Privacy Policy</a>
-                                <a href="#" className="text-slate-500 hover:text-cyan-400 transition-colors text-sm">Terms of Service</a>
+                                <a href="#" className="text-slate-500 hover:text-cyan-400 transition-colors text-sm">{t('footer.privacy')}</a>
+                                <a href="#" className="text-slate-500 hover:text-cyan-400 transition-colors text-sm">{t('footer.terms')}</a>
                             </div>
                         </div>
                     </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Mail, Phone, MapPin, Youtube, Instagram, Linkedin, Github, Send } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,6 +25,7 @@ const DiscordIcon = ({ className }) => (
 );
 
 const Contact = () => {
+    const { t } = useLanguage();
     const sectionRef = useRef(null);
     const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
     const [errors, setErrors] = useState({});
@@ -82,14 +84,14 @@ const Contact = () => {
 
     const validate = () => {
         let tempErrors = {};
-        if (!formData.name) tempErrors.name = 'Nama harus diisi.';
+        if (!formData.name) tempErrors.name = t('contact.errName');
         if (!formData.email) {
-            tempErrors.email = 'Email harus diisi.';
+            tempErrors.email = t('contact.errEmailRequired');
         } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            tempErrors.email = 'Masukkan email yang valid.';
+            tempErrors.email = t('contact.errEmailInvalid');
         }
-        if (!formData.subject) tempErrors.subject = 'Subjek harus diisi.';
-        if (!formData.message) tempErrors.message = 'Pesan tidak boleh kosong.';
+        if (!formData.subject) tempErrors.subject = t('contact.errSubject');
+        if (!formData.message) tempErrors.message = t('contact.errMessage');
         setErrors(tempErrors);
         return Object.keys(tempErrors).length === 0;
     };
@@ -106,36 +108,36 @@ const Contact = () => {
     const contactItems = [
         { 
             icon: <Mail className="text-cyan-400 w-5 h-5" />, 
-            label: 'Email', 
+            label: t('contact.labels.email'), 
             value: 'hafidzalaziz721@gmail.com', 
             href: 'mailto:hafidzalaziz721@gmail.com',
             bg: 'group-hover:bg-cyan-500/10 group-hover:border-cyan-500/30' 
         },
         { 
             icon: <WhatsAppIcon className="text-emerald-400 w-5 h-5" />, 
-            label: 'WhatsApp', 
+            label: t('contact.labels.whatsapp'), 
             value: '+62 895-6131-14028', 
             href: 'https://wa.me/62895613114028?text=Halo%20Hafidz,%20saya%20tertarik%20dengan%20portofolio%20Anda.',
             bg: 'group-hover:bg-emerald-500/10 group-hover:border-emerald-500/30' 
         },
         { 
             icon: <TelegramIcon className="text-sky-400 w-5 h-5" />, 
-            label: 'Telegram', 
+            label: t('contact.labels.telegram'), 
             value: '@hafidz_alaziz', 
             href: 'https://t.me/hafidz_alaziz',
             bg: 'group-hover:bg-sky-500/10 group-hover:border-sky-500/30' 
         },
         { 
             icon: <DiscordIcon className="text-indigo-400 w-5 h-5" />, 
-            label: 'Discord', 
+            label: t('contact.labels.discord'), 
             value: 'hafidz_alaziz', 
             href: 'https://discord.com/users/hafidz_alaziz',
             bg: 'group-hover:bg-indigo-500/10 group-hover:border-indigo-500/30' 
         },
         { 
             icon: <MapPin className="text-purple-400 w-5 h-5" />, 
-            label: 'Lokasi', 
-            value: 'Ciomas, Bogor, Jawa Barat', 
+            label: t('contact.labels.location'), 
+            value: t('contact.locationVal'), 
             href: 'https://maps.google.com/?q=Ciomas,Bogor,Jawa+Barat',
             bg: 'group-hover:bg-purple-500/10 group-hover:border-purple-500/30' 
         },
@@ -153,7 +155,7 @@ const Contact = () => {
             <div className="container mx-auto">
                 <div className="contact-heading-wrapper">
                     <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 contact-heading">
-                        <span className="gradient-text section-heading">Kontak</span>
+                        <span className="gradient-text section-heading">{t('contact.title')}</span>
                     </h2>
                 </div>
 
@@ -161,8 +163,8 @@ const Contact = () => {
                     {/* Contact Info */}
                     <div className="md:w-1/2 contact-info-wrapper">
                         <div className="card tilt-card p-5 md:p-8 rounded-2xl h-full border border-slate-700/50 contact-info-content">
-                            <h3 className="text-lg sm:text-2xl font-semibold mb-2 border-b border-slate-700 pb-4">Informasi Kontak</h3>
-                            <p className="text-xs text-slate-400 mb-6 italic">Atau hubungi saya secara langsung dengan mengeklik opsi di bawah ini:</p>
+                            <h3 className="text-lg sm:text-2xl font-semibold mb-2 border-b border-slate-700 pb-4">{t('contact.cardTitle')}</h3>
+                            <p className="text-xs text-slate-400 mb-6 italic">{t('contact.helperText')}</p>
                             <div className="space-y-6">
                                 {contactItems.map((item, i) => (
                                     <div key={i} className="contact-item-wrapper">
@@ -187,7 +189,7 @@ const Contact = () => {
                             </div>
 
                             <div className="mt-10 pt-8 border-t border-slate-700">
-                                <h4 className="text-base font-medium mb-5 text-slate-300">Ikuti Saya</h4>
+                                <h4 className="text-base font-medium mb-5 text-slate-300">{t('contact.followMe')}</h4>
                                 <div className="flex space-x-3 social-icons-row">
                                     {socials.map((s, i) => (
                                         <div key={i} className="social-icon-wrapper">
@@ -209,21 +211,21 @@ const Contact = () => {
                     {/* Form */}
                     <div className="md:w-1/2 contact-form-wrapper">
                         <div className="card p-5 md:p-8 rounded-2xl h-full border border-slate-700/50 contact-form-content">
-                            <h3 className="text-lg sm:text-2xl font-semibold mb-6 md:mb-8 text-white">Kirim Pesan</h3>
+                            <h3 className="text-lg sm:text-2xl font-semibold mb-6 md:mb-8 text-white">{t('contact.formTitle')}</h3>
                             {submitted ? (
                                 <div className="flex flex-col items-center justify-center h-64 gap-4 animate-bounce-in">
                                     <div className="w-16 h-16 rounded-full bg-green-500/20 border border-green-500/40 flex items-center justify-center">
                                         <Send size={28} className="text-green-400" />
                                     </div>
-                                    <p className="text-green-400 font-semibold text-lg">Pesan Terkirim! 🎉</p>
-                                    <p className="text-slate-400 text-sm text-center">Terima kasih! Saya akan segera membalas.</p>
+                                    <p className="text-green-400 font-semibold text-lg">{t('contact.successMessage')}</p>
+                                    <p className="text-slate-400 text-sm text-center">{t('contact.successSub')}</p>
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                                     {[
-                                        { id: 'name', label: 'Nama Kamu', type: 'text', placeholder: 'Masukan Nama Kamu' },
-                                        { id: 'email', label: 'Email Kamu', type: 'email', placeholder: 'Masukan Email Kamu' },
-                                        { id: 'subject', label: 'Subjek', type: 'text', placeholder: 'Masukan Subjek' },
+                                        { id: 'name', label: t('contact.fieldName'), type: 'text', placeholder: t('contact.placeholderName') },
+                                        { id: 'email', label: t('contact.fieldEmail'), type: 'email', placeholder: t('contact.placeholderEmail') },
+                                        { id: 'subject', label: t('contact.fieldSubject'), type: 'text', placeholder: t('contact.placeholderSubject') },
                                     ].map(field => (
                                         <div key={field.id}>
                                             <label htmlFor={field.id} className="block text-sm font-medium text-slate-400 mb-2">{field.label}</label>
@@ -240,7 +242,7 @@ const Contact = () => {
                                         </div>
                                     ))}
                                     <div>
-                                        <label htmlFor="message" className="block text-sm font-medium text-slate-400 mb-2">Pesan</label>
+                                        <label htmlFor="message" className="block text-sm font-medium text-slate-400 mb-2">{t('contact.fieldMessage')}</label>
                                         <textarea
                                             id="message"
                                             name="message"
@@ -248,7 +250,7 @@ const Contact = () => {
                                             value={formData.message}
                                             onChange={handleChange}
                                             className={`w-full px-4 py-3 rounded-xl bg-slate-800/50 border ${errors.message ? 'border-red-500' : 'border-slate-700 focus:border-cyan-400'} text-white outline-none transition-all duration-300 resize-none focus:bg-slate-800 focus:shadow-[0_0_0_2px_rgba(34,211,238,0.15)]`}
-                                            placeholder="Masukan Pesan"
+                                            placeholder={t('contact.placeholderMessage')}
                                         />
                                         {errors.message && <p className="text-red-400 text-xs mt-1.5">{errors.message}</p>}
                                     </div>
@@ -257,7 +259,7 @@ const Contact = () => {
                                         className="w-full py-4 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white transition-all duration-300 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 hover:-translate-y-1 active:scale-[0.98] flex items-center justify-center gap-2 group pulse-glow"
                                     >
                                         <Send size={18} className="transition-transform group-hover:translate-x-1" />
-                                        Kirim Pesan
+                                        {t('contact.btnSend')}
                                     </button>
                                 </form>
                             )}

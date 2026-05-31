@@ -2,10 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Target, Trophy, Github } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const GithubStats = () => {
+    const { t } = useLanguage();
     const sectionRef = useRef(null);
 
     useEffect(() => {
@@ -38,7 +40,7 @@ const GithubStats = () => {
             <div className="container mx-auto">
                 <div className="stat-card-wrapper text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold stat-card">
-                        <span className="gradient-text">GitHub Stats & Achievements</span>
+                        <span className="gradient-text">{t('githubStats.title')}</span>
                     </h2>
                 </div>
 
@@ -50,7 +52,7 @@ const GithubStats = () => {
                             <div className="card p-5 md:p-6 rounded-2xl stat-card border border-slate-700/50 hover:border-cyan-500/50 transition-colors h-full flex flex-col items-center justify-center min-h-[180px] sm:min-h-[220px]">
                                 <div className="flex items-center gap-2 mb-6 w-full">
                                     <Github className="text-cyan-400 w-5 h-5 sm:w-6 sm:h-6" />
-                                    <h3 className="text-base sm:text-xl font-semibold text-slate-200">GitHub Overview</h3>
+                                    <h3 className="text-base sm:text-xl font-semibold text-slate-200">{t('githubStats.overview')}</h3>
                                 </div>
                                 <img
                                     src="https://github-readme-stats-fast.vercel.app/api?username=HafidzAlaziz&show_icons=true&theme=dark&hide_border=true&bg_color=0d1117&title_color=22d3ee&icon_color=22d3ee&text_color=cbd5e1"
@@ -64,7 +66,7 @@ const GithubStats = () => {
                             <div className="card p-5 md:p-6 rounded-2xl stat-card border border-slate-700/50 hover:border-indigo-500/50 transition-colors h-full flex flex-col items-center justify-center min-h-[160px] sm:min-h-[200px]">
                                 <div className="flex items-center gap-2 mb-6 w-full">
                                     <Target className="text-indigo-400 w-5 h-5 sm:w-6 sm:h-6" />
-                                    <h3 className="text-base sm:text-xl font-semibold text-slate-200">Current Streak</h3>
+                                    <h3 className="text-base sm:text-xl font-semibold text-slate-200">{t('githubStats.streak')}</h3>
                                 </div>
                                 <img
                                     src="https://streak-stats.demolab.com/?user=HafidzAlaziz&theme=dark&hide_border=true&background=0d1117&ring=22d3ee&fire=22d3ee&stroke=475569"
@@ -81,7 +83,7 @@ const GithubStats = () => {
                             <div className="card p-5 md:p-6 rounded-2xl stat-card border border-slate-700/50 hover:border-purple-500/50 transition-colors h-full flex flex-col items-center justify-center min-h-[160px] sm:min-h-[200px]">
                                 <div className="flex items-center gap-2 mb-6 w-full">
                                     <Trophy className="text-purple-400 w-5 h-5 sm:w-6 sm:h-6" />
-                                    <h3 className="text-base sm:text-xl font-semibold text-slate-200">Top Languages</h3>
+                                    <h3 className="text-base sm:text-xl font-semibold text-slate-200">{t('githubStats.langs')}</h3>
                                 </div>
                                 <img
                                     src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=HafidzAlaziz&theme=dark&hide_border=true&include_all_commits=false&count_private=false&layout=compact&bg_color=0d1117&title_color=c084fc&text_color=cbd5e1"
@@ -109,7 +111,7 @@ const GithubStats = () => {
                     <div className="card p-5 md:p-6 rounded-2xl stat-card border border-slate-700/50 hover:border-yellow-500/50 transition-colors flex flex-col items-center justify-center overflow-x-hidden">
                         <div className="flex items-center gap-2 mb-6 w-full">
                             <Trophy className="text-yellow-400 w-5 h-5 sm:w-6 sm:h-6" />
-                            <h3 className="text-base sm:text-xl font-semibold text-slate-200">GitHub Achievements</h3>
+                            <h3 className="text-base sm:text-xl font-semibold text-slate-200">{t('githubStats.achievements')}</h3>
                         </div>
                         <div className="w-full overflow-x-auto pb-2 scrollbar-hide">
                             <img
@@ -118,7 +120,7 @@ const GithubStats = () => {
                                 className="min-w-[700px] md:min-w-0 md:w-full hover:scale-[1.01] transition-transform duration-300"
                             />
                         </div>
-                        <p className="text-slate-500 text-[10px] mt-2 md:hidden">Scroll ke samping untuk melihat semua </p>
+                        <p className="text-slate-500 text-[10px] mt-2 md:hidden">{t('githubStats.mobileScrollText')}</p>
                     </div>
                 </div>
 
