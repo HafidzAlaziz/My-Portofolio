@@ -121,31 +121,40 @@ const Background3D = () => {
 
         // ANIMATION LOOP
         let lastTime = performance.now();
+        let lastRenderTime = performance.now();
         let elapsedTime = 0;
+        const fpsInterval = 1000 / 60; // Throttle to 60 FPS
 
         const animate = () => {
-            const currentTime = performance.now();
-            const deltaTime = (currentTime - lastTime) / 1000;
-            lastTime = currentTime;
-            elapsedTime += deltaTime;
-
             requestAnimationFrame(animate);
 
-            targetX = mouseX * 0.001;
-            targetY = mouseY * 0.001;
+            const currentTime = performance.now();
+            const timeSinceLastRender = currentTime - lastRenderTime;
 
-            // Rotate entire system slowly over time
-            particlesMesh.rotation.y += 0.001;
-            particlesMesh.rotation.x += 0.0005;
+            if (timeSinceLastRender >= fpsInterval) {
+                // Adjust last render time to maintain steady interval
+                lastRenderTime = currentTime - (timeSinceLastRender % fpsInterval);
 
-            // Parallax effect based on mouse movement
-            particlesMesh.rotation.y += 0.05 * (targetX - particlesMesh.rotation.y);
-            particlesMesh.rotation.x += 0.05 * (targetY - particlesMesh.rotation.x);
+                const deltaTime = (currentTime - lastTime) / 1000;
+                lastTime = currentTime;
+                elapsedTime += deltaTime;
 
-            // Floating effect
-            particlesMesh.position.y = Math.sin(elapsedTime * 0.5) * 1.5;
+                targetX = mouseX * 0.001;
+                targetY = mouseY * 0.001;
 
-            renderer.render(scene, camera);
+                // Rotate entire system slowly over time
+                particlesMesh.rotation.y += 0.001;
+                particlesMesh.rotation.x += 0.0005;
+
+                // Parallax effect based on mouse movement
+                particlesMesh.rotation.y += 0.05 * (targetX - particlesMesh.rotation.y);
+                particlesMesh.rotation.x += 0.05 * (targetY - particlesMesh.rotation.x);
+
+                // Floating effect
+                particlesMesh.position.y = Math.sin(elapsedTime * 0.5) * 1.5;
+
+                renderer.render(scene, camera);
+            }
         };
 
         animate();

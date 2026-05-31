@@ -33,7 +33,7 @@
 @custom-variant focus (&:focus);
 
 html {
-    scroll-behavior: smooth;
+    /* Disabled scroll-behavior: smooth to prevent conflict with GSAP ScrollToPlugin */
 }
 
 body {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -11,7 +11,8 @@ import MiniGames from './components/MiniGames';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
-import Background3D from './components/Background3D';
+
+const Background3D = lazy(() => import('./components/Background3D'));
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -26,7 +27,7 @@ function App() {
           ScrollTrigger.refresh();
         });
       }, 300);
-    }, 1500);
+    }, 600);
     return () => clearTimeout(timer);
   }, []);
 
@@ -43,7 +44,9 @@ function App() {
       <CustomCursor />
 
       {/* 3D Background */}
-      <Background3D />
+      <Suspense fallback={null}>
+        <Background3D />
+      </Suspense>
 
       {/* Main Content */}
       <div className="screen-content">

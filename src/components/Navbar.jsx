@@ -51,9 +51,9 @@ const Navbar = () => {
                 // Adjust for fixed navbar height
                 const navHeight = 80;
                 gsap.to(window, {
-                    duration: 1, // Smooth aniamtion duration
+                    duration: 0.8, // Snappier duration
                     scrollTo: { y: targetEl, offsetY: navHeight },
-                    ease: "power3.inOut" // Nice smooth easing
+                    ease: "power2.out" // Feels more responsive than power3.inOut
                 });
             }
             setIsOpen(false);
