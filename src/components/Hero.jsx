@@ -81,7 +81,7 @@ const AnimatedCount = ({ value, loaded }) => {
                 },
             });
             gsap.fromTo(spanRef.current,
-                { scale: 1.8, color: '#67e8f9', filter: 'brightness(1.5)' },
+                { scale: 1.8, color: '#74b9e7', filter: 'brightness(1.5)' },
                 { scale: 1, color: '#cbd5e1', filter: 'brightness(1)', duration: 0.4, ease: 'back.out(2)' }
             );
         }
@@ -279,7 +279,7 @@ const Hero = () => {
                         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500 opacity-20 blur-3xl spin-slow"></div>
                         <div className="floating relative z-10 w-full h-full flex items-center justify-center">
                             <svg className="w-full h-full absolute scale-110 opacity-70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="#22D3EE" d="M40.8,-70.4C52.9,-64.5,62.9,-53.1,70.1,-40C77.3,-26.9,81.7,-13.5,81.2,-0.3C80.7,12.9,75.3,25.8,67.8,37.4C60.3,49,50.7,59.3,39.1,65.3C27.5,71.3,13.8,73,0.7,71.8C-12.3,70.6,-24.6,66.5,-36.9,60.5C-49.2,54.5,-61.5,46.6,-68.9,35.3C-76.3,24,-78.8,9.3,-77.9,-5.2C-77,-19.7,-72.7,-34,-64.3,-45.1C-55.9,-56.2,-43.4,-64.1,-30.5,-69.4C-17.6,-74.7,-4.4,-77.4,8.5,-76.1C21.4,-74.8,28.7,-76.3,40.8,-70.4Z" transform="translate(100 100)" />
+                                <path fill="currentColor" className="text-cyan-400" d="M40.8,-70.4C52.9,-64.5,62.9,-53.1,70.1,-40C77.3,-26.9,81.7,-13.5,81.2,-0.3C80.7,12.9,75.3,25.8,67.8,37.4C60.3,49,50.7,59.3,39.1,65.3C27.5,71.3,13.8,73,0.7,71.8C-12.3,70.6,-24.6,66.5,-36.9,60.5C-49.2,54.5,-61.5,46.6,-68.9,35.3C-76.3,24,-78.8,9.3,-77.9,-5.2C-77,-19.7,-72.7,-34,-64.3,-45.1C-55.9,-56.2,-43.4,-64.1,-30.5,-69.4C-17.6,-74.7,-4.4,-77.4,8.5,-76.1C21.4,-74.8,28.7,-76.3,40.8,-70.4Z" transform="translate(100 100)" />
                             </svg>
 
                             <div className="absolute inset-0 flex items-center justify-center z-10 p-2">

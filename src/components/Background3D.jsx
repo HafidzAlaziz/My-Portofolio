@@ -45,9 +45,9 @@ const Background3D = () => {
         const colorsArray = new Float32Array(particlesCount * 3);
 
         const colors = [
-            new THREE.Color('#22d3ee'), // Cyan
-            new THREE.Color('#818cf8'), // Indigo
-            new THREE.Color('#c084fc')  // Purple
+            new THREE.Color('#4ea8de'), // Sky Blue
+            new THREE.Color('#2d6a4f'), // Forest Green
+            new THREE.Color('#89b0ae')  // Sage Blue
         ];
 
         for (let i = 0; i < particlesCount * 3; i += 3) {

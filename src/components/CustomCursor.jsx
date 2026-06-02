@@ -43,8 +43,8 @@ const CustomCursor = () => {
                 gsap.to(follower, { scale: 1.5, borderColor: "rgba(255,255,255,0.5)", duration: 0.2 });
             });
             el.addEventListener('mouseleave', () => {
-                gsap.to(cursor, { scale: 1, backgroundColor: "#22d3ee", duration: 0.2 });
-                gsap.to(follower, { scale: 1, borderColor: "rgba(34, 211, 238, 0.5)", duration: 0.2 });
+                gsap.to(cursor, { scale: 1, backgroundColor: "#4ea8de", duration: 0.2 });
+                gsap.to(follower, { scale: 1, borderColor: "rgba(78, 168, 222, 0.5)", duration: 0.2 });
             });
         });
 
