@@ -58,7 +58,21 @@ const Portfolio = () => {
     const [selectedImage, setSelectedImage] = useState(null);
     const [isModalScrolled, setIsModalScrolled] = useState(false);
     const [showShareMenu, setShowShareMenu] = useState(false);
+    const [toast, setToast] = useState({ show: false, message: "" });
     const sectionRef = useRef(null);
+
+    const showToast = (message) => {
+        setToast({ show: true, message });
+    };
+
+    useEffect(() => {
+        if (toast.show) {
+            const timer = setTimeout(() => {
+                setToast({ show: false, message: "" });
+            }, 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [toast.show]);
 
     // Scroll-reveal animations
     useEffect(() => {
@@ -410,7 +424,7 @@ const Portfolio = () => {
                 break;
             case 'copy':
                 navigator.clipboard.writeText(`${currentApp.title} - ${currentApp.desc}\n${shareUrl}`);
-                alert(t('portfolio.sharedClipboardText'));
+                showToast(t('portfolio.sharedClipboardText'));
                 break;
             default:
                 break;
@@ -797,6 +811,12 @@ const Portfolio = () => {
                             <X size={28} />
                         </button>
                     </div>
+                </div>
+            )}
+            {toast.show && (
+                <div className="fixed bottom-5 right-5 z-[250] bg-slate-950/90 backdrop-blur-md border border-emerald-500/30 text-white px-5 py-3.5 rounded-2xl shadow-[0_10px_30px_rgba(16,185,129,0.15)] flex items-center gap-3 animate-slide-up">
+                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                    <span className="text-sm font-semibold tracking-wide text-slate-100">{toast.message}</span>
                 </div>
             )}
         </section>
