@@ -109,6 +109,30 @@ const Portfolio = () => {
         );
     }, [activeTab, activeSubTab]);
 
+    // Deep linking for shared app links
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const appParam = params.get('app');
+        if (appParam) {
+            const foundApp = projects.find(p => p.title.toLowerCase() === appParam.toLowerCase());
+            if (foundApp) {
+                if (foundApp.category === 'mobile') {
+                    setSelectedApp(foundApp);
+                } else {
+                    setActiveTab('projects');
+                    setActiveSubTab('web');
+                }
+                
+                setTimeout(() => {
+                    const element = document.getElementById('portofolio');
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 500);
+            }
+        }
+    }, []);
+
     const handleModalScroll = (e) => {
         const scrollTop = e.target.scrollTop;
         if (scrollTop > 150) {
@@ -385,7 +409,7 @@ const Portfolio = () => {
     };
 
     const handleShare = async (app) => {
-        const shareUrl = app.github || app.link || window.location.href;
+        const shareUrl = `${window.location.origin}${window.location.pathname}?app=${encodeURIComponent(app.title)}`;
         const shareText = `${app.title} - ${app.desc}`;
         const shareData = {
             title: app.title,
@@ -407,7 +431,7 @@ const Portfolio = () => {
 
     const shareToPlatform = (platform) => {
         if (!currentApp) return;
-        const shareUrl = currentApp.github || currentApp.link || window.location.href;
+        const shareUrl = `${window.location.origin}${window.location.pathname}?app=${encodeURIComponent(currentApp.title)}`;
         const shareText = `${currentApp.title} - ${currentApp.desc}\n\n`;
         const encodedText = encodeURIComponent(shareText);
         const encodedUrl = encodeURIComponent(shareUrl);
@@ -705,7 +729,7 @@ const Portfolio = () => {
                                                     <Share2 size={15} />
                                                 </button>
                                                 {showShareMenu && (
-                                                    <div className="absolute right-0 bottom-full mb-2 bg-slate-800 border border-slate-700 rounded-xl p-2 shadow-2xl flex flex-col gap-1 z-[90] min-w-[150px] animate-in fade-in slide-in-from-bottom-2 duration-200">
+                                                    <div className="absolute right-0 top-full mt-2 bg-slate-800 border border-slate-700 rounded-xl p-2 shadow-2xl flex flex-col gap-1 z-[90] min-w-[150px] animate-in fade-in slide-in-from-top-2 duration-200">
                                                         <button onClick={() => shareToPlatform('whatsapp')} className="flex items-center gap-2 text-left text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-700/50 px-3 py-2 rounded-lg transition-colors w-full">
                                                             <span>WhatsApp</span>
                                                         </button>
