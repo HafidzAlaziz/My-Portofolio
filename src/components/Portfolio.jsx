@@ -57,6 +57,7 @@ const Portfolio = () => {
     const [activeRoleIndex, setActiveRoleIndex] = useState(0);
     const [selectedImage, setSelectedImage] = useState(null);
     const [isModalScrolled, setIsModalScrolled] = useState(false);
+    const [showShareMenu, setShowShareMenu] = useState(false);
     const sectionRef = useRef(null);
 
     // Scroll-reveal animations
@@ -370,22 +371,51 @@ const Portfolio = () => {
     };
 
     const handleShare = async (app) => {
+        const shareUrl = app.github || app.link || window.location.href;
+        const shareText = `${app.title} - ${app.desc}`;
         const shareData = {
             title: app.title,
-            text: app.desc,
-            url: window.location.href,
+            text: shareText,
+            url: shareUrl,
         };
 
         try {
             if (navigator.share) {
                 await navigator.share(shareData);
             } else {
-                await navigator.clipboard.writeText(window.location.href);
-                alert(t('portfolio.sharedClipboardText'));
+                setShowShareMenu(!showShareMenu);
             }
         } catch (err) {
             console.error('Error sharing:', err);
+            setShowShareMenu(!showShareMenu);
         }
+    };
+
+    const shareToPlatform = (platform) => {
+        if (!currentApp) return;
+        const shareUrl = currentApp.github || currentApp.link || window.location.href;
+        const shareText = `${currentApp.title} - ${currentApp.desc}\n\n`;
+        const encodedText = encodeURIComponent(shareText);
+        const encodedUrl = encodeURIComponent(shareUrl);
+        
+        switch (platform) {
+            case 'whatsapp':
+                window.open(`https://api.whatsapp.com/send?text=${encodedText}${encodedUrl}`, '_blank');
+                break;
+            case 'telegram':
+                window.open(`https://t.me/share/url?url=${encodedUrl}&text=${encodedText}`, '_blank');
+                break;
+            case 'twitter':
+                window.open(`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedText}`, '_blank');
+                break;
+            case 'copy':
+                navigator.clipboard.writeText(`${currentApp.title} - ${currentApp.desc}\n${shareUrl}`);
+                alert(t('portfolio.sharedClipboardText'));
+                break;
+            default:
+                break;
+        }
+        setShowShareMenu(false);
     };
 
     // Initial role index for modal
@@ -396,6 +426,7 @@ const Portfolio = () => {
     // Clear scroll state when app changes and lock body scroll
     useEffect(() => {
         setIsModalScrolled(false);
+        setShowShareMenu(false);
         if (selectedApp) {
             document.body.style.overflow = 'hidden';
         } else {
@@ -646,7 +677,7 @@ const Portfolio = () => {
                                         </div>
 
                                         {/* Action Buttons — always visible below info */}
-                                        <div className={`flex flex-row gap-2 transition-all duration-300 ${isModalScrolled ? 'scale-95 origin-left' : 'scale-100'}`}>
+                                        <div className={`flex flex-row gap-2 relative transition-all duration-300 ${isModalScrolled ? 'scale-95 origin-left' : 'scale-100'}`}>
                                             <button onClick={() => handleInstall(currentApp)} className="bg-green-600 hover:bg-green-500 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-xl font-bold transition-transform active:scale-95 flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(22,163,74,0.3)] hover:shadow-[0_0_20px_rgba(22,163,74,0.5)] text-xs md:text-sm border border-green-500/30">
                                                 <Download size={15} /> <span>{t('portfolio.installBtn')}</span>
                                             </button>
@@ -655,9 +686,28 @@ const Portfolio = () => {
                                                     <Github size={15} /> <span>GitHub</span>
                                                 </a>
                                             )}
-                                            <button onClick={() => handleShare(currentApp)} className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 md:px-4 py-2 md:py-2.5 rounded-xl font-semibold transition-all active:scale-95 text-xs md:text-sm flex items-center justify-center gap-2 border border-slate-600 hover:border-slate-500 shadow-lg">
-                                                <Share2 size={15} />
-                                            </button>
+                                            <div className="relative">
+                                                <button onClick={() => handleShare(currentApp)} className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 md:px-4 py-2 md:py-2.5 rounded-xl font-semibold transition-all active:scale-95 text-xs md:text-sm flex items-center justify-center gap-2 border border-slate-600 hover:border-slate-500 shadow-lg">
+                                                    <Share2 size={15} />
+                                                </button>
+                                                {showShareMenu && (
+                                                    <div className="absolute right-0 bottom-full mb-2 bg-slate-800 border border-slate-700 rounded-xl p-2 shadow-2xl flex flex-col gap-1 z-[90] min-w-[150px] animate-in fade-in slide-in-from-bottom-2 duration-200">
+                                                        <button onClick={() => shareToPlatform('whatsapp')} className="flex items-center gap-2 text-left text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-700/50 px-3 py-2 rounded-lg transition-colors w-full">
+                                                            <span>WhatsApp</span>
+                                                        </button>
+                                                        <button onClick={() => shareToPlatform('telegram')} className="flex items-center gap-2 text-left text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-700/50 px-3 py-2 rounded-lg transition-colors w-full">
+                                                            <span>Telegram</span>
+                                                        </button>
+                                                        <button onClick={() => shareToPlatform('twitter')} className="flex items-center gap-2 text-left text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-700/50 px-3 py-2 rounded-lg transition-colors w-full">
+                                                            <span>Twitter / X</span>
+                                                        </button>
+                                                        <div className="h-px bg-slate-700/50 my-1"></div>
+                                                        <button onClick={() => shareToPlatform('copy')} className="flex items-center gap-2 text-left text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-700/50 px-3 py-2 rounded-lg transition-colors w-full">
+                                                             <span>Salin Link</span>
+                                                        </button>
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
