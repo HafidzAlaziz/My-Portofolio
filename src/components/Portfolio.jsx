@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FolderGit2, Award, Smartphone, Globe, Star, Download, X, Info, ChevronRight, Share2 } from 'lucide-react';
+import { FolderGit2, Award, Smartphone, Globe, Star, Download, X, Info, ChevronRight, Share2, Github } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLanguage } from '../context/LanguageContext';
@@ -110,6 +110,7 @@ const Portfolio = () => {
             image: "https://s0.wp.com/mshots/v1/https://www.web-kuu.my.id?w=1200",
             tags: ["React", "Supabase", "Framer Motion"],
             link: "https://www.web-kuu.my.id",
+            github: "https://github.com/HafidzAlaziz/WebKu",
             locked: false,
             category: "web"
         },
@@ -119,6 +120,7 @@ const Portfolio = () => {
             image: "https://s0.wp.com/mshots/v1/https://wina-collection.vercel.app?w=1200",
             tags: ["HTML", "CSS", "JavaScript"],
             link: "https://wina-collection.vercel.app",
+            github: "https://github.com/HafidzAlaziz/Wina_Collection",
             locked: false,
             category: "web"
         },
@@ -128,6 +130,7 @@ const Portfolio = () => {
             image: "https://s0.wp.com/mshots/v1/https://edu-smart-academy.vercel.app?w=1200",
             tags: ["React", "React Router", "Tailwind"],
             link: "https://edu-smart-academy.vercel.app",
+            github: "https://github.com/HafidzAlaziz/EduSmart_Academy",
             locked: false,
             category: "web"
         },
@@ -137,6 +140,7 @@ const Portfolio = () => {
             image: "https://s0.wp.com/mshots/v1/https://kopi-senja-ten.vercel.app?w=1200",
             tags: ["React", "Tailwind", "Framer Motion"],
             link: "https://kopi-senja-ten.vercel.app",
+            github: "https://github.com/HafidzAlaziz/Kopi_Senja",
             locked: false,
             category: "web"
         },
@@ -146,6 +150,7 @@ const Portfolio = () => {
             image: "https://s0.wp.com/mshots/v1/https://the-wedding-wheat.vercel.app?w=1200",
             tags: ["React", "Tailwind", "Framer Motion"],
             link: "https://the-wedding-wheat.vercel.app",
+            github: "https://github.com/HafidzAlaziz/The-Wedding",
             locked: false,
             category: "web"
         },
@@ -155,6 +160,7 @@ const Portfolio = () => {
             image: "https://s0.wp.com/mshots/v1/https://dashboard-sample-smoky.vercel.app?w=1200",
             tags: ["Next.js", "TypeScript", "Tailwind"],
             link: "https://dashboard-sample-smoky.vercel.app",
+            github: "https://github.com/HafidzAlaziz/dashboard_sample",
             locked: false,
             category: "web"
         },
@@ -164,6 +170,7 @@ const Portfolio = () => {
             image: "https://s0.wp.com/mshots/v1/https://umkm-ivory.vercel.app?w=1200",
             tags: ["React", "Tailwind", "React Router"],
             link: "https://umkm-ivory.vercel.app",
+            github: "https://github.com/HafidzAlaziz/UMKM",
             locked: false,
             category: "web"
         },
@@ -173,6 +180,7 @@ const Portfolio = () => {
             image: "https://s0.wp.com/mshots/v1/https://professional-service-topaz.vercel.app?w=1200",
             tags: ["Next.js", "TypeScript", "Tailwind"],
             link: "https://professional-service-topaz.vercel.app",
+            github: "https://github.com/HafidzAlaziz/Professional_Service",
             locked: false,
             category: "web"
         },
@@ -182,6 +190,7 @@ const Portfolio = () => {
             image: "/Preview/E-Learning/app_logo.png",
             tags: ["Flutter", "Firebase", "QR Scanner"],
             link: "https://drive.google.com/uc?export=download&id=1kRho6VvMq0DoK1yLaDh0ki1OfzvEG7rd",
+            github: "https://github.com/HafidzAlaziz/E-Learning_App",
             locked: false,
             category: "mobile",
             size: "70.4 MB",
@@ -227,6 +236,7 @@ const Portfolio = () => {
             image: "/Preview/FinFlow/logo.png",
             tags: ["Flutter", "Gemini AI", "SQLite"],
             link: "https://drive.google.com/uc?export=download&id=1xEKbh54Ux8opmoD15axKGz94l3YXNQ65",
+            github: "https://github.com/HafidzAlaziz/FinFlow",
             locked: false,
             category: "mobile",
             size: "54.6 MB",
@@ -467,11 +477,20 @@ const Portfolio = () => {
                                                         ))}
                                                     </div>
                                                 </div>
-                                                <div className="absolute inset-0 bg-slate-900/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <div className="absolute inset-0 bg-slate-900/80 flex flex-col md:flex-row items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity p-4">
                                                     {project.locked ? (
                                                         <button className="bg-red-500/20 text-red-400 border border-red-500/50 px-6 py-2 rounded-lg font-semibold">{t('portfolio.lockedBtn')}</button>
                                                     ) : (
-                                                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold">{t('portfolio.visitBtn')}</a>
+                                                        <>
+                                                            <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-full md:w-auto bg-blue-600 hover:bg-blue-500 text-white px-4 py-2.5 rounded-lg font-semibold text-center text-sm transition-all hover:scale-105 flex items-center justify-center gap-1.5 shadow-lg shadow-blue-600/20">
+                                                                <Globe size={16} /> {t('portfolio.visitBtn')}
+                                                            </a>
+                                                            {project.github && (
+                                                                <a href={project.github} target="_blank" rel="noopener noreferrer" className="w-full md:w-auto bg-slate-800 hover:bg-slate-700 text-white px-4 py-2.5 rounded-lg font-semibold text-center text-sm border border-slate-600 transition-all hover:scale-105 flex items-center justify-center gap-1.5 shadow-lg">
+                                                                    <Github size={16} /> GitHub
+                                                                </a>
+                                                            )}
+                                                        </>
                                                     )}
                                                 </div>
                                             </div>
@@ -631,6 +650,11 @@ const Portfolio = () => {
                                             <button onClick={() => handleInstall(currentApp)} className="bg-green-600 hover:bg-green-500 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-xl font-bold transition-transform active:scale-95 flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(22,163,74,0.3)] hover:shadow-[0_0_20px_rgba(22,163,74,0.5)] text-xs md:text-sm border border-green-500/30">
                                                 <Download size={15} /> <span>{t('portfolio.installBtn')}</span>
                                             </button>
+                                            {currentApp.github && (
+                                                <a href={currentApp.github} target="_blank" rel="noopener noreferrer" className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 md:px-4 py-2 md:py-2.5 rounded-xl font-bold transition-transform active:scale-95 flex items-center justify-center gap-1.5 border border-slate-600 hover:border-slate-500 shadow-lg text-xs md:text-sm">
+                                                    <Github size={15} /> <span>GitHub</span>
+                                                </a>
+                                            )}
                                             <button onClick={() => handleShare(currentApp)} className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 md:px-4 py-2 md:py-2.5 rounded-xl font-semibold transition-all active:scale-95 text-xs md:text-sm flex items-center justify-center gap-2 border border-slate-600 hover:border-slate-500 shadow-lg">
                                                 <Share2 size={15} />
                                             </button>
