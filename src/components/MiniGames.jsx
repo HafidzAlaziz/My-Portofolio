@@ -77,7 +77,7 @@ const MiniGames = () => {
                             <h3 className="text-sm sm:text-lg font-semibold text-slate-300 mb-6 font-primary uppercase tracking-wider">{t('miniGames.pacmanTitle')}</h3>
                             <div className="w-full overflow-x-auto pb-4 flex justify-start md:justify-center">
                                 <img
-                                    src="https://raw.githubusercontent.com/HafidzAlaziz/HafidzAlaziz/output/pacman-contribution-graph-dark.svg"
+                                    src="https://raw.githubusercontent.com/HafidzAlaziz/HafidzAlaziz/output/pacman-contribution-graph.svg"
                                     alt="GitHub Pacman Animation"
                                     className="max-w-none h-auto min-w-[600px] md:min-w-0 md:w-full select-none"
                                     onError={(e) => {
