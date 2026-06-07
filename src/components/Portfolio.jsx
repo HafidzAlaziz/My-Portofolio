@@ -148,7 +148,7 @@ const Portfolio = () => {
         {
             title: "WebKuu",
             desc: t('portfolio.projectWebKuuDesc'),
-            image: "https://s0.wp.com/mshots/v1/https://www.web-kuu.my.id?w=1200",
+            image: "https://s0.wp.com/mshots/v1/https://webkuu-theta.vercel.app?w=1200",
             tags: ["React", "Supabase", "Framer Motion"],
             link: "https://webkuu-theta.vercel.app/",
             github: "https://github.com/HafidzAlaziz/WebKu",
