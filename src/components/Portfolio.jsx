@@ -104,8 +104,10 @@ const Portfolio = () => {
     useEffect(() => {
         gsap.fromTo('.project-card-wrapper',
             { y: 30, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: 'power2.out', clearProps: 'all', 
-              onComplete: () => ScrollTrigger.refresh() }
+            {
+                y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: 'power2.out', clearProps: 'all',
+                onComplete: () => ScrollTrigger.refresh()
+            }
         );
     }, [activeTab, activeSubTab]);
 
@@ -122,7 +124,7 @@ const Portfolio = () => {
                     setActiveTab('projects');
                     setActiveSubTab('web');
                 }
-                
+
                 setTimeout(() => {
                     const element = document.getElementById('portofolio');
                     if (element) {
@@ -148,7 +150,7 @@ const Portfolio = () => {
             desc: t('portfolio.projectWebKuuDesc'),
             image: "https://s0.wp.com/mshots/v1/https://www.web-kuu.my.id?w=1200",
             tags: ["React", "Supabase", "Framer Motion"],
-            link: "https://www.web-kuu.my.id",
+            link: "https://webkuu-theta.vercel.app/",
             github: "https://github.com/HafidzAlaziz/WebKu",
             locked: false,
             category: "web"
@@ -338,7 +340,7 @@ const Portfolio = () => {
 
         // SSE Real-time Updates
         if (!FIREBASE_DB_URL) return;
-        
+
         const sseUrl = `${DOWNLOADS_PATH}?sse=true`;
         let es;
         try {
@@ -392,13 +394,13 @@ const Portfolio = () => {
 
     const handleInstall = (app) => {
         const currentCount = downloadCounts[app.title] || 0;
-        
+
         // Optimistic update locally
         setDownloadCounts(prev => ({ ...prev, [app.title]: currentCount + 1 }));
-        
+
         // Global update to Firebase
         incrementDownloadFirebase(app.title, currentCount);
-        
+
         // Trigger download
         const link = document.createElement('a');
         link.href = app.link;
@@ -435,7 +437,7 @@ const Portfolio = () => {
         const shareText = `${currentApp.title} - ${currentApp.desc}\n\n`;
         const encodedText = encodeURIComponent(shareText);
         const encodedUrl = encodeURIComponent(shareUrl);
-        
+
         switch (platform) {
             case 'whatsapp':
                 window.open(`https://api.whatsapp.com/send?text=${encodedText}${encodedUrl}`, '_blank');
@@ -659,7 +661,7 @@ const Portfolio = () => {
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-2 md:p-4">
                     <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-md" onClick={() => setSelectedApp(null)}></div>
                     <div className="relative w-full max-w-3xl h-full md:h-auto md:max-h-[90vh] bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-slate-800 animate-in fade-in slide-in-from-bottom-8 duration-300 flex flex-col">
-                        <div 
+                        <div
                             onScroll={handleModalScroll}
                             className="h-full overflow-y-auto custom-scrollbar flex-1 relative rounded-3xl"
                             style={{ scrollbarGutter: 'stable' }}
@@ -672,10 +674,10 @@ const Portfolio = () => {
 
                                 <div className="flex items-start gap-3 md:gap-4">
                                     {/* App Icon */}
-                                    <img 
-                                        src={currentApp.image} 
-                                        alt={currentApp.title} 
-                                        className={`rounded-2xl object-cover shadow-lg border border-slate-700 transition-all duration-300 ease-in-out flex-shrink-0 ${isModalScrolled ? 'w-11 h-11 md:w-14 md:h-14' : 'w-16 h-16 md:w-28 md:h-28'}`} 
+                                    <img
+                                        src={currentApp.image}
+                                        alt={currentApp.title}
+                                        className={`rounded-2xl object-cover shadow-lg border border-slate-700 transition-all duration-300 ease-in-out flex-shrink-0 ${isModalScrolled ? 'w-11 h-11 md:w-14 md:h-14' : 'w-16 h-16 md:w-28 md:h-28'}`}
                                     />
 
                                     {/* Info + Buttons */}
@@ -684,7 +686,7 @@ const Portfolio = () => {
                                         <h3 className={`font-bold text-white transition-all duration-300 truncate pr-8 ${isModalScrolled ? 'text-base md:text-xl' : 'text-lg md:text-3xl lg:text-4xl'}`}>
                                             {currentApp.title}
                                         </h3>
-                                        
+
                                         {/* Compact star shown when scrolled */}
                                         <div className={`flex items-center gap-1 text-[11px] transition-all duration-300 ease-in-out ${isModalScrolled && currentApp.rating ? 'opacity-100 max-h-6' : 'opacity-0 max-h-0 overflow-hidden'}`}>
                                             <span className="font-bold text-white">{currentApp.rating}</span>
@@ -741,7 +743,7 @@ const Portfolio = () => {
                                                         </button>
                                                         <div className="h-px bg-slate-700/50 my-1"></div>
                                                         <button onClick={() => shareToPlatform('copy')} className="flex items-center gap-2 text-left text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-700/50 px-3 py-2 rounded-lg transition-colors w-full">
-                                                             <span>Salin Link</span>
+                                                            <span>Salin Link</span>
                                                         </button>
                                                     </div>
                                                 )}
@@ -770,8 +772,8 @@ const Portfolio = () => {
                                 </div>
                                 <div className="flex gap-4 overflow-x-auto pb-4 custom-scrollbar">
                                     {(activeRole?.screenshots || currentApp.screenshots || []).map((shot, i) => (
-                                        <div 
-                                            key={i} 
+                                        <div
+                                            key={i}
                                             className="flex-shrink-0 relative group cursor-zoom-in"
                                             onClick={() => setSelectedImage(shot)}
                                         >
@@ -818,17 +820,17 @@ const Portfolio = () => {
             {/* Image Lightbox (Zoom) */}
             {selectedImage && (
                 <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-                    <div 
+                    <div
                         className="absolute inset-0 bg-black/95 backdrop-blur-sm transition-all duration-300"
                         onClick={() => setSelectedImage(null)}
                     ></div>
                     <div className="relative max-w-full max-h-full flex items-center justify-center animate-in zoom-in duration-300">
-                        <img 
-                            src={selectedImage} 
-                            alt="Zoomed Preview" 
+                        <img
+                            src={selectedImage}
+                            alt="Zoomed Preview"
                             className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl border border-white/10"
                         />
-                        <button 
+                        <button
                             onClick={() => setSelectedImage(null)}
                             className="absolute -top-12 right-0 p-2 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full transition-all"
                         >
