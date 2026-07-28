@@ -302,7 +302,7 @@ const Portfolio = () => {
     ];
 
 
-    const certificates = [
+    const initialCertificates = [
         { title: "Flexible Kickstart UI UX Design", issuer: "Rakamin Academy", date: "Juli 2024", image: "https://drive.google.com/thumbnail?id=1-2NQlw-4Pb_yUs1_3iWBYZL0A7y6gpeI&sz=w800" },
         { title: "Kickstart UI UX Design Journey", issuer: "Rakamin Academy", date: "Juli 2024", image: "https://drive.google.com/thumbnail?id=1-3gpLviGbInU7nNR0NGTTnSEf5Im0PiO&sz=w800" },
         { title: "UI / UX for Beginners", issuer: "Great Learning Academy", date: "Juli 2024", image: "https://drive.google.com/thumbnail?id=1ADxEFnr_NgmxoLjID4z3GhtnrVs-Ow_3&sz=w800" },
@@ -316,6 +316,78 @@ const Portfolio = () => {
         { title: "Belajar Dasar AI", issuer: "Dicoding", date: "Oktober 2025", image: "https://drive.google.com/thumbnail?id=1dIb0jj1dHVNqbhb7bpM3GtFlWcbltUmA&sz=w800" },
         { title: "Introduction to Financial Literacy", issuer: "Dicoding", date: "Desember 2025", image: "https://drive.google.com/thumbnail?id=1c6FSho325zX0ycjjt3SKVFLDUxx4WL4F&sz=w800" }
     ];
+
+    const [certificates, setCertificates] = useState(initialCertificates);
+    const [isLoadingCerts, setIsLoadingCerts] = useState(false);
+
+    useEffect(() => {
+        const fetchDriveCertificates = async () => {
+            const apiKey = import.meta.env.VITE_GOOGLE_DRIVE_API_KEY;
+            const folderId = import.meta.env.VITE_GOOGLE_DRIVE_FOLDER_ID;
+
+            if (!apiKey || !folderId) {
+                return;
+            }
+
+            setIsLoadingCerts(true);
+            try {
+                const response = await fetch(`https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&key=${apiKey}&fields=files(id,name,createdTime)&orderBy=createdTime+desc`);
+                if (!response.ok) throw new Error('Failed to fetch from Drive');
+                
+                const data = await response.json();
+                
+                if (data.files && data.files.length > 0) {
+                    const mappedCerts = data.files.map(file => {
+                        // Cek apakah data sertifikat ini sudah ada di daftar manual (initialCertificates)
+                        const existingCert = initialCertificates.find(c => c.image.includes(file.id));
+                        
+                        if (existingCert) {
+                            return {
+                                title: existingCert.title,
+                                issuer: existingCert.issuer,
+                                date: existingCert.date,
+                                image: `https://drive.google.com/thumbnail?id=${file.id}&sz=w800`
+                            };
+                        }
+
+                        // Jika sertifikat baru (tidak ada di daftar manual)
+                        let title = file.name.replace(/\.[^/.]+$/, ""); // Hilangkan ekstensi
+                        let issuer = "Penyelenggara";
+                        
+                        // Default tanggal dari waktu upload Google Drive
+                        const dateObj = new Date(file.createdTime);
+                        const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+                        let dateStr = `${monthNames[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
+
+                        // Fitur Ekstra: Jika pengguna me-rename file di Google Drive dengan format:
+                        // "Nama Sertifikat - Nama Penyelenggara - Bulan Tahun"
+                        // Contoh: "Juara 1 Web Design - Universitas ABC - Agustus 2026"
+                        if (title.includes(" - ")) {
+                            const parts = title.split(" - ");
+                            title = parts[0].trim();
+                            if (parts.length > 1) issuer = parts[1].trim();
+                            if (parts.length > 2) dateStr = parts[2].trim();
+                        }
+
+                        return {
+                            title: title,
+                            issuer: issuer,
+                            date: dateStr,
+                            image: `https://drive.google.com/thumbnail?id=${file.id}&sz=w800`
+                        };
+                    });
+
+                    setCertificates(mappedCerts);
+                }
+            } catch (error) {
+                console.error("Error fetching certificates from Google Drive:", error);
+            } finally {
+                setIsLoadingCerts(false);
+            }
+        };
+
+        fetchDriveCertificates();
+    }, []);
 
     const [showAllProjects, setShowAllProjects] = useState(false);
     const filteredProjects = projects.filter(p => p.category === activeSubTab);
@@ -614,7 +686,15 @@ const Portfolio = () => {
 
                     {activeTab === 'certificates' && (
                         <div className="content-section bg-slate-900/80 rounded-2xl shadow-2xl p-6 md:p-8 animate-in fade-in zoom-in duration-300">
-                            <h2 className="text-3xl font-bold text-white mb-8 border-b border-green-500 pb-4">{t('portfolio.certificatesHeading')}</h2>
+                            <div className="flex items-center justify-between mb-8 border-b border-green-500 pb-4">
+                                <h2 className="text-3xl font-bold text-white">{t('portfolio.certificatesHeading')}</h2>
+                                {isLoadingCerts && (
+                                    <span className="text-sm text-green-400 animate-pulse flex items-center gap-2">
+                                        <div className="w-4 h-4 border-2 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+                                        Syncing Drive...
+                                    </span>
+                                )}
+                            </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 {displayedCerts.map((cert, idx) => (
                                     <div key={idx} className="project-card-wrapper">
